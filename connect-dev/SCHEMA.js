@@ -1,0 +1,2 @@
+CREATE TABLE users
+(user_id SERIAL PRIMARY KEY, auth_id TEXT, email VARCHAR(100), first_name VARCHAR(100), last_name VARCHAR(100), user_type INTEGER, birthdate VARCHAR(100), bio VARCHAR(500), experience VARCHAR(50), profile_picture TEXT);
