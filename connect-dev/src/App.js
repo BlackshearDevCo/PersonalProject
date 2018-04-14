@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
 
 import routes from './routes';
 
@@ -19,13 +18,9 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.users);
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Navbar />
+        <Header />
         {routes}
       </div>
     );

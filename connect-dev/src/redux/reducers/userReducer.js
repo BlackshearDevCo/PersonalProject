@@ -2,17 +2,43 @@ import axios from 'axios';
 
 //INITIAL STATE
 let initialState = {
-    users: []
+    isLoading: false,
+    users: [],
+    currentUser: [],
+    name: "",
+    authID: "",
+    birthdate: "",
+    bio: "",
+    userType: 0,
+    companyName: "",
+    posts: [],
+    email: "",
+    experience: "",
+    city: "",
+    state: "",
+    country: "",
+    postDate: "",
+    postLikes: 0,
+    ProfilePic: "",
+
 }
 
 //ACTION TYPE
 const GET_USERS = 'GET_USERS';
+const LOGOUT = 'LOGOUT';
 
 //ACTION CREATOR
 export function getUsers() {
     return {
         type: GET_USERS,
-        payload: axios.get('/api/test')
+        payload: axios.get('/api/user')
+    }
+}
+
+export function logout() {
+    return {
+        type: LOGOUT,
+        payload: axios.get('/api/logout')
     }
 }
 
@@ -20,7 +46,9 @@ export function getUsers() {
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${GET_USERS}_FULFILLED` :
-            return { ...state, users: action.payload }
+            return { ...state, currentUser: action.payload.data }
+        case '${LOGOUT}' :
+            return { ...state, currentUser: [] }
         default: state;
     }
 };
