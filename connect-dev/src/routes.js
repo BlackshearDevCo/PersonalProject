@@ -9,6 +9,7 @@ import Devs from './components/Devs/Devs';
 import Employers from './components/Employers/Employers';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
+import CompleteProfile from './components/CompleteProfile/CompleteProfile';
 
 export default (
     <Switch>
@@ -19,5 +20,6 @@ export default (
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/about' component={About} />
         <Route exact path='/contact' component={Contact} />
+        <Route exact path='/complete-profile' component={CompleteProfile} />
     </Switch>
 )

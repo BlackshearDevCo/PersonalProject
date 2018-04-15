@@ -98,8 +98,7 @@ function authenticate(req, res, next) {
 
 app.get('/api/logout', userCtrl.logout);
 app.get('/api/user', userCtrl.getUser);
-
-// app.get("/api/user", authenticate, userCtrl.test);
+app.put('/api/changeBio/:id', userCtrl.changeBio);
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`));

@@ -16,7 +16,6 @@ class Header extends Component {
 
   render() {
     const { name, email, profilePic } = this.props;
-    console.log(profilePic)
 
     return (
       <div className="header">
