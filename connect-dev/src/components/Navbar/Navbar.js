@@ -32,7 +32,7 @@ class Navbar extends Component {
         );
       }
     };
-    console.log(this.props.currentUser);
+    
     return (
       <div>
         <div className="nav">

@@ -9,15 +9,17 @@ import Header from './components/Header/Header';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getUsers } from './redux/reducers/userReducer';
+import { loginUser } from './redux/reducers/userReducer';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.getUsers();
+    this.props.loginUser();
   }
 
   render() {
+    const { name, email, profilePic } = this.props;
+
     return (
       <div className="App">
         <Header />
@@ -29,4 +31,4 @@ class App extends Component {
 
 const mapStateToProps = state => state;
 
-export default withRouter(connect(mapStateToProps, { getUsers })(App));
+export default withRouter(connect(mapStateToProps, { loginUser })(App));

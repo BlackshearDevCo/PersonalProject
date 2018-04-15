@@ -1,0 +1,21 @@
+.profile-pic{
+    margin-top: 5vh;
+    width: 40vw;
+    height: 40vw;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.user-info{
+    background-color: aliceblue;
+    width: 80%;
+    height: 60vh;
+    margin: auto;
+    text-align: left;
+}
+
+.user-name{
+    font-size: 28px;
+    margin: 1.5vh;
+    text-align: center;
+}

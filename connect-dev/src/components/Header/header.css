@@ -94,6 +94,9 @@
     height: 12vw;
     background-color: aliceblue;
     border-radius: 50%;
+    z-index: 5;
+    background-size: cover;
+    background-position: center;
 }
 
 @keyframes fade-in{

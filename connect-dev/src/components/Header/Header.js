@@ -3,6 +3,8 @@ import "./header.css";
 
 import Navbar from "../Navbar/Navbar";
 
+import { connect } from 'react-redux';
+
 class Header extends Component {
   constructor() {
     super();
@@ -13,6 +15,9 @@ class Header extends Component {
   }
 
   render() {
+    const { name, email, profilePic } = this.props;
+    console.log(profilePic)
+
     return (
       <div className="header">
         <Navbar menuFlag={this.state.menuFlag} />
@@ -38,11 +43,13 @@ class Header extends Component {
             <div className="bottom-menu" />
           </div>
           <div className="main-logo" />
-          <div className='pfp-container' />
+          <img src={profilePic} alt='' className='pfp-container' />
         {/* </div> */}
       </div>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Header);
