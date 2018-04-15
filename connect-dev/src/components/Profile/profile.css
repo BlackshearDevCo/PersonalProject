@@ -1,21 +1,44 @@
+.profile-banner{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #10161f;
+    color: aliceblue;
+}
+
 .profile-pic{
     margin-top: 5vh;
+    margin-bottom: -6vh;
     width: 40vw;
     height: 40vw;
     border-radius: 50%;
-    background-color: black;
+    background-color: aliceblue;
+    border: 1px solid #10161f;
 }
 
 .user-info{
     background-color: aliceblue;
+    color: #10161f;
     width: 80%;
     height: 60vh;
     margin: auto;
+    padding: 20px;
     text-align: left;
 }
 
 .user-name{
     font-size: 28px;
-    margin: 1.5vh;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
     text-align: center;
+}
+
+.info-title{
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.info{
+    font-size: 18px;
+    font-weight: 300;
 }
