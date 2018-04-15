@@ -13,11 +13,11 @@ import Profile from './components/Profile/Profile';
 export default (
     <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/devs' component={Devs} />
-        <Route path='/employers' component={Employers} />
-        <Route path='/community' component={Community} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/about' component={About} />
-        <Route path='/contact' component={Contact} />
+        <Route exact path='/devs' component={Devs} />
+        <Route exact path='/employers' component={Employers} />
+        <Route exact path='/community' component={Community} />
+        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/contact' component={Contact} />
     </Switch>
 )

@@ -1,0 +1,61 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MAIN SECTION */
+
+/* .body{
+    width: 100vw;
+    height: 100vh;
+} */
+
+/* .main-section{
+    background-image: url(../../images/dev-startup.jpg);
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    width: 100vw;
+    height: 50vh;
+    color: white;
+    position: absolute;
+    top: 0;
+}
+
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    background-color: #10161fce;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    border: 5px solid white;
+    width: 60%;
+}
+
+.main-text{
+    font-size: 75px;
+    text-transform: capitalize;
+    padding: 40px 30px;
+} */
+
+/* SLIDESHOW */
+
+.image-one{
+    width: 100vw;
+    height: 80vh;
+    background-image: url(../../images/dev-typing.jpeg);
+    background-position: center;
+    background-size: cover;
+}

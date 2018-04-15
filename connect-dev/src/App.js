@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { getUsers } from './redux/reducers/userReducer';
 
@@ -29,4 +30,4 @@ class App extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { getUsers })(App);
+export default withRouter(connect(mapStateToProps, { getUsers })(App));
