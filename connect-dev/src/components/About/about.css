@@ -1,7 +1,26 @@
 .about-container{
-    
+    width: 80vw;
+    margin: 30px auto;
+    text-align: left;
+    background-color: aliceblue;
+    padding: 10px;
 }
 
 .about-header{
     font-size: 22px;
+    text-align: center;
+}
+
+.about-created{
+    margin: 20px 0;
+    /* background-color: rgb(233, 233, 233); */
+    padding: 10px;
+}
+
+.section-title{
+    margin-bottom: 10px;
+}
+
+.section-text{
+    margin: 10px 0;
 }

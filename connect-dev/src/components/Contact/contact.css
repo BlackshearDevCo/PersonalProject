@@ -1,0 +1,29 @@
+.contact-container{
+    width: 80vw;
+    height: 60vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contact-header{
+    font-size: 22px;
+}
+
+.phone, .email{
+    line-height: 1.4em;
+    margin-bottom: 15px;
+    background-color: aliceblue;
+    padding: 10px;
+    border: 1px solid #10161f;
+}
+
+.appreciate{
+    margin-bottom: 25px;
+    background-color: aliceblue;
+    padding: 10px;
+    border: 1px solid #10161f;
+    border-radius: 3px;
+}
