@@ -5,6 +5,7 @@ const logout = (req,res) => {
 };
 
 const getUser = (req,res) => {
+  // console.log(req.user);
   if(!req.user) {
     res.status(401).json({message: "Not Authorized"})
   }

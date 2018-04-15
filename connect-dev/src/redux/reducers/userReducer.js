@@ -46,6 +46,7 @@ export function logout() {
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${GET_USERS}_FULFILLED` :
+        console.log(action.payload.data);
             return { ...state, currentUser: action.payload.data }
         case '${LOGOUT}' :
             return { ...state, currentUser: [] }

@@ -51,12 +51,14 @@ passport.use(
       scope: "openid email profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
+      console.log(profile)
       return done(null, profile);
     }
   )
 );
 
 passport.serializeUser((user, done) => {
+  console.log(user);
   app
     .get("db")
     .getUserByAuthId(user.id)
