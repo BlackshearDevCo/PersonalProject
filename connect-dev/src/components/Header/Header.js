@@ -16,7 +16,7 @@ class Header extends Component {
     return (
       <div className="header">
         <Navbar menuFlag={this.state.menuFlag} />
-        <div className="header-container">
+        {/* <div className="header-container"> */}
           <div
             className={!this.state.menuFlag ? null : "showExit"}
             onClick={() =>
@@ -38,7 +38,8 @@ class Header extends Component {
             <div className="bottom-menu" />
           </div>
           <div className="main-logo" />
-        </div>
+          <div className='pfp-container' />
+        {/* </div> */}
       </div>
     );
   }

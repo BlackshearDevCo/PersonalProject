@@ -44,8 +44,8 @@ class Navbar extends Component {
             <Link to="/about" className='link'>About</Link>
             <Link to="/contact" className='link'>Contact</Link>
           </div>
-          <div className={ !menuFlag ? 'slide-down' : 'slide-down slide-down-true' } />
-          <div className={ !menuFlag ? 'slide-up' : 'slide-up slide-up-true' } />
+          {/* <div className={ !menuFlag ? 'slide-down' : 'slide-down slide-down-true' } />
+          <div className={ !menuFlag ? 'slide-up' : 'slide-up slide-up-true' } /> */}
         </div>
         <div className="login">
           {!this.props.currentUser ? (

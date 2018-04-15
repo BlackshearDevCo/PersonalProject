@@ -1,61 +1,145 @@
-*{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.2em;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.2em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* MAIN SECTION */
 
-/* .body{
-    width: 100vw;
-    height: 100vh;
-} */
-
-/* .main-section{
-    background-image: url(../../images/dev-startup.jpg);
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    width: 100vw;
-    height: 50vh;
-    color: white;
-    position: absolute;
-    top: 0;
+.body {
+  width: 100vw;
+  height: 100vh;
 }
 
-.overlay{
-    width: 100vw;
-    height: 100vh;
-    background-color: #10161fce;
-    position: absolute;
-    top: 0;
-    z-index: 0;
+.main-section {
+  background-image: url(../../images/dev-startup.jpg);
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  width: 100vw;
+  height: 50vh;
+  color: white;
 }
 
-.container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 1;
-    border: 5px solid white;
-    width: 60%;
+.overlay {
+  width: 100vw;
+  height: 50vh;
+  background-color: #10161fce;
+  border-bottom: 3px solid white;
 }
 
-.main-text{
-    font-size: 75px;
-    text-transform: capitalize;
-    padding: 40px 30px;
-} */
+.container {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border: 2px solid white;
+  width: 70%;
+}
+
+.main-text {
+  font-size: 22px;
+  text-transform: capitalize;
+  padding: 20px 10px;
+}
 
 /* SLIDESHOW */
 
-.image-one{
-    width: 100vw;
-    height: 80vh;
-    background-image: url(../../images/dev-typing.jpeg);
-    background-position: center;
+.image-one {
+  width: 100vw;
+  height: 30vh;
+  background-image: url(../../images/dev-typing.jpeg);
+  background-position: center;
+  background-size: cover;
+}
+
+/* CARDS */
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: aliceblue;
+}
+
+.connect,
+.technologies {
+  width: 100vw;
+  height: 50vh;
+  background-color: #10161f;
+}
+
+.satisfaction {
+  width: 100vw;
+  height: 60vh;
+  background-color: aliceblue;
+  color: #10161f;
+}
+
+.card-image {
+  width: 60%;
+  height: 50%;
+  margin: auto;
+  margin: 25px auto;
+}
+
+.card-title {
+  text-transform: uppercase;
+  font-size: 26px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.card-text {
+  width: 70%;
+  font-size: 18px;
+  margin: auto;
+}
+
+.image-connect {
+  background-image: url(../../images/group-icon-white.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.image-tech{
+    background-image: url(../../images/react-white.png);
     background-size: cover;
+    background-position: center;
+}
+
+.image-satisfaction{
+    background-image: url(../../images/Stick-Excited-large.png);
+    background-size: cover;
+    background-position: center;
+}
+
+/* OUR GOAL */
+
+.our-goal{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.our-goal-img{
+    background-image: url(../../images/devs-talking-2.jpeg);
+    background-position: -240px;
+    background-size: cover;
+    width: 45vw;
+    height: 90%;
+    border: 2px solid #10161f;
+}
+
+.our-goal-text{
+    width: 45%;
+    font-size: 18px;
+    text-align: left;
 }
