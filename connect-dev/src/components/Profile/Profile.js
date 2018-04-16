@@ -39,6 +39,7 @@ class Profile extends Component {
               <h2 className="user-name not-logged">
                 Oops! You aren't logged in!
               </h2>
+              <a href='http://localhost:3001/auth'><button>Log In</button></a>
             </section>
             <section className="posts-container">
               <h2 className="posts-title">Previous Posts</h2>
@@ -124,6 +125,8 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return { ...state };
+};
 
 export default connect(mapStateToProps, { enterBio, changeBio })(Profile);

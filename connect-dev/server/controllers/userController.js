@@ -25,8 +25,18 @@ const changeBio = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const getAllUsers = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_all_users([req.body.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   logout,
   getUser,
-  changeBio
+  changeBio,
+  getAllUsers
 };

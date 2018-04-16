@@ -3,7 +3,7 @@ import "./header.css";
 
 import Navbar from "../Navbar/Navbar";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Header extends Component {
   constructor() {
@@ -12,6 +12,11 @@ class Header extends Component {
       menuFlag: false,
       exitFlag: false
     };
+    this.toggleMenuFlag = this.toggleMenuFlag.bind(this);
+  }
+
+  toggleMenuFlag() {
+    this.setState({ menuFlag: !this.state.menuFlag });
   }
 
   render() {
@@ -19,36 +24,32 @@ class Header extends Component {
 
     return (
       <div className="header">
-        <Navbar menuFlag={this.state.menuFlag} />
+        <Navbar menuFlag={this.state.menuFlag} toggleMenuFlag={this.toggleMenuFlag} />
         {/* <div className="header-container"> */}
-          <div
-            className={!this.state.menuFlag ? null : "showExit"}
-            onClick={() =>
-              this.setState({
-                exitFlag: !this.state.exitFlag,
-                menuFlag: !this.state.menuFlag
-              })
-            }
-          >
-            <div className="exit-one" />
-            <div className="exit-two" />
-          </div>
-          <div
-            className="menu-container"
-            onClick={() => this.setState({ menuFlag: !this.state.menuFlag })}
-          >
-            <div className="top-menu" />
-            <div className="mid-menu" />
-            <div className="bottom-menu" />
-          </div>
-          <div className="main-logo" />
-          <img src={profilePic} alt='' className='pfp-container' />
+        <div
+          className={!this.state.menuFlag ? null : "showExit"}
+          onClick={() => this.toggleMenuFlag()}
+        >
+          <div className={!this.state.menuFlag ? null : "exit-one"} />
+          <div className={!this.state.menuFlag ? null : "exit-two"} />
+        </div>
+        <div className="menu-container" onClick={() => this.toggleMenuFlag()}>
+          <div className="top-menu" />
+          <div className="mid-menu" />
+          <div className="bottom-menu" />
+        </div>
+        <div className="main-logo" />
+        <img src={profilePic} alt="" className="pfp-container" />
         {/* </div> */}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
 
 export default connect(mapStateToProps)(Header);

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./devs.css";
-import AddPost from './AddPost/AddPost';
+import AddPost from "./AddPost/AddPost";
+
+import { Link } from 'react-router-dom';
 
 import { connect } from "react-redux";
 
@@ -14,21 +16,29 @@ class Devs extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <div>
         {this.props.posts && this.props.posts.length > 0 ? (
-          this.props.posts.map((cur, ind) => {
-            return (
-              <div key={ind} className="post-container">
-                <div className='user-container'>
-                  <img src={cur.profile_picture} className="post-pfp" />
-                  <h3 id={cur.user_id} className='post-username'>{cur.first_name}</h3>
+          this.props.posts
+            .map((cur, ind) => {
+              return (
+                <div key={ind} className="post-container">
+                  <div className="user-container">
+                    <img src={cur.profile_picture} className="post-pfp" />
+                    <Link to={`/user/${cur.user_id}`}>
+                    <h3 id={cur.user_id} className="post-username">
+                      {cur.first_name}
+                    </h3>
+                    </Link>
+                  </div>
+                  <p id={cur.post_id} className="post-body">
+                    {cur.post_body}
+                  </p>
                 </div>
-                <p id={cur.post_id} className='post-body'>{cur.post_body}</p>
-              </div>
-            );
-          }).sort()
+              );
+            })
+            .sort()
         ) : (
           <h1>No Posts</h1>
         )}
@@ -38,6 +48,8 @@ class Devs extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+    return { ...state };
+  };
 
 export default connect(mapStateToProps, { getPosts, loginUser })(Devs);

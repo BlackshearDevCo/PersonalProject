@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-import routes from './routes';
+import routes from "./routes";
 
-import Navbar from './components/Navbar/Navbar';
-import Header from './components/Header/Header';
+import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
 
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import { loginUser } from './redux/reducers/userReducer';
+import { loginUser, getAllUsers } from "./redux/reducers/userReducer";
 
 class App extends Component {
-
   componentDidMount() {
     this.props.loginUser();
+    this.props.getAllUsers();
+    console.log(this.props)
   }
 
   render() {
@@ -29,6 +30,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return { ...state };
+};
 
-export default withRouter(connect(mapStateToProps, { loginUser })(App));
+export default withRouter(connect(mapStateToProps, { loginUser, getAllUsers })(App));

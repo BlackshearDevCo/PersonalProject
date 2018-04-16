@@ -65,6 +65,8 @@ class AddPost extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return { ...state };
+};
 
 export default connect(mapStateToProps, { newPost, loginUser })(AddPost);

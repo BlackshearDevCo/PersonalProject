@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Footer from "../Footer/Footer";
 import "./home.css";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { loginUser } from '../../redux/reducers/userReducer';
+import { loginUser } from "../../redux/reducers/userReducer";
 
-class Home extends Component{
+class Home extends Component {
   // constructor(props){
   //   super(props)
   // }
@@ -74,6 +74,8 @@ class Home extends Component{
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  return { state };
+};
 
 export default connect(mapStateToProps, { loginUser })(Home);

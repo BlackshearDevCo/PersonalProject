@@ -1,3 +1,5 @@
+// import axios from "axios";
+
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
@@ -100,6 +102,7 @@ function authenticate(req, res, next) {
 app.get('/api/logout', userCtrl.logout);
 app.get('/api/user', userCtrl.getUser);
 app.get('/api/getPosts', postCtrl.getPosts);
+app.get('/api/getAllUsers', userCtrl.getAllUsers);
 app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/changeBio/:id', userCtrl.changeBio);
 

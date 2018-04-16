@@ -30,6 +30,7 @@ const ENTER_BIO = 'ENTER_BIO';
 const CHANGE_BIO = 'CHANGE_BIO';
 const GET_POSTS = 'GET_POSTS';
 const NEW_POST = 'NEW_POST';
+const GET_ALL_USERS = 'GET_ALL_USERS';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -73,6 +74,13 @@ export function newPost(id, post) {
     }
 }
 
+export function getAllUsers(id) {
+    return {
+        type: GET_ALL_USERS,
+        payload: axios.get('/api/getAllUsers', { id })
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -92,6 +100,8 @@ export default function userReducer(state = initialState, action) {
         case `${NEW_POST}_FULFILLED` :
             // console.log(state, action.payload.data)
             return { ...state, posts: action.payload.data }
+        case `${GET_ALL_USERS}_FULFILLED` :
+            return { ...state, users: action.payload.data }
         default: state;
     }
 };

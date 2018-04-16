@@ -36,9 +36,11 @@
     width: 100vw;
     height: 50vh;
     background-color: #10161f;
-    position: absolute;
+    position: fixed;
     top: 0;
+    left: 0;
     transform: translate(0, -100%);
+    z-index: 2;
 }
 
 .slide-down-true{
@@ -50,9 +52,11 @@
     width: 100vw;
     height: 51vh;
     background-color: #10161f;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    left: 0;
     transform: translate(0, 100%);
+    z-index: 2;
 }
 
 .slide-up-true{
