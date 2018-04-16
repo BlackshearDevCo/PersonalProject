@@ -1,0 +1,1 @@
+INSERT INTO posts (user_id, post_body) VALUES ($1, $2);

@@ -9,6 +9,7 @@ const Auth0Strategy = require("passport-auth0");
 const app = express();
 
 const userCtrl = require("./controllers/userController");
+const postCtrl = require("./controllers/postController");
 
 app.use(json());
 app.use(cors());
@@ -98,7 +99,8 @@ function authenticate(req, res, next) {
 
 app.get('/api/logout', userCtrl.logout);
 app.get('/api/user', userCtrl.getUser);
-app.get('/api/getPosts', userCtrl.getPosts);
+app.get('/api/getPosts', postCtrl.getPosts);
+app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/changeBio/:id', userCtrl.changeBio);
 
 const port = 3001;

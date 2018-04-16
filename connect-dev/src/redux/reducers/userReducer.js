@@ -20,8 +20,7 @@ let initialState = {
     country: "",
     postDate: "",
     postLikes: 0,
-    profilePic: "",
-
+    profilePic: ""
 }
 
 //ACTION TYPE
@@ -30,6 +29,7 @@ const LOGOUT = 'LOGOUT';
 const ENTER_BIO = 'ENTER_BIO';
 const CHANGE_BIO = 'CHANGE_BIO';
 const GET_POSTS = 'GET_POSTS';
+const NEW_POST = 'NEW_POST';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -66,12 +66,19 @@ export function getPosts() {
         payload: axios.get('/api/getPosts')
     }
 }
+export function newPost(id, post) {
+    return {
+        type: NEW_POST,
+        payload: axios.post('/api/newPost', {id, post})
+    }
+}
 
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${LOGIN_USER}_FULFILLED` :
         const { data } = action.payload;
+        // console.log(data);
             return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio }
         case LOGOUT :
             return { ...state, currentUser: [] }
@@ -80,6 +87,10 @@ export default function userReducer(state = initialState, action) {
         case `${CHANGE_BIO}_FULFILLED` :
             return { ...state, bio: action.payload.data[0].bio}
         case `${GET_POSTS}_FULFILLED` :
+        // console.log(action.payload.data)
+            return { ...state, posts: action.payload.data }
+        case `${NEW_POST}_FULFILLED` :
+            // console.log(state, action.payload.data)
             return { ...state, posts: action.payload.data }
         default: state;
     }

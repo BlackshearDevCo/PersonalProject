@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import "./devs.css";
+import AddPost from './AddPost/AddPost';
 
 import { connect } from "react-redux";
 
-import { getPosts } from "../../redux/reducers/userReducer";
+import { getPosts, loginUser } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
   componentDidMount() {
     this.props.getPosts();
+    this.props.loginUser();
+    // console.log(this.props)
   }
 
   render() {
-    console.log(this.props.posts);
+    // console.log(this.props);
     return (
       <div>
-        {this.props.posts ? (
+        {this.props.posts && this.props.posts.length > 0 ? (
           this.props.posts.map((cur, ind) => {
             return (
-              // <p key={ind}>{cur.post_body}</p>
               <div key={ind} className="post-container">
                 <div className='user-container'>
                   <img src={cur.profile_picture} className="post-pfp" />
@@ -30,6 +32,7 @@ class Devs extends Component {
         ) : (
           <h1>No Posts</h1>
         )}
+        <AddPost />
       </div>
     );
   }
@@ -37,4 +40,4 @@ class Devs extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { getPosts })(Devs);
+export default connect(mapStateToProps, { getPosts, loginUser })(Devs);
