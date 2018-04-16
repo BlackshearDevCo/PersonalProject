@@ -29,7 +29,7 @@ const getAllUsers = (req, res) => {
   const db = req.app.get("db");
 
   db
-    .get_all_users([req.body.id])
+    .get_all_users([req.params.id])
     .then(response => res.status(200).json(response))
     .catch(err => res.status(500).json(err));
 };

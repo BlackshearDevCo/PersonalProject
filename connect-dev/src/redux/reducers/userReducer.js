@@ -77,7 +77,7 @@ export function newPost(id, post) {
 export function getAllUsers(id) {
     return {
         type: GET_ALL_USERS,
-        payload: axios.get('/api/getAllUsers', { id })
+        payload: axios.get(`/api/getAllUsers/${id}`)
     }
 }
 
@@ -101,6 +101,7 @@ export default function userReducer(state = initialState, action) {
             // console.log(state, action.payload.data)
             return { ...state, posts: action.payload.data }
         case `${GET_ALL_USERS}_FULFILLED` :
+        console.log(action.payload.data)
             return { ...state, users: action.payload.data }
         default: state;
     }

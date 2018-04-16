@@ -14,8 +14,6 @@ import { loginUser, getAllUsers } from "./redux/reducers/userReducer";
 class App extends Component {
   componentDidMount() {
     this.props.loginUser();
-    this.props.getAllUsers();
-    console.log(this.props)
   }
 
   render() {

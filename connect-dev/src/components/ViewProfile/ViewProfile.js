@@ -43,7 +43,7 @@ class ViewProfile extends Component {
             return (
               <div key={ind}>
                 <div className="profile-banner">
-                  <img src={cur.profile_pic} className="profile-pic" />
+                  <img src={cur.profile_picture} className="profile-pic" />
 
                   <section className="user-info">
                     <h2 className="user-name">
