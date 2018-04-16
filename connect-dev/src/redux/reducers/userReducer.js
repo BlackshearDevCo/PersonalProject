@@ -29,6 +29,7 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT = 'LOGOUT';
 const ENTER_BIO = 'ENTER_BIO';
 const CHANGE_BIO = 'CHANGE_BIO';
+const GET_POSTS = 'GET_POSTS';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -59,6 +60,13 @@ export function changeBio(id, bio) {
     }
 }
 
+export function getPosts() {
+    return {
+        type: GET_POSTS,
+        payload: axios.get('/api/getPosts')
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -71,6 +79,8 @@ export default function userReducer(state = initialState, action) {
             return { ...state, newBio: action.payload }
         case `${CHANGE_BIO}_FULFILLED` :
             return { ...state, bio: action.payload.data[0].bio}
+        case `${GET_POSTS}_FULFILLED` :
+            return { ...state, posts: action.payload.data }
         default: state;
     }
 };

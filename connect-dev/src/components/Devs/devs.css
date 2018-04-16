@@ -1,0 +1,28 @@
+.post-container{
+    width: 80vw;
+    min-height: 5vh;
+    background-color: #999;
+    margin: 2vh auto;
+}
+
+.post-pfp{
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    margin: 8px 15px;
+}
+
+.user-container{
+    display: flex;
+    align-items: center;
+}
+
+.post-username{
+    font-weight: 400;
+}
+
+.post-body{
+    text-align: left;
+    padding: 15px;
+    font-weight: 200;
+}

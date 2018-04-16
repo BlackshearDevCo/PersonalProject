@@ -20,12 +20,23 @@ const changeBio = (req, res) => {
   db
     .change_bio([id, bio])
     .then(response => {
-      res.status(200).json(response)})
+      res.status(200).json(response);
+    })
+    .catch(err => res.status(500).json(err));
+};
+
+const getPosts = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_posts()
+    .then(response => res.status(200).json(response))
     .catch(err => res.status(500).json(err));
 };
 
 module.exports = {
   logout,
   getUser,
-  changeBio
+  changeBio,
+  getPosts
 };
