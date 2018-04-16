@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import { enterBio, changeBio } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   render() {
     const {
       name,
@@ -15,7 +19,8 @@ class Profile extends Component {
       currentUser,
       enterBio,
       changeBio,
-      newBio
+      newBio,
+      posts
     } = this.props;
 
     return (
@@ -50,7 +55,11 @@ class Profile extends Component {
                       placeholder="Enter Bio"
                       onChange={e => enterBio(e.target.value)}
                     />
-                    <button onClick={() => changeBio(currentUser.user_id, newBio)}>Submit</button>
+                    <button
+                      onClick={() => changeBio(currentUser.user_id, newBio)}
+                    >
+                      Submit
+                    </button>
                   </div>
                 ) : (
                   <p className="info">{bio}</p>
@@ -60,7 +69,15 @@ class Profile extends Component {
               </section>
               <section className="posts-container">
                 <h2 className="posts-title">Previous Posts</h2>
-                <div className="post">Post</div>
+                <div className="post">
+                  {!posts[0] ? (
+                    <div>
+                      <p>No Posts</p>
+                    </div>
+                  ) : (
+                    <div>Test</div>
+                  )}
+                </div>
               </section>
             </div>
           </div>

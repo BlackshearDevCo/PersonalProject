@@ -64,7 +64,7 @@ export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${LOGIN_USER}_FULFILLED` :
         const { data } = action.payload;
-            return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture }
+            return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio }
         case LOGOUT :
             return { ...state, currentUser: [] }
         case ENTER_BIO :
