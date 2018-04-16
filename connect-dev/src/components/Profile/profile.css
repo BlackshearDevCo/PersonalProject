@@ -19,7 +19,7 @@
     background-color: aliceblue;
     color: #10161f;
     width: 80%;
-    height: 60vh;
+    min-height: 60vh;
     margin: auto;
     padding: 20px;
     text-align: left;
@@ -33,7 +33,7 @@
 }
 
 .info-title{
-    margin: 10px 0;
+    margin: 20px 0 10px 0;
     font-size: 22px;
     font-weight: 400;
 }

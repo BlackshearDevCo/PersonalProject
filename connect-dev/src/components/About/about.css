@@ -11,16 +11,11 @@
     text-align: center;
 }
 
-.about-created{
+.about-created, .section-title{
     margin: 20px 0;
-    /* background-color: rgb(233, 233, 233); */
     padding: 10px;
 }
 
-.section-title{
-    margin-bottom: 10px;
-}
-
 .section-text{
-    margin: 10px 0;
+    margin: 10px;
 }
