@@ -34,12 +34,11 @@ class ViewProfile extends Component {
       experience
     } = this.props;
 
-    console.log(this.props.match.params.id, users);
-
     return (
       <div>
         {users ? (
           users.map((cur, ind) => {
+            console.log(cur)
             return (
               <div key={ind}>
                 <div className="profile-banner">
