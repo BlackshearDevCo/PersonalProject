@@ -5,11 +5,20 @@ const logout = (req, res) => {
 };
 
 const getUser = (req, res) => {
-  if (!req.user) {
-    res.status(401).json({ message: "Not Authorized" });
-  } else {
-    res.status(200).json(req.user);
-  }
+  // if (!req.user) {
+  //   res.status(401).json({ message: "Not Authorized" });
+  // } else {
+  //   res.status(200).json(req.user);
+  // }
+  const db = req.app.get("db");
+  const { auth_id } = req.user;
+
+  db
+    .getUserByAuthId(auth_id)
+    .then(user => {
+      res.status(200).json(user[0]);
+    })
+    .catch(err => res.status(500).json(err));
 };
 
 const changeBio = (req, res) => {
@@ -40,7 +49,6 @@ const chooseUserType = (req, res) => {
   db
     .choose_user_type([req.params.id, req.body.num])
     .then(response => {
-      console.log(response);
       res.status(200).json(response);
     })
     .catch(err => res.status(500).json(err));
@@ -57,12 +65,30 @@ const chooseUserExperience = (req, res) => {
 
 const enterBirthdate = (req, res) => {
   const db = req.app.get("db");
-  console.log(req.params.id, req.body.birthday)
 
   db
     .enter_birthdate([req.params.id, req.body.birthday])
     .then(response => res.status(200).json(response))
     .catch(err => res.status(500).json(err));
+};
+
+const enterLocation = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .enter_location([req.params.id, req.body.location])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
+const updateUserInfo = (req, res) => {
+  const db = req.app.get("db");
+  const { user_type, birthdate, bio, experience, location, company } = req.body;
+
+  db
+    .update_user_info([req.params.id, user_type, birthdate, bio, experience, location, company])
+    .then(response => res.status(200).json(response))
+    .catch(err => re.status(500).json(err));
 };
 
 module.exports = {
@@ -72,5 +98,7 @@ module.exports = {
   getAllUsers,
   chooseUserType,
   chooseUserExperience,
-  enterBirthdate
+  enterBirthdate,
+  enterLocation,
+  updateUserInfo
 };

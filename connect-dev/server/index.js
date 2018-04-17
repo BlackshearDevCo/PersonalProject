@@ -1,5 +1,3 @@
-// import axios from "axios";
-
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
@@ -108,6 +106,8 @@ app.put('/api/changeBio/:id', userCtrl.changeBio);
 app.put('/api/chooseUserType/:id', userCtrl.chooseUserType);
 app.put('/api/chooseUserExperience/:id', userCtrl.chooseUserExperience);
 app.put('/api/enterBirthdate/:id', userCtrl.enterBirthdate);
+app.put('/api/enterLocation/:id', userCtrl.enterLocation);
+app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`));

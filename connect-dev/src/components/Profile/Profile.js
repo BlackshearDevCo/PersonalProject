@@ -6,26 +6,39 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
-  enterBio,
-  changeBio,
   logout,
-  chooseUserType,
-  chooseUserExperience,
-  enterBirthdate,
-  loginUser
+  loginUser,
+  updateUserInfo
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      birthday: ''
-    }
+      birthday: "",
+      location: "",
+      userType: 0,
+      userBio: "",
+      userExperience: 0,
+      companyName: ""
+    };
+    // this.handleUserInfo = this.handleUserInfo.bind(this);
   }
 
   componentDidMount() {
-    // this.props.loginUser()
+    this.props.loginUser();
   }
+
+  // handleUserInfo() {
+  //   this.props.updateUserInfo(
+  //     currentUser.user_id,
+  //     this.state.user_type || currentUser.user_type,
+  //     this.state.birthday || currentUser.birthdate,
+  //     this.state.userBio || currentUser.bio,
+  //     this.state.experience || currentUser.experience,
+  //     this.state.location || currentUser.location
+  //   );
+  // }
 
   render() {
     const {
@@ -49,7 +62,7 @@ class Profile extends Component {
       chooseUserExperience,
       enterBirthdate
     } = this.props;
-    console.log(birthdate);
+
     return (
       <div>
         {!currentUser ? (
@@ -82,20 +95,16 @@ class Profile extends Component {
                   <p className="info-title">User Type: </p>
                   {!currentUser.user_type ? (
                     <div>
-                      <button
-                        onClick={() => chooseUserType(1, currentUser.user_id)}
-                      >
+                      <button onClick={() => this.setState({ userType: 1 })}>
                         Developer
                       </button>
-                      <button
-                        onClick={() => chooseUserType(2, currentUser.user_id)}
-                      >
+                      <button onClick={() => this.setState({ userType: 2 })}>
                         Employer
                       </button>
                     </div>
                   ) : (
                     <p className="info">
-                      {userType === 1 ? "Developer" : "Employer"}
+                      {currentUser.user_type === 1 ? "Developer" : "Employer"}
                     </p>
                   )}
                 </div>
@@ -105,79 +114,125 @@ class Profile extends Component {
                 </div>
                 <div className="user-bio">
                   <p className="info-title">Bio: </p>
-                  {!bio ? (
-                    <div>
-                      <input
-                        placeholder="Enter Bio"
-                        onChange={e => enterBio(e.target.value)}
-                      />
-                      <button
-                        onClick={() => changeBio(currentUser.user_id, newBio)}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  ) : (
-                    <p className="info">{bio}</p>
-                  )}
+                  <div>
+                    {!bio ? (
+                      <div>
+                        <input
+                          placeholder="Enter Bio"
+                          onChange={e =>
+                            this.setState({ userBio: e.target.value })
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <p className="info">{bio}</p>
+                    )}
+                  </div>
                 </div>
                 <div className="user-experience">
-                  <p className="info-title">Experience: </p>
-                  {!currentUser.experience ? (
-                    <div>
-                      <button
-                        onClick={() =>
-                          chooseUserExperience(1, currentUser.user_id)
-                        }
-                      >
-                        Junior
-                      </button>
-                      <button
-                        onClick={() =>
-                          chooseUserExperience(2, currentUser.user_id)
-                        }
-                      >
-                        Mid-Level
-                      </button>
-                      <button
-                        onClick={() =>
-                          chooseUserExperience(3, currentUser.user_id)
-                        }
-                      >
-                        Senior
-                      </button>
-                    </div>
-                  ) : (
-                    <div>
-                      {currentUser.experience === 1 ? (
-                        <p>Junior</p>
-                      ) : currentUser.experience === 2 ? (
-                        <p>Mid-Level</p>
-                      ) : (
-                        <p>Senior</p>
-                      )}
-                    </div>
-                  )}
+                <div>
+                  {
+                    currentUser.user_type === 2 ?
+                    <p className="info-title">Company Name: </p>
+                    :
+                    <p className="info-title">Experience: </p>
+                  }
+                  </div>
+                  <div>
+                    {
+                      currentUser.user_type === 2 ?
+                      (
+                        currentUser.company_name ?
+                        (
+                          <p className='info'>{currentUser.company_name}</p>
+                        )
+                        :
+                        (
+                          <input onChange={e => this.setState({companyName: e.target.value})} />
+                        )
+                      )
+                      :
+                      (
+                        !currentUser.experience ? (
+                          <div>
+                            <button
+                              onClick={() => this.setState({ userExperience: 1 })}
+                            >
+                              Junior
+                            </button>
+                            <button
+                              onClick={() => this.setState({ userExperience: 2 })}
+                            >
+                              Mid-Level
+                            </button>
+                            <button
+                              onClick={() => this.setState({ userExperience: 3 })}
+                            >
+                              Senior
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            {currentUser.experience === 1 ? (
+                              <p>Junior</p>
+                            ) : currentUser.experience === 2 ? (
+                              <p>Mid-Level</p>
+                            ) : (
+                              <p>Senior</p>
+                            )}
+                          </div>
+                        )
+                      )
+                    }
+                  </div>
                 </div>
                 <div className="user-birthday">
                   <p className="info-title">Birthday: </p>
-                  {!birthdate ? (
+                  {!currentUser.birthdate ? (
                     <div>
-                    <input placeholder="MM/DD/YYYY" onChange={e => this.setState({birthday: e.target.value})} />
-                    <button onClick={() => enterBirthdate(currentUser.user_id, this.state.birthday)}>Submit</button>
+                      <input
+                        placeholder="MM/DD/YYYY"
+                        onChange={e =>
+                          this.setState({ birthday: e.target.value })
+                        }
+                      />
                     </div>
                   ) : (
-                    <p className="info">{birthdate || currentUser.birthdate}</p>
+                    <p className="info">{currentUser.birthdate}</p>
                   )}
                 </div>
                 <div className="user-location">
                   <p className="info-title">Location: </p>
                   {!currentUser.location ? (
-                    <input placeholder="City, State" />
+                    <div>
+                      <input
+                        placeholder="City, State"
+                        onChange={e =>
+                          this.setState({ location: e.target.value })
+                        }
+                      />
+                    </div>
                   ) : (
                     <p className="info">{currentUser.location}</p>
                   )}
                 </div>
+                <button
+                  onClick={() => {
+                    this.props
+                      .updateUserInfo(
+                        currentUser.user_id,
+                        this.state.userType || currentUser.user_type,
+                        this.state.birthday || currentUser.birthdate,
+                        this.state.userBio || currentUser.bio,
+                        this.state.userExperience || currentUser.experience,
+                        this.state.location || currentUser.location,
+                        this.state.companyName || currentUser.company_name
+                      )
+                      .then(() => this.props.loginUser());
+                  }}
+                >
+                  Update Info
+                </button>
               </section>
 
               <section className="posts-container">
@@ -205,11 +260,20 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  enterBio,
-  changeBio,
   logout,
-  chooseUserType,
-  chooseUserExperience,
-  enterBirthdate,
-  loginUser
+  loginUser,
+  updateUserInfo
 })(Profile);
+
+// {!bio ? (
+//   <div>
+//     <input
+//       placeholder="Enter Bio"
+//       onChange={e =>
+//         this.setState({ userBio: e.target.value })
+//       }
+//     />
+//   </div>
+// ) : (
+//   <p className="info">{bio}</p>
+// )}
