@@ -20,25 +20,61 @@ class Profile extends Component {
       userType: 0,
       userBio: "",
       userExperience: 0,
-      companyName: ""
+      companyName: "",
+      toggleUserTypeEdit: false,
+      toggleUserBioEdit: false,
+      toggleExperienceEdit: false,
+      toggleCompanyNameEdit: false,
+      toggleUserBirthdayEdit: false,
+      toggleUserLocationEdit: false
     };
-    // this.handleUserInfo = this.handleUserInfo.bind(this);
+    this.toggleUserTypeEdit = this.toggleUserTypeEdit.bind(this);
+    this.toggleUserBioEdit = this.toggleUserBioEdit.bind(this);
+    this.toggleExperienceEdit = this.toggleExperienceEdit.bind(this);
+    this.toggleCompanyNameEdit = this.toggleCompanyNameEdit.bind(this);
+    this.toggleUserBirthdayEdit = this.toggleUserBirthdayEdit.bind(this);
+    this.toggleUserLocationEdit = this.toggleUserLocationEdit.bind(this);
   }
 
   componentDidMount() {
     this.props.loginUser();
   }
 
-  // handleUserInfo() {
-  //   this.props.updateUserInfo(
-  //     currentUser.user_id,
-  //     this.state.user_type || currentUser.user_type,
-  //     this.state.birthday || currentUser.birthdate,
-  //     this.state.userBio || currentUser.bio,
-  //     this.state.experience || currentUser.experience,
-  //     this.state.location || currentUser.location
-  //   );
-  // }
+  toggleUserTypeEdit() {
+    this.setState({
+      toggleUserTypeEdit: !this.state.toggleUserTypeEdit
+    });
+  }
+
+  toggleUserBioEdit() {
+    this.setState({
+      toggleUserBioEdit: !this.state.toggleUserBioEdit
+    });
+  }
+
+  toggleExperienceEdit() {
+    this.setState({
+      toggleExperienceEdit: !this.state.toggleExperienceEdit
+    });
+  }
+
+  toggleCompanyNameEdit() {
+    this.setState({
+      toggleCompanyNameEdit: !this.state.toggleCompanyNameEdit
+    });
+  }
+
+  toggleUserBirthdayEdit() {
+    this.setState({
+      toggleUserBirthdayEdit: !this.state.toggleUserBirthdayEdit
+    });
+  }
+
+  toggleUserLocationEdit() {
+    this.setState({
+      toggleUserLocationEdit: !this.state.toggleUserLocationEdit
+    });
+  }
 
   render() {
     const {
@@ -103,9 +139,31 @@ class Profile extends Component {
                       </button>
                     </div>
                   ) : (
-                    <p className="info">
-                      {currentUser.user_type === 1 ? "Developer" : "Employer"}
-                    </p>
+                    <div
+                      className="info"
+                      onDoubleClick={() => this.toggleUserTypeEdit()}
+                    >
+                      {!this.state.toggleUserTypeEdit ? (
+                        <p>
+                          {currentUser.user_type === 1
+                            ? "Developer"
+                            : "Employer"}
+                        </p>
+                      ) : (
+                        <div>
+                          <button
+                            onClick={() => this.setState({ userType: 1 })}
+                          >
+                            Developer
+                          </button>
+                          <button
+                            onClick={() => this.setState({ userType: 2 })}
+                          >
+                            Employer
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
                 <div className="user-email">
@@ -125,65 +183,135 @@ class Profile extends Component {
                         />
                       </div>
                     ) : (
-                      <p className="info">{bio}</p>
+                      <div
+                        className="info"
+                        onDoubleClick={() => this.toggleUserBioEdit()}
+                      >
+                        {!this.state.toggleUserBioEdit ? (
+                          <p>{ bio }</p>
+                        ) : (
+                          <div>
+                            <input
+                              placeholder="Enter Bio"
+                              onChange={e =>
+                                this.setState({ userBio: e.target.value })
+                              }
+                            />
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
                 <div className="user-experience">
-                <div>
-                  {
-                    currentUser.user_type === 2 ?
-                    <p className="info-title">Company Name: </p>
-                    :
-                    <p className="info-title">Experience: </p>
-                  }
+                  <div>
+                    {currentUser.user_type === 2 ? (
+                      <p className="info-title">Company Name: </p>
+                    ) : (
+                      <p className="info-title">Experience: </p>
+                    )}
                   </div>
                   <div>
-                    {
-                      currentUser.user_type === 2 ?
-                      (
-                        currentUser.company_name ?
-                        (
-                          <p className='info'>{currentUser.company_name}</p>
-                        )
-                        :
-                        (
-                          <input onChange={e => this.setState({companyName: e.target.value})} />
-                        )
+                    {currentUser.user_type === 2 ? (
+                      currentUser.company_name ? (
+                        <div
+                          className="info"
+                          onDoubleClick={() => this.toggleCompanyNameEdit()}
+                        >
+                          {!this.state.toggleCompanyNameEdit ? (
+                            <p>{currentUser.company_name}</p>
+                          ) : (
+                            <div>
+                              <input
+                                onChange={e =>
+                                  this.setState({ companyName: e.target.value })
+                                }
+                              />
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <input
+                          onChange={e =>
+                            this.setState({ companyName: e.target.value })
+                          }
+                        />
                       )
-                      :
-                      (
-                        !currentUser.experience ? (
+                    ) : !currentUser.experience ? (
+                      <div>
+                        <button
+                          onClick={() => this.setState({ userExperience: 1 })}
+                        >
+                          Junior
+                        </button>
+                        <button
+                          onClick={() => this.setState({ userExperience: 2 })}
+                        >
+                          Mid-Level
+                        </button>
+                        <button
+                          onClick={() => this.setState({ userExperience: 3 })}
+                        >
+                          Senior
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        {!this.state.toggleExperienceEdit ? (
+                          <div>
+                            {currentUser.experience === 1 ? (
+                              <p
+                                onDoubleClick={() =>
+                                  this.toggleExperienceEdit()
+                                }
+                              >
+                                Junior
+                              </p>
+                            ) : currentUser.experience === 2 ? (
+                              <p
+                                onDoubleClick={() =>
+                                  this.toggleExperienceEdit()
+                                }
+                              >
+                                Mid-Level
+                              </p>
+                            ) : (
+                              <p
+                                onDoubleClick={() =>
+                                  this.toggleExperienceEdit()
+                                }
+                              >
+                                Senior
+                              </p>
+                            )}
+                          </div>
+                        ) : (
                           <div>
                             <button
-                              onClick={() => this.setState({ userExperience: 1 })}
+                              onClick={() =>
+                                this.setState({ userExperience: 1 })
+                              }
                             >
                               Junior
                             </button>
                             <button
-                              onClick={() => this.setState({ userExperience: 2 })}
+                              onClick={() =>
+                                this.setState({ userExperience: 2 })
+                              }
                             >
                               Mid-Level
                             </button>
                             <button
-                              onClick={() => this.setState({ userExperience: 3 })}
+                              onClick={() =>
+                                this.setState({ userExperience: 3 })
+                              }
                             >
                               Senior
                             </button>
                           </div>
-                        ) : (
-                          <div>
-                            {currentUser.experience === 1 ? (
-                              <p>Junior</p>
-                            ) : currentUser.experience === 2 ? (
-                              <p>Mid-Level</p>
-                            ) : (
-                              <p>Senior</p>
-                            )}
-                          </div>
-                        )
-                      )
-                    }
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="user-birthday">
@@ -198,7 +326,21 @@ class Profile extends Component {
                       />
                     </div>
                   ) : (
-                    <p className="info">{currentUser.birthdate}</p>
+                    <div
+                      className="info"
+                      onDoubleClick={() => this.toggleUserBirthdayEdit()}
+                    >
+                      {!this.state.toggleUserBirthdayEdit ? (
+                        <p>{currentUser.birthdate}</p>
+                      ) : (
+                        <input
+                          placeholder="MM/DD/YYYY"
+                          onChange={e =>
+                            this.setState({ birthday: e.target.value })
+                          }
+                        />
+                      )}
+                    </div>
                   )}
                 </div>
                 <div className="user-location">
@@ -213,11 +355,33 @@ class Profile extends Component {
                       />
                     </div>
                   ) : (
-                    <p className="info">{currentUser.location}</p>
+                    <div
+                      className="info"
+                      onDoubleClick={() => this.toggleUserLocationEdit()}
+                    >
+                      {!this.state.toggleUserLocationEdit ? (
+                        <p>{currentUser.location}</p>
+                      ) : (
+                        <input
+                          placeholder="City, State"
+                          onChange={e =>
+                            this.setState({ location: e.target.value })
+                          }
+                        />
+                      )}
+                    </div>
                   )}
                 </div>
                 <button
                   onClick={() => {
+                    this.setState({
+                      toggleUserTypeEdit: false,
+                      toggleUserBioEdit: false,
+                      toggleExperienceEdit: false,
+                      toggleCompanyNameEdit: false,
+                      toggleUserBirthdayEdit: false,
+                      toggleUserLocationEdit: false
+                    });
                     this.props
                       .updateUserInfo(
                         currentUser.user_id,
@@ -256,7 +420,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => {
-  return state;
+  return { ...state };
 };
 
 export default connect(mapStateToProps, {
@@ -264,16 +428,3 @@ export default connect(mapStateToProps, {
   loginUser,
   updateUserInfo
 })(Profile);
-
-// {!bio ? (
-//   <div>
-//     <input
-//       placeholder="Enter Bio"
-//       onChange={e =>
-//         this.setState({ userBio: e.target.value })
-//       }
-//     />
-//   </div>
-// ) : (
-//   <p className="info">{bio}</p>
-// )}

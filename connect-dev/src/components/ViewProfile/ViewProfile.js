@@ -2,16 +2,16 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import { getAllUsers } from '../../redux/reducers/userReducer';
+import { getAllUsers } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
-    constructor(){
-        super()
-    }
+  constructor() {
+    super();
+  }
 
-    componentDidMount() {
-        this.props.getAllUsers(this.props.match.params.id);
-    }
+  componentDidMount() {
+    this.props.getAllUsers(this.props.match.params.id);
+  }
 
   render() {
     const {
@@ -38,7 +38,7 @@ class ViewProfile extends Component {
       <div>
         {users ? (
           users.map((cur, ind) => {
-            console.log(cur)
+            console.log(cur);
             return (
               <div key={ind}>
                 <div className="profile-banner">
@@ -62,9 +62,19 @@ class ViewProfile extends Component {
                     </div>
                     <div className="user-experience">
                       <p className="info-title">Experience: </p>
-                      <p className="info">
-                        {cur.experience || "User has no experience"}
-                      </p>
+                      <div className="info">
+                        {(
+                          <div>
+                            {cur.experience === 3 ? (
+                              <p>Senior</p>
+                            ) : cur.experience === 2 ? (
+                              <p>Mid-Level</p>
+                            ) : (
+                              <p>Junior</p>
+                            )}
+                          </div>
+                        ) || "User has no experience"}
+                      </div>
                     </div>
                     <div className="user-birthday">
                       <p className="info-title">Birthday: </p>
@@ -76,7 +86,7 @@ class ViewProfile extends Component {
                     <div className="user-location">
                       <p className="info-title">Location: </p>
                       <p className="info">
-                        {birthdate ||
+                        {cur.location ||
                           "User has chosen not to show their location"}
                       </p>
                     </div>

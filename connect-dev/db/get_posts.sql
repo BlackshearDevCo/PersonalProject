@@ -1,1 +1,1 @@
-SELECT * FROM posts INNER JOIN users ON users.user_id = posts.user_id WHERE users.user_id = 0 ORDER BY posts.post_id DESC LIMIT 150;
+SELECT * FROM posts INNER JOIN users ON users.user_id = posts.user_id ORDER BY posts.post_id DESC LIMIT 150;
