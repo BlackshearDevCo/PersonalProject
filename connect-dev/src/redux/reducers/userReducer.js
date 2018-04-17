@@ -14,7 +14,7 @@ let initialState = {
     companyName: "",
     posts: [],
     email: "",
-    experience: "",
+    experience: 0,
     city: "",
     state: "",
     country: "",
@@ -31,6 +31,9 @@ const CHANGE_BIO = 'CHANGE_BIO';
 const GET_POSTS = 'GET_POSTS';
 const NEW_POST = 'NEW_POST';
 const GET_ALL_USERS = 'GET_ALL_USERS';
+const CHOOSE_USER_TYPE = 'CHOOSE_USER_TYPE';
+const CHOOSE_USER_EXPERIENCE = 'CHOOSE_USER_EXPERIENCE';
+const ENTER_BIRTHDATE = 'ENTER_BIRTHDATE';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -81,28 +84,54 @@ export function getAllUsers(id) {
     }
 }
 
+export function chooseUserType(num, id) {
+    return {
+        type: CHOOSE_USER_TYPE,
+        payload: axios.put(`/api/chooseUserType/${id}`, { num })
+    }
+}
+
+export function chooseUserExperience(num, id) {
+    return {
+        type: CHOOSE_USER_EXPERIENCE,
+        payload: axios.put(`/api/chooseUserExperience/${id}`, { num })
+    }
+}
+
+export function enterBirthdate(id, birthday) {
+    return {
+        type: ENTER_BIRTHDATE,
+        payload: axios.put(`/api/enterBirthdate/${id}`, {birthday})
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
+    console.log(action)
     switch(action.type) {
         case `${LOGIN_USER}_FULFILLED` :
         const { data } = action.payload;
-        // console.log(data);
-            return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio }
+        return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio, birthdate: data.birthdate }
         case LOGOUT :
-            return { ...state, currentUser: [] }
+        return { ...state, currentUser: [] }
         case ENTER_BIO :
-            return { ...state, newBio: action.payload }
+        return { ...state, newBio: action.payload }
         case `${CHANGE_BIO}_FULFILLED` :
-            return { ...state, bio: action.payload.data[0].bio}
+        return { ...state, bio: action.payload.data[0].bio}
         case `${GET_POSTS}_FULFILLED` :
         // console.log(action.payload.data)
-            return { ...state, posts: action.payload.data }
+        return { ...state, posts: action.payload.data }
         case `${NEW_POST}_FULFILLED` :
-            // console.log(state, action.payload.data)
-            return { ...state, posts: action.payload.data }
+        // console.log(state, action.payload.data)
+        return { ...state, posts: action.payload.data }
         case `${GET_ALL_USERS}_FULFILLED` :
-        console.log(action.payload.data)
-            return { ...state, users: action.payload.data }
+        return { ...state, users: action.payload.data }
+        case `${CHOOSE_USER_TYPE}_FULFILLED` :
+            return { ...state, userType: action.payload.data[0].user_type }
+        case `${CHOOSE_USER_EXPERIENCE}_FULFILLED` :
+            return { ...state, experience: action.payload.data[0].user_experience }
+        case `${ENTER_BIRTHDATE}_FULFILLED` :
+            return { ...state, birthdate: action.payload.data[0].birthdate }
         default: state;
     }
 };

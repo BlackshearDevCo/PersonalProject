@@ -1,0 +1,1 @@
+UPDATE users SET birthdate = $2 WHERE user_id = $1 RETURNING *;

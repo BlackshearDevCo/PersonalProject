@@ -1,14 +1,31 @@
 import React, { Component } from "react";
 import "./profile.css";
 
+import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 
-import { enterBio, changeBio } from "../../redux/reducers/userReducer";
+import {
+  enterBio,
+  changeBio,
+  logout,
+  chooseUserType,
+  chooseUserExperience,
+  enterBirthdate,
+  loginUser
+} from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
-  // componentDidMount() {
-  //   console.log(this.props);
-  // }
+  constructor(){
+    super()
+    this.state = {
+      birthday: ''
+    }
+  }
+
+  componentDidMount() {
+    // this.props.loginUser()
+  }
 
   render() {
     const {
@@ -27,9 +44,12 @@ class Profile extends Component {
       city,
       state,
       country,
-      experience
+      experience,
+      logout,
+      chooseUserExperience,
+      enterBirthdate
     } = this.props;
-
+    console.log(birthdate);
     return (
       <div>
         {!currentUser ? (
@@ -39,7 +59,9 @@ class Profile extends Component {
               <h2 className="user-name not-logged">
                 Oops! You aren't logged in!
               </h2>
-              <a href='http://localhost:3001/auth'><button>Log In</button></a>
+              <a href="http://localhost:3001/auth">
+                <button>Log In</button>
+              </a>
             </section>
             <section className="posts-container">
               <h2 className="posts-title">Previous Posts</h2>
@@ -53,9 +75,29 @@ class Profile extends Component {
 
               <section className="user-info">
                 <h2 className="user-name">{name || "Placeholder"}</h2>
+                <Link to="/">
+                  <button onClick={() => logout()}>Logout</button>
+                </Link>
                 <div className="user-type">
                   <p className="info-title">User Type: </p>
-                  <p className="info">Developer</p>
+                  {!currentUser.user_type ? (
+                    <div>
+                      <button
+                        onClick={() => chooseUserType(1, currentUser.user_id)}
+                      >
+                        Developer
+                      </button>
+                      <button
+                        onClick={() => chooseUserType(2, currentUser.user_id)}
+                      >
+                        Employer
+                      </button>
+                    </div>
+                  ) : (
+                    <p className="info">
+                      {userType === 1 ? "Developer" : "Employer"}
+                    </p>
+                  )}
                 </div>
                 <div className="user-email">
                   <p className="info-title">Email: </p>
@@ -81,27 +123,60 @@ class Profile extends Component {
                 </div>
                 <div className="user-experience">
                   <p className="info-title">Experience: </p>
-                  {!experience ? (
-                    <p className="info">User has no experience</p>
+                  {!currentUser.experience ? (
+                    <div>
+                      <button
+                        onClick={() =>
+                          chooseUserExperience(1, currentUser.user_id)
+                        }
+                      >
+                        Junior
+                      </button>
+                      <button
+                        onClick={() =>
+                          chooseUserExperience(2, currentUser.user_id)
+                        }
+                      >
+                        Mid-Level
+                      </button>
+                      <button
+                        onClick={() =>
+                          chooseUserExperience(3, currentUser.user_id)
+                        }
+                      >
+                        Senior
+                      </button>
+                    </div>
                   ) : (
-                    <p>{experience}</p>
+                    <div>
+                      {currentUser.experience === 1 ? (
+                        <p>Junior</p>
+                      ) : currentUser.experience === 2 ? (
+                        <p>Mid-Level</p>
+                      ) : (
+                        <p>Senior</p>
+                      )}
+                    </div>
                   )}
                 </div>
                 <div className="user-birthday">
                   <p className="info-title">Birthday: </p>
                   {!birthdate ? (
-                    <p className="info">
-                      User has chosen not to show their birthday
-                    </p>
+                    <div>
+                    <input placeholder="MM/DD/YYYY" onChange={e => this.setState({birthday: e.target.value})} />
+                    <button onClick={() => enterBirthdate(currentUser.user_id, this.state.birthday)}>Submit</button>
+                    </div>
                   ) : (
-                    <p>{birthdate}</p>
+                    <p className="info">{birthdate || currentUser.birthdate}</p>
                   )}
                 </div>
                 <div className="user-location">
                   <p className="info-title">Location: </p>
-                  <p className="info">
-                    User has chosen not to show their location
-                  </p>
+                  {!currentUser.location ? (
+                    <input placeholder="City, State" />
+                  ) : (
+                    <p className="info">{currentUser.location}</p>
+                  )}
                 </div>
               </section>
 
@@ -126,7 +201,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => {
-  return { ...state };
+  return state;
 };
 
-export default connect(mapStateToProps, { enterBio, changeBio })(Profile);
+export default connect(mapStateToProps, {
+  enterBio,
+  changeBio,
+  logout,
+  chooseUserType,
+  chooseUserExperience,
+  enterBirthdate,
+  loginUser
+})(Profile);

@@ -105,6 +105,9 @@ app.get('/api/getPosts', postCtrl.getPosts);
 app.get('/api/getAllUsers/:id', userCtrl.getAllUsers);
 app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/changeBio/:id', userCtrl.changeBio);
+app.put('/api/chooseUserType/:id', userCtrl.chooseUserType);
+app.put('/api/chooseUserExperience/:id', userCtrl.chooseUserExperience);
+app.put('/api/enterBirthdate/:id', userCtrl.enterBirthdate);
 
 const port = 3001;
 app.listen(port, () => console.log(`Listening on port ${port}!`));

@@ -34,9 +34,43 @@ const getAllUsers = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const chooseUserType = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .choose_user_type([req.params.id, req.body.num])
+    .then(response => {
+      console.log(response);
+      res.status(200).json(response);
+    })
+    .catch(err => res.status(500).json(err));
+};
+
+const chooseUserExperience = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .choose_user_experience([req.params.id, req.body.num])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(200).json(err));
+};
+
+const enterBirthdate = (req, res) => {
+  const db = req.app.get("db");
+  console.log(req.params.id, req.body.birthday)
+
+  db
+    .enter_birthdate([req.params.id, req.body.birthday])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   logout,
   getUser,
   changeBio,
-  getAllUsers
+  getAllUsers,
+  chooseUserType,
+  chooseUserExperience,
+  enterBirthdate
 };
