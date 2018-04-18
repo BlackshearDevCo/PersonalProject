@@ -11,22 +11,22 @@ export default function Footer() {
           <h3 className="footer-title">Links</h3>
           <ul>
             <li className="footer-link">
-              <Link to="/" />Home
+              <Link to="/">Home</Link>
             </li>
             <li className="footer-link">
-              <Link to="/developers" />Developers
+              <Link to="/devs">Developers</Link>
             </li>
             <li className="footer-link">
-              <Link to="/companies" />Companies
+              <Link to="/companies">Companies</Link>
             </li>
             <li className="footer-link">
-              <Link to="/profile" />Profile
+              <Link to="/profile">Profile</Link>
             </li>
             <li className="footer-link">
-              <Link to="/about" />About
+              <Link to="/about">About</Link>
             </li>
             <li className="footer-link">
-              <Link to="/contact" />Contact
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from '../Footer/Footer';
 import "../Devs/devs.css";
 import AddPost from "../Devs/AddPost/AddPost";
 

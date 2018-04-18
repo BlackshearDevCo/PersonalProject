@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from '../Footer/Footer';
 import io from "socket.io-client";
 
 import './community.css';
