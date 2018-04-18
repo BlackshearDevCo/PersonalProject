@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 import {
   logout,
   loginUser,
-  updateUserInfo
+  updateUserInfo,
+  getUserPosts
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -38,6 +39,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.currentUser ? this.props.loginUser() : null;
+    this.props.currentUser ? this.props.getUserPosts(this.props.currentUser.user_id) : null;
   }
 
   toggleUserTypeEdit() {
@@ -85,8 +87,9 @@ class Profile extends Component {
       currentUser,
       posts,
       logout,
+      userPosts
     } = this.props;
-
+    console.log(this.props)
     return (
       <div>
         {!currentUser? (
@@ -390,12 +393,30 @@ class Profile extends Component {
               <section className="posts-container">
                 <h2 className="posts-title">Previous Posts</h2>
                 <div className="post">
-                  {!posts[0] ? (
+                  {!userPosts[0] ? (
                     <div>
                       <p>No Posts</p>
                     </div>
                   ) : (
-                    <div>Test</div>
+                    <div>
+                      {
+                        userPosts.map((cur, ind) => {
+                          return (
+                            <div key={ind} className="post-container">
+                              <div className="user-container">
+                                <img src={cur.profile_picture} className="post-pfp" />
+                                <h3 id={cur.user_id} className="post-username">
+                                  {cur.first_name}
+                                </h3>
+                              </div>
+                              <p id={cur.post_id} className="post-body">
+                                {cur.post_body}
+                              </p>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
                   )}
                 </div>
               </section>
@@ -414,5 +435,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   logout,
   loginUser,
-  updateUserInfo
+  updateUserInfo,
+  getUserPosts
 })(Profile);

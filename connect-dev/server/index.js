@@ -102,6 +102,7 @@ app.get('/api/user', userCtrl.getUser);
 app.get('/api/getPosts', postCtrl.getPosts);
 app.get('/api/getEmployersPosts', postCtrl.getEmployersPosts);
 app.get('/api/getAllUsers/:id', userCtrl.getAllUsers);
+app.get('/api/getUserPosts/:id', postCtrl.getUserPosts);
 app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
 

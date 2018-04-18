@@ -26,8 +26,18 @@ const getEmployersPosts = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const getUserPosts = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_user_posts([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   newPost,
   getPosts,
-  getEmployersPosts
+  getEmployersPosts,
+  getUserPosts
 };

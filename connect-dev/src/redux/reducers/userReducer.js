@@ -10,6 +10,7 @@ let initialState = {
     userType: 0,
     companyName: "",
     posts: [],
+    userPosts: [],
     employerPosts: [],
     experience: 0,
     postDate: "",
@@ -24,6 +25,7 @@ const GET_EMPLOYERS_POSTS = 'GET_EMPLOYERS_POSTS';
 const NEW_POST = 'NEW_POST';
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+const GET_USER_POSTS = 'GET_USER_POSTS';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -75,6 +77,14 @@ export function updateUserInfo(id, user_type, birthdate, bio, experience, locati
     }
 }
 
+export function getUserPosts(id) {
+    console.log(id)
+    return {
+        type: GET_USER_POSTS,
+        payload: axios.get(`/api/getUserPosts/${id}`)
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -91,6 +101,9 @@ export default function userReducer(state = initialState, action) {
             return { ...state, posts: action.payload.data }
         case `${GET_ALL_USERS}_FULFILLED` :
             return { ...state, users: action.payload.data }
+        case `${GET_USER_POSTS}_FULFILLED` :
+        console.log(action.payload.data)
+            return { ...state, userPosts: action.payload.data }
         default: state;
     }
 };
