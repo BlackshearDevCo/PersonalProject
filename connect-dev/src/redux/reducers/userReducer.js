@@ -79,16 +79,13 @@ export function updateUserInfo(id, user_type, birthdate, bio, experience, locati
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${LOGIN_USER}_FULFILLED` :
-        console.log(action.payload.data)
-            const { data } = action.payload;
+        const { data } = action.payload;
             return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio, birthdate: toString(data.birthdate), companyName: data.company_name }
         case LOGOUT :
             return { ...state, currentUser: [] }
         case `${GET_POSTS}_FULFILLED` :
-        console.log(action.payload.data)
             return { ...state, posts: action.payload.data }
         case `${GET_EMPLOYERS_POSTS}_FULFILLED` :
-        console.log(action.payload.data)
             return { ...state, employerPosts: action.payload.data }
         case `${NEW_POST}_FULFILLED` :
             return { ...state, posts: action.payload.data }

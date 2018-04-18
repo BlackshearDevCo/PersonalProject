@@ -4,7 +4,7 @@ const getPosts = (req, res) => {
   db
     .get_posts()
     .then(response => res.status(200).json(response))
-    .catch(err => {console.log('ERROR: ', err); res.status(500).json(err)});
+    .catch(err => res.status(500).json(err));
 };
 
 const newPost = (req, res) => {

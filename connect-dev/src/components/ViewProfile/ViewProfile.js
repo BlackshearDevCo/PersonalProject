@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import { getAllUsers } from "../../redux/reducers/userReducer";
+import { getAllUsers, loginUser } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
   constructor() {
@@ -10,6 +10,7 @@ class ViewProfile extends Component {
   }
 
   componentDidMount() {
+    this.props.currentUser ? this.props.loginUser() : null;
     this.props.getAllUsers(this.props.match.params.id);
   }
 
@@ -171,4 +172,4 @@ const mapStateToProp = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProp, { getAllUsers })(ViewProfile);
+export default connect(mapStateToProp, { getAllUsers, loginUser })(ViewProfile);

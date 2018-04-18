@@ -10,12 +10,11 @@ import { getPosts, loginUser } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
   componentDidMount() {
-    this.props.getPosts();
     this.props.currentUser ? this.props.loginUser() : null;
+    this.props.getPosts();
   }
 
   render() {
-
     return (
       <div>
         {this.props.posts && this.props.posts.length > 0 ? (

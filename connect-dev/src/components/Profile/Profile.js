@@ -37,7 +37,6 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.currentUser)
     this.props.currentUser ? this.props.loginUser() : null;
   }
 
@@ -84,25 +83,13 @@ class Profile extends Component {
       profilePic,
       bio,
       currentUser,
-      enterBio,
-      changeBio,
-      newBio,
       posts,
-      birthdate,
-      userType,
-      companyName,
-      city,
-      state,
-      country,
-      experience,
       logout,
-      chooseUserExperience,
-      enterBirthdate
     } = this.props;
 
     return (
       <div>
-        {!currentUser ? (
+        {!currentUser? (
           <div className="profile-banner">
             <img src={profilePic} className="profile-pic" />
             <section className="user-info">

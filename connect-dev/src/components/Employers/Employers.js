@@ -10,8 +10,8 @@ import { getEmployersPosts, loginUser } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
   componentDidMount() {
-    this.props.getEmployersPosts();
     this.props.currentUser ? this.props.loginUser() : null;
+    this.props.getEmployersPosts();
   }
 
   render() {
