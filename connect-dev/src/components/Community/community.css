@@ -4,16 +4,21 @@
 }
 
 .message-input{
-    width: 90vw;
+    width: 90%;
     height: 10vh;
 }
 
 .send-message{
-    width: 10vw;
+    width: 10%;
     height: 10vh;
 }
 
-.input-container{
-    position: absolute;
-    bottom: 0;
+.chat-container{
+    height: 72vh;
+    width: 100vw;
+}
+
+.chat{
+    /* position: relative; */
+    /* top: 20vh; */
 }

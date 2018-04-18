@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Footer from '../Footer/Footer';
+import Footer from "../Footer/Footer";
 import io from "socket.io-client";
 
-import './community.css';
+import "./community.css";
 
 class Community extends Component {
   constructor(props) {
@@ -38,35 +38,39 @@ class Community extends Component {
     const { username, userInput, messages } = this.state;
     return (
       <div>
-        <div className="chat-container">
-          <section>
-            {this.state.messages.map((cur, ind) => {
-              return (
-                <div key={ind}>
-                  {cur.user}: {cur.message}
-                </div>
-              );
-            })}
+        <div className='chat'>
+          <div className="chat-container">
+            <section>
+              {this.state.messages.map((cur, ind) => {
+                return (
+                  <div key={ind}>
+                    {cur.user}: {cur.message}
+                  </div>
+                );
+              })}
+            </section>
+          </div>
+          <section className="input-container">
+            <input
+              type="text"
+              placeholder="Username"
+              value={this.state.username}
+              onChange={e => this.setState({ username: e.target.value })}
+              className="username-input"
+            />
+            <br />
+            <input
+              type="text"
+              placeholder="Message"
+              className="message-input"
+              value={this.state.userInput}
+              onChange={e => this.setState({ userInput: e.target.value })}
+            />
+            <button onClick={this.sendMessage} className="send-message">
+              Send
+            </button>
           </section>
         </div>
-        <section className='input-container'>
-          <input
-            type="text"
-            placeholder="Username"
-            value={this.state.username}
-            onChange={e => this.setState({ username: e.target.value })}
-            className="username-input"
-          />
-          <br />
-          <input
-            type="text"
-            placeholder="Message"
-            className="message-input"
-            value={this.state.userInput}
-            onChange={e => this.setState({ userInput: e.target.value })}
-          />
-          <button onClick={this.sendMessage} className='send-message'>Send</button>
-        </section>
         <Footer />
       </div>
     );
