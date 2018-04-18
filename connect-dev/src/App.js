@@ -13,7 +13,7 @@ import { loginUser, getAllUsers } from "./redux/reducers/userReducer";
 
 class App extends Component {
   componentDidMount() {
-    this.props.loginUser();
+    this.props.loginUser()
   }
 
   render() {

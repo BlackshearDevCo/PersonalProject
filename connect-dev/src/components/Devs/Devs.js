@@ -11,8 +11,7 @@ import { getPosts, loginUser } from "../../redux/reducers/userReducer";
 class Devs extends Component {
   componentDidMount() {
     this.props.getPosts();
-    this.props.loginUser();
-    // console.log(this.props)
+    this.props.currentUser ? this.props.loginUser() : null;
   }
 
   render() {
@@ -38,11 +37,17 @@ class Devs extends Component {
                 </div>
               );
             })
-            .sort()
         ) : (
           <h1>No Posts</h1>
         )}
-        <AddPost />
+        <div>
+        {
+          this.props.currentUser && this.props.currentUser.user_type === 1 ?
+          <AddPost />
+          :
+          null 
+        }
+        </div>
       </div>
     );
   }

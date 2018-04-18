@@ -12,7 +12,7 @@ class Home extends Component {
   // }
 
   componentDidMount() {
-    this.props.loginUser();
+    this.props.currentUser ? this.props.loginUser() : null;
   }
 
   render() {

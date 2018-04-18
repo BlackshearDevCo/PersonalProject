@@ -37,7 +37,8 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.loginUser();
+    console.log(this.props.currentUser)
+    this.props.currentUser ? this.props.loginUser() : null;
   }
 
   toggleUserTypeEdit() {

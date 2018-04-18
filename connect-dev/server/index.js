@@ -100,13 +100,9 @@ function authenticate(req, res, next) {
 app.get('/api/logout', userCtrl.logout);
 app.get('/api/user', userCtrl.getUser);
 app.get('/api/getPosts', postCtrl.getPosts);
+app.get('/api/getEmployersPosts', postCtrl.getEmployersPosts);
 app.get('/api/getAllUsers/:id', userCtrl.getAllUsers);
 app.post('/api/newPost', postCtrl.newPost);
-app.put('/api/changeBio/:id', userCtrl.changeBio);
-app.put('/api/chooseUserType/:id', userCtrl.chooseUserType);
-app.put('/api/chooseUserExperience/:id', userCtrl.chooseUserExperience);
-app.put('/api/enterBirthdate/:id', userCtrl.enterBirthdate);
-app.put('/api/enterLocation/:id', userCtrl.enterLocation);
 app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
 
 const port = 3001;

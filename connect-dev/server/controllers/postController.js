@@ -4,7 +4,7 @@ const getPosts = (req, res) => {
   db
     .get_posts()
     .then(response => res.status(200).json(response))
-    .catch(err => res.status(500).json(err));
+    .catch(err => {console.log('ERROR: ', err); res.status(500).json(err)});
 };
 
 const newPost = (req, res) => {
@@ -13,11 +13,21 @@ const newPost = (req, res) => {
 
   db
     .new_post([id, post])
-    .then(response => getPosts(req,res))
+    .then(response => getPosts(req, res))
+    .catch(err => res.status(500).json(err));
+};
+
+const getEmployersPosts = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_employers_posts()
+    .then(response => res.status(200).json(response))
     .catch(err => res.status(500).json(err));
 };
 
 module.exports = {
   newPost,
-  getPosts
+  getPosts,
+  getEmployersPosts
 };
