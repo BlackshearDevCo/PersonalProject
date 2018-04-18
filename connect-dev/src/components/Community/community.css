@@ -1,0 +1,19 @@
+.username-input{
+    width: 100vw;
+    height: 5vh;
+}
+
+.message-input{
+    width: 90vw;
+    height: 10vh;
+}
+
+.send-message{
+    width: 10vw;
+    height: 10vh;
+}
+
+.input-container{
+    position: absolute;
+    bottom: 0;
+}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import { getAllUsers, loginUser } from "../../redux/reducers/userReducer";
+import { getAllUsers, loginUser, getUserPosts } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
   constructor() {
@@ -11,30 +11,28 @@ class ViewProfile extends Component {
 
   componentDidMount() {
     this.props.currentUser ? this.props.loginUser() : null;
+    this.props.users ? this.props.getUserPosts(this.props.users.user_id) : null;
     this.props.getAllUsers(this.props.match.params.id);
   }
 
   render() {
     const {
-      users,
       name,
       email,
       profilePic,
       bio,
       currentUser,
-      enterBio,
-      changeBio,
-      newBio,
       posts,
-      birthdate,
+      logout,
+      userPosts,
+      users,
+      getUserPosts,
       userType,
-      companyName,
-      city,
-      state,
-      country,
-      experience
+      experience,
+      birthdate,
+      location
     } = this.props;
-
+console.log(this.props);
     return (
       <div>
         {users ? (
@@ -142,21 +140,39 @@ class ViewProfile extends Component {
                 </div>
                 <div className="user-location">
                   <p className="info-title">Location: </p>
-                  <p className="info">
-                    {birthdate || "User has chosen not to show their location"}
-                  </p>
+                  {/* <p className="info">
+                    {location || "User has chosen not to show their location"}
+                  </p> */}
                 </div>
               </section>
 
               <section className="posts-container">
                 <h2 className="posts-title">Previous Posts</h2>
                 <div className="post">
-                  {!posts ? (
+                  {!userPosts ? (
                     <div>
                       <p>No Posts</p>
                     </div>
                   ) : (
-                    <div>Test</div>
+                    <div>
+                      {
+                        userPosts.map((cur, ind) => {
+                          return (
+                            <div key={ind} className="post-container">
+                              <div className="user-container">
+                                <img src={cur.profile_picture} className="post-pfp" />
+                                <h3 id={cur.user_id} className="post-username">
+                                  {cur.first_name}
+                                </h3>
+                              </div>
+                              <p id={cur.post_id} className="post-body">
+                                {cur.post_body}
+                              </p>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
                   )}
                 </div>
               </section>
@@ -172,4 +188,4 @@ const mapStateToProp = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProp, { getAllUsers, loginUser })(ViewProfile);
+export default connect(mapStateToProp, { getAllUsers, loginUser, getUserPosts })(ViewProfile);

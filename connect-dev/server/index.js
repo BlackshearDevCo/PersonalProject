@@ -107,4 +107,17 @@ app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
 
 const port = 3001;
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+let server = app.listen(port, () => console.log(`Listening on port ${port}!`));
+
+//WEB SOCKETS
+
+const socket = require('socket.io');
+io = socket(server);
+
+io.on('connection', socket => {
+  console.log(socket.id);
+
+  socket.on('SEND_MESSAGE', data => {
+    io.emit('RECIEVE_MESSAGE', data)
+  })
+})
