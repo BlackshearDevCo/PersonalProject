@@ -78,7 +78,6 @@ export function updateUserInfo(id, user_type, birthdate, bio, experience, locati
 }
 
 export function getUserPosts(id) {
-    console.log(id)
     return {
         type: GET_USER_POSTS,
         payload: axios.get(`/api/getUserPosts/${id}`)
@@ -102,7 +101,6 @@ export default function userReducer(state = initialState, action) {
         case `${GET_ALL_USERS}_FULFILLED` :
             return { ...state, users: action.payload.data }
         case `${GET_USER_POSTS}_FULFILLED` :
-        console.log(action.payload.data)
             return { ...state, userPosts: action.payload.data }
         default: state;
     }

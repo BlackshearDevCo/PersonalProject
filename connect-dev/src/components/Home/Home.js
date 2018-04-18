@@ -65,6 +65,7 @@ class Home extends Component {
             developers out, no matter how much experince you have!
           </p>
         </section>
+        <Footer />
       </div>
     );
   }

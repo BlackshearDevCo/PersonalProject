@@ -49,6 +49,7 @@ class Devs extends Component {
           null 
         }
         </div>
+        <Footer />
       </div>
     );
   }

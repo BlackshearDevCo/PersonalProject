@@ -17,7 +17,7 @@ export default function Footer() {
               <Link to="/devs">Developers</Link>
             </li>
             <li className="footer-link">
-              <Link to="/companies">Companies</Link>
+              <Link to="/employers">Companies</Link>
             </li>
             <li className="footer-link">
               <Link to="/profile">Profile</Link>

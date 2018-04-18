@@ -37,12 +37,11 @@ class ViewProfile extends Component {
       birthdate,
       location
     } = this.props;
-    console.log(this.props);
+
     return (
       <div>
         {users ? (
           users.map((cur, ind) => {
-            console.log(cur);
             return (
               <div key={ind}>
                 <div className="profile-banner">
@@ -140,41 +139,42 @@ class ViewProfile extends Component {
               <img src={profilePic} className="profile-pic" />
 
               <section className="user-info">
-                <h2 className="user-name">{name || "Username"}</h2>
+                <h2 className="user-name">{"Username"}</h2>
                 <div className="user-type">
                   <p className="info-title">User Type: </p>
-                  <p className="info">{userType || "Developer"}</p>
+                  <p className="info">{"Developer"}</p>
                 </div>
                 <div className="user-email">
                   <p className="info-title">Email: </p>
-                  <p className="info">{email || "User has no email"}</p>
+                  <p className="info">{"User has no email"}</p>
                 </div>
                 <div className="user-bio">
                   <p className="info-title">Bio: </p>
-                  <p className="info">{bio || "User has no bio"}</p>
+                  <p className="info">{"User has no bio"}</p>
                 </div>
                 <div className="user-experience">
                   <p className="info-title">Experience: </p>
                   <p className="info">
-                    {experience || "User has no experience"}
+                    {"User has no experience"}
                   </p>
                 </div>
                 <div className="user-birthday">
                   <p className="info-title">Birthday: </p>
                   <p className="info">
-                    {birthdate || "User has chosen not to show their birthday"}
+                    {"User has chosen not to show their birthday"}
                   </p>
                 </div>
                 <div className="user-location">
                   <p className="info-title">Location: </p>
-                  {/* <p className="info">
-                    {location || "User has chosen not to show their location"}
-                  </p> */}
+                  <p className="info">
+                    {"User has chosen not to show their location"}
+                  </p>
                 </div>
               </section>
             </div>
           </div>
         )}
+        <Footer />
       </div>
     );
   }

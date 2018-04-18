@@ -67,6 +67,7 @@ class Community extends Component {
           />
           <button onClick={this.sendMessage} className='send-message'>Send</button>
         </section>
+        <Footer />
       </div>
     );
   }
