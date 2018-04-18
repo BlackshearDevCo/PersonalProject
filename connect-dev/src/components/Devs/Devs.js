@@ -16,6 +16,7 @@ class Devs extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         {this.props.posts && this.props.posts.length > 0 ? (

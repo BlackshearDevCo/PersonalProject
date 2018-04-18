@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Footer from "../Footer/Footer";
+import "./community.css";
+
 import io from "socket.io-client";
 
-import "./community.css";
+import { connect } from 'react-redux';
 
 class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      username: this.props.name || "",
       userInput: "",
       messages: []
     };
@@ -28,9 +30,7 @@ class Community extends Component {
     });
 
     const addMessage = data => {
-      console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
-      console.log(this.state.messages);
     };
   }
 
@@ -38,10 +38,11 @@ class Community extends Component {
     const { username, userInput, messages } = this.state;
     return (
       <div>
-        <div className='chat'>
+        <div className="chat">
           <div className="chat-container">
             <section>
               {this.state.messages.map((cur, ind) => {
+                console.log(this.props);
                 return (
                   <div key={ind}>
                     {cur.user}: {cur.message}
@@ -51,13 +52,21 @@ class Community extends Component {
             </section>
           </div>
           <section className="input-container">
-            <input
-              type="text"
-              placeholder="Username"
-              value={this.state.username}
-              onChange={e => this.setState({ username: e.target.value })}
-              className="username-input"
-            />
+            <div>
+              {this.props.name ? (
+                <div>
+                  <h3>{this.props.name}</h3>
+                </div>
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={e => this.setState({ username: e.target.value })}
+                  className="username-input"
+                />
+              )}
+            </div>
             <br />
             <input
               type="text"
@@ -66,7 +75,14 @@ class Community extends Component {
               value={this.state.userInput}
               onChange={e => this.setState({ userInput: e.target.value })}
             />
-            <button onClick={this.sendMessage} className="send-message">
+            <button
+              onClick={
+                !this.state.userInput || !this.state.username
+                  ? () => alert("Please enter in a vaild Username and Message!")
+                  : this.sendMessage
+              }
+              className="send-message"
+            >
               Send
             </button>
           </section>
@@ -77,4 +93,10 @@ class Community extends Component {
   }
 }
 
-export default Community;
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(mapStateToProps)(Community);

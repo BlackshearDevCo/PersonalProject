@@ -10,7 +10,8 @@ import {
   logout,
   loginUser,
   updateUserInfo,
-  getUserPosts
+  getUserPosts,
+  deletePost
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -88,12 +89,13 @@ class Profile extends Component {
       currentUser,
       posts,
       logout,
-      userPosts
+      userPosts,
+      deletePost
     } = this.props;
-    console.log(this.props)
+
     return (
       <div>
-        {!currentUser? (
+        {!name ? (
           <div className="profile-banner">
             <img src={profilePic} className="profile-pic" />
             <section className="user-info">
@@ -115,7 +117,7 @@ class Profile extends Component {
               <img src={profilePic} className="profile-pic" />
 
               <section className="user-info">
-                <h2 className="user-name">{name || "Placeholder"}</h2>
+                <h2 className="user-name">{currentUser.first_name || "Placeholder"}</h2>
                 <Link to="/">
                   <button onClick={() => logout()}>Logout</button>
                 </Link>
@@ -364,6 +366,7 @@ class Profile extends Component {
                     </div>
                   )}
                 </div>
+                <p>Double Click or Double Tap to edit your info.</p>
                 <button
                   onClick={() => {
                     this.setState({
@@ -409,6 +412,11 @@ class Profile extends Component {
                                 <h3 id={cur.user_id} className="post-username">
                                   {cur.first_name}
                                 </h3>
+                                <div>
+                                <button onClick={() => {deletePost(cur.post_id); this.props.getUserPosts(this.props.currentUser.user_id)}}>
+                                  DELETE POST
+                                </button>
+                                </div>
                               </div>
                               <p id={cur.post_id} className="post-body">
                                 {cur.post_body}
@@ -438,5 +446,6 @@ export default connect(mapStateToProps, {
   logout,
   loginUser,
   updateUserInfo,
-  getUserPosts
+  getUserPosts,
+  deletePost
 })(Profile);

@@ -105,6 +105,7 @@ app.get('/api/getAllUsers/:id', userCtrl.getAllUsers);
 app.get('/api/getUserPosts/:id', postCtrl.getUserPosts);
 app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
+app.delete('/api/deletePost/:id', postCtrl.deletePost);
 
 const port = 3001;
 let server = app.listen(port, () => console.log(`Listening on port ${port}!`));

@@ -3,7 +3,7 @@ import "./addPost.css";
 
 import { connect } from "react-redux";
 
-import { newPost, loginUser } from "../../../redux/reducers/userReducer";
+import { newPost, loginUser, getEmployersPosts } from "../../../redux/reducers/userReducer";
 
 class AddPost extends Component {
   constructor() {
@@ -50,6 +50,7 @@ class AddPost extends Component {
                 onClick={() => {
                   this.props.newPost(currentUser.user_id, this.state.newPost),
                     this.props.loginUser(),
+                    this.props.getEmployersPosts(),
                     this.togglePostFlag();
                 }}
               >
@@ -69,4 +70,4 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { newPost, loginUser })(AddPost);
+export default connect(mapStateToProps, { newPost, loginUser, getEmployersPosts })(AddPost);

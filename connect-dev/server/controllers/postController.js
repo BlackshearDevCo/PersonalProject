@@ -35,9 +35,19 @@ const getUserPosts = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const deletePost = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .delete_post([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   newPost,
   getPosts,
   getEmployersPosts,
-  getUserPosts
+  getUserPosts,
+  deletePost
 };

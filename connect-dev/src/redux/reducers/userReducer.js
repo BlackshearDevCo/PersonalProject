@@ -26,6 +26,7 @@ const NEW_POST = 'NEW_POST';
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 const GET_USER_POSTS = 'GET_USER_POSTS';
+const DELETE_POST = 'DELETE_POST';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -84,14 +85,21 @@ export function getUserPosts(id) {
     }
 }
 
+export function deletePost(id) {
+    return {
+        type: DELETE_POST,
+        payload: axios.delete(`/api/deletePost/${id}`)
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case `${LOGIN_USER}_FULFILLED` :
         const { data } = action.payload;
             return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio, birthdate: toString(data.birthdate), companyName: data.company_name }
-        case LOGOUT :
-            return { ...state, currentUser: [] }
+        case `${LOGOUT}_FULFILLED` :
+            return { ...initialState }
         case `${GET_POSTS}_FULFILLED` :
             return { ...state, posts: action.payload.data }
         case `${GET_EMPLOYERS_POSTS}_FULFILLED` :
@@ -102,6 +110,9 @@ export default function userReducer(state = initialState, action) {
             return { ...state, users: action.payload.data }
         case `${GET_USER_POSTS}_FULFILLED` :
             return { ...state, userPosts: action.payload.data }
-        default: state;
+        case `${DELETE_POST}_FULFILLED` :
+            return { ...state, posts: action.payload.data }
+        default: 
+            return state;
     }
 };

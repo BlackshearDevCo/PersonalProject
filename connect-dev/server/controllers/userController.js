@@ -2,7 +2,6 @@ const logout = (req, res) => {
   req.session.destroy();
   req.logout()
   res.redirect('http://localhost:3000/#/')
-  // }).catch(err => res.status(500).json(err));
 };
 
 const getUser = (req, res) => {

@@ -3,7 +3,11 @@ import "./header.css";
 
 import Navbar from "../Navbar/Navbar";
 
+import { Link } from 'react-router-dom';
+
 import { connect } from "react-redux";
+
+import { loginUser } from '../../redux/reducers/userReducer';
 
 class Header extends Component {
   constructor() {
@@ -24,7 +28,7 @@ class Header extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, name } = this.props;
 
     return (
       <div className="header">
@@ -46,14 +50,18 @@ class Header extends Component {
         </div>
         <div className="main-logo" />
         <div>
-          {currentUser ? (
+          {name ? (
+            <Link to='/profile'>
             <img
               src={currentUser.profile_picture}
               alt=""
               className="pfp-container"
             />
+            </Link>
           ) : (
+            <Link to='/profile'>
             <div className="pfp-container" />
+            </Link>
           )}
         </div>
       </div>
@@ -65,4 +73,4 @@ const mapStateToProps = state => {
   return {...state}
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { loginUser })(Header);
