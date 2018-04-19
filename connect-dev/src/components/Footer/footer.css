@@ -1,14 +1,21 @@
 footer{
     width: 100vw;
-    background-color: #10161f;
+    background-color: #27c2eb;
     color: aliceblue;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    text-transform: uppercase;
 }
 
 li{
     list-style: none;
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
 }
 
 .footer-left{
@@ -17,6 +24,7 @@ li{
 }
 
 .footer-right{
+    width: 30vw;
     text-align: right;
     margin: 25px 0;
 }
@@ -27,8 +35,8 @@ li{
 }
 
 .copyright{
-    background-color: #10161f;
-    color: aliceblue;
+    background-color: #27c2eb;
+    color: white;
     text-transform: uppercase;
     padding: 10px;
     font-size: 10px;

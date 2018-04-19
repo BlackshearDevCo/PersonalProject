@@ -65,6 +65,10 @@
 
 /* CONNECT */
 
+.connect{
+  height: 140vh;
+}
+
 .backgound-image {
   position: relative;
   width: 100vw;
@@ -83,7 +87,7 @@
   color: #27c2eb;
   font-weight: 600;
   position: absolute;
-  top: 108vh;
+  top: 110vh;
   right: 16vw;
 }
 
@@ -130,7 +134,8 @@
 }
 
 .devices-text,
-.career-text {
+.career-text,
+.team-text {
   font-size: 14px;
   text-align: right;
   font-weight: 600;
@@ -157,26 +162,46 @@
   background-image: url(../../images/devices-blue.png);
 }
 
-.team-image {
-  background-image: url(../../images/group-blue.png);
-}
-
 /* CAREER */
 
 .career {
-  width: 30vw;
-  margin-top: 42vh;
+  min-width: 35vw;
+  min-height: 65vw;
+  margin-top: 37vh;
   left: 50vw;
 }
 
 .career-text {
   transform: rotate(90deg);
   text-align: left;
-  height: 20vw;
+  min-height: 15vw;
   width: 35vw;
 }
 
 .career-image {
   background-image: url(../../images/globe-blue.png);
   background-size: 100%;
+}
+
+/* TEAM */
+
+.team{
+  align-items: flex-start;
+  min-width: 35vw;
+  height: 50vw;
+  top: 212vh;
+  left: 12vw;
+}
+
+.team-text{
+  font-size: 18px;
+  text-align: left;
+  padding: 20px;
+  border-left: 1px solid #27c2eb;
+}
+
+.team-image {
+  background-image: url(../../images/group-blue.png);
+  background-size: contain;
+  margin-left: 20px;
 }

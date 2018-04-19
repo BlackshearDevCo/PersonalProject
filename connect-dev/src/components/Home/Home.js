@@ -39,13 +39,13 @@ class Home extends Component {
           <div className='career-image' />
             <p className='career-text'>Experience a new experience to your career</p>
           </div>
-          {/* <div className='team'>
+          <div className='team'>
           <div className='team-image' />
             <p className='team-text'>Build your perfect team from one place</p>
-          </div> */}
+          </div>
           <div className='connect-lines' />
         </section>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

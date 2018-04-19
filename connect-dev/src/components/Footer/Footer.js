@@ -9,7 +9,7 @@ export default function Footer() {
       <footer>
         <div className="footer-left">
           <h3 className="footer-title">Links</h3>
-          <ul>
+          <ul classNam='footer-ul'>
             <li className="footer-link">
               <Link to="/">Home</Link>
             </li>
