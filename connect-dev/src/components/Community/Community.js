@@ -42,7 +42,6 @@ class Community extends Component {
           <div className="chat-container">
             <section>
               {this.state.messages.map((cur, ind) => {
-                console.log(this.props);
                 return (
                   <div key={ind}>
                     {cur.user}: {cur.message}
@@ -51,7 +50,10 @@ class Community extends Component {
               })}
             </section>
           </div>
-          <section className="input-container">
+          <div>
+            {
+              this.props.name ?
+              <section className="input-container">
             <div>
               {this.props.name ? (
                 <div>
@@ -86,6 +88,10 @@ class Community extends Component {
               Send
             </button>
           </section>
+          :
+          <h3>You must sign in to chat!</h3>
+            }
+          </div>
         </div>
         <Footer />
       </div>

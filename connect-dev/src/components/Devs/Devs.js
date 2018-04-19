@@ -13,13 +13,10 @@ class Devs extends Component {
     super();
     this.state = {
       usernameSearch: "",
-      locationSearch: "",
-      experienceSearch: ""
+      locationSearch: ""
     };
     this.handleUsernameSearch = this.handleUsernameSearch.bind(this);
     this.handleLocationSearch = this.handleLocationSearch.bind(this);
-    this.handleExperienceSearch = this.handleExperienceSearch.bind(this);
-    // this.handleSearch =this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -34,16 +31,6 @@ class Devs extends Component {
   handleLocationSearch(val) {
     this.setState({ locationSearch: val });
   }
-
-  handleExperienceSearch(val) {
-    this.setState({ experienceSearch: val });
-  }
-
-  // handleSearch() {
-  //   console.log(this.state.usernameSearch)
-  //   console.log(this.state.locationSearch)
-  //   console.log(this.state.experienceSearch)
-  // }
 
   render() {
     let filtered = this.props.posts
@@ -81,14 +68,12 @@ class Devs extends Component {
             placeholder="Location..."
             onChange={e => this.handleLocationSearch(e.target.value)}
           />
-          {/* <input onChange={e => this.handleExperienceSearch(e.target.value)} /> */}
-          {/* <button onClick={() => this.handleSearch()} >Search</button> */}
         </section>
 
         {this.props.posts && this.props.posts.length > 0 ? (
           <div>
           {filtered}
-          {!filtered.length && <div>No posts match your filter</div>}
+          {!filtered.length && <h1>No posts match your filter</h1>}
           </div>
         ) : (
           <h1>No Posts</h1>
