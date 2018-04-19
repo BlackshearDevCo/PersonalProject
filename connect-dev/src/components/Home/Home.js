@@ -18,54 +18,34 @@ class Home extends Component {
         <main className="main-section">
           <div className="container">
             <h1 className="main-text">
-              The number one job site for developers
+              The number one connection site for developers
             </h1>
           </div>
+          <button className='connect-button'>Connect</button>
           <div className="overlay" />
         </main>
 
-        <section className="slideshow">
-          <div className="image-one" />
-          <div className="image-two" />
-          <div className="image-three" />
-        </section>
-
-        <section className="cards">
-          <div className="connect">
-            <div className="card-image image-connect" />
-            <h2 className="card-title">Connect</h2>
-            <p className="card-text">
-              We help you connect with all kinds of developers from all around
-              the world!
-            </p>
+        <section className='connect'>
+          <div className='backgound-image' />
+          <h1 className='connect-header'>Connect</h1>
+          <div className='connect-text-container'>
+            <p className='connect-text'>We allow you to connect with developers from all around the world</p>
           </div>
-          <div className="satisfaction">
-            <div className="card-image image-satisfaction" />
-            <h2 className="card-title">Satisfaction</h2>
-            <p className="card-text">
-              Our top priority is your satisfaction and happiness! We are always
-              open to feedback on how to make your experince a one-of-a-kind!
-            </p>
+          <div className='devices'>
+            <div className='devices-image' />
+            <p className='devices-text'>View our website on any of your favorite devices</p>
           </div>
-          <div className="technologies">
-            <div className="card-image image-tech" />
-            <h2 className="card-title">Technologies</h2>
-            <p className="card-text">
-              Choose from developers that know the technologies that you need
-              for your new website!
-            </p>
+          <div className='career'>
+          <div className='career-image' />
+            <p className='career-text'>Experience a new experience to your career</p>
           </div>
+          {/* <div className='team'>
+          <div className='team-image' />
+            <p className='team-text'>Build your perfect team from one place</p>
+          </div> */}
+          <div className='connect-lines' />
         </section>
-        <section className="our-goal">
-          <div className="our-goal-img" />
-          <p className="our-goal-text">
-            Our main goal here at ConnectDev is to make the whole process of
-            finding employers or employees a whole lot easier. Unlike other
-            companies, ConnectDev specializes in web development. We help all
-            developers out, no matter how much experince you have!
-          </p>
-        </section>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

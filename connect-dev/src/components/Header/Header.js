@@ -3,11 +3,11 @@ import "./header.css";
 
 import Navbar from "../Navbar/Navbar";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { loginUser } from '../../redux/reducers/userReducer';
+import { loginUser } from "../../redux/reducers/userReducer";
 
 class Header extends Component {
   constructor() {
@@ -32,37 +32,39 @@ class Header extends Component {
 
     return (
       <div className="header">
-        <Navbar
-          menuFlag={this.state.menuFlag}
-          toggleMenuFlag={this.toggleMenuFlag}
-        />
-        <div
-          className={!this.state.menuFlag ? null : "showExit"}
-          onClick={() => this.toggleMenuFlag()}
-        >
-          <div className={!this.state.menuFlag ? null : "exit-one"} />
-          <div className={!this.state.menuFlag ? null : "exit-two"} />
-        </div>
-        <div className="menu-container" onClick={() => this.toggleMenuFlag()}>
-          <div className="top-menu" />
-          <div className="mid-menu" />
-          <div className="bottom-menu" />
-        </div>
-        <div className="main-logo" />
-        <div>
-          {name ? (
-            <Link to='/profile'>
-            <img
-              src={currentUser.profile_picture}
-              alt=""
-              className="pfp-container"
-            />
-            </Link>
-          ) : (
-            <Link to='/profile'>
-            <div className="pfp-container" />
-            </Link>
-          )}
+        <div className="header-container">
+          <Navbar
+            menuFlag={this.state.menuFlag}
+            toggleMenuFlag={this.toggleMenuFlag}
+          />
+          <div
+            className={!this.state.menuFlag ? null : "showExit"}
+            onClick={() => this.toggleMenuFlag()}
+          >
+            <div className={!this.state.menuFlag ? null : "exit-one"} />
+            <div className={!this.state.menuFlag ? null : "exit-two"} />
+          </div>
+          <div className="menu-container" onClick={() => this.toggleMenuFlag()}>
+            <div className="top-menu" />
+            <div className="mid-menu" />
+            <div className="bottom-menu" />
+          </div>
+          <div className="main-logo" />
+          <div>
+            {name ? (
+              <Link to="/profile">
+                <img
+                  src={currentUser.profile_picture}
+                  alt=""
+                  className="pfp-container"
+                />
+              </Link>
+            ) : (
+              <Link to="/profile">
+                <div className="pfp-container" />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -70,7 +72,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => {
-  return {...state}
+  return { ...state };
 };
 
 export default connect(mapStateToProps, { loginUser })(Header);

@@ -1,22 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .header{
     width: 100vw;
-    height: 11vh;
-    background-color: #10161f;
+    height: 10vh;
+    position: absolute;
+}
+
+.header-container{
+    width: 90%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    border-bottom: 3px solid white;
 }
-
-/* .header-container{
-    width: 100vw;
-    height: 11vh;
-    background-color: #10161f;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-} */
 
 .menu-container{
     width: 14vw;
@@ -27,7 +28,7 @@
     background-color: #e1e1e3;
     max-width: 100%;
     height: 20%;
-    margin: 3px;
+    margin: 3px 0;
     border-radius: 5px;
 }
 
@@ -35,7 +36,7 @@
     background-color: #e1e1e3;
     max-width: 100%;
     height: 20%;
-    margin: 3px;
+    margin: 3px 0;
     border-radius: 5px;
 }
 
@@ -43,7 +44,7 @@
     background-color: #e1e1e3;
     max-width: 100%;
     height: 20%;
-    margin: 3px;
+    margin: 3px 0;
     border-radius: 5px;
 }
 
@@ -90,6 +91,7 @@
     background-image: url(../../images/ConnectDevLargeWhite.png);
     background-size: cover;
     background-position: center;
+    margin: 0 20px;
 }
 
 .pfp-container{
@@ -97,7 +99,6 @@
     height: 12vw;
     background-color: aliceblue;
     border-radius: 50%;
-    /* z-index: 1; */
     background-size: cover;
     background-position: center;
 }
@@ -110,11 +111,3 @@
         opacity: 1;
     }
 }
-
-/* .main-logo{
-    width: 50vw;
-    height: 10vh;
-    background-image: url(../../images/ConnectDevLarge.png);
-    position: absolute;
-    top: 50%;
-} */
