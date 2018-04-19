@@ -37,7 +37,7 @@ class ViewProfile extends Component {
       birthdate,
       location
     } = this.props;
-console.log(users)
+
     return (
       <div>
         {users ? (
