@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Footer from '../Footer/Footer';
+import PlacesAutocomplete from "react-places-autocomplete";
+import Footer from "../Footer/Footer";
 import "./profile.css";
 
 import { Link } from "react-router-dom";
@@ -29,7 +30,10 @@ class Profile extends Component {
       toggleExperienceEdit: false,
       toggleCompanyNameEdit: false,
       toggleUserBirthdayEdit: false,
-      toggleUserLocationEdit: false
+      toggleUserLocationEdit: false,
+      usernameSearch: "",
+      locationSearch: "",
+      errorMessage: ""
     };
     this.toggleUserTypeEdit = this.toggleUserTypeEdit.bind(this);
     this.toggleUserBioEdit = this.toggleUserBioEdit.bind(this);
@@ -37,11 +41,15 @@ class Profile extends Component {
     this.toggleCompanyNameEdit = this.toggleCompanyNameEdit.bind(this);
     this.toggleUserBirthdayEdit = this.toggleUserBirthdayEdit.bind(this);
     this.toggleUserLocationEdit = this.toggleUserLocationEdit.bind(this);
+    this.handleLocation - this.handleLocation.bind(this);
+    this.handleError - this.handleError.bind(this);
   }
 
   componentDidMount() {
     this.props.currentUser ? this.props.loginUser() : null;
-    this.props.currentUser ? this.props.getUserPosts(this.props.currentUser.user_id) : null;
+    this.props.currentUser
+      ? this.props.getUserPosts(this.props.currentUser.user_id)
+      : null;
   }
 
   toggleUserTypeEdit() {
@@ -76,8 +84,17 @@ class Profile extends Component {
 
   toggleUserLocationEdit() {
     this.setState({
-      toggleUserLocationEdit: !this.state.toggleUserLocationEdit
+      toggleUserLocationEdit: !this.state.toggleUserLocationEdit,
+      locationSearch: this.props.currentUser.location || ""
     });
+  }
+
+  handleLocation(address) {
+    this.setState({ locationSearch: address });
+  }
+
+  handleError(err) {
+    this.setState({ errorMessage: `GOOGLE LOCATION ERROR: ${err}` });
   }
 
   render() {
@@ -117,7 +134,9 @@ class Profile extends Component {
               <img src={profilePic} className="profile-pic" />
 
               <section className="user-info">
-                <h2 className="user-name">{currentUser.first_name || "Placeholder"}</h2>
+                <h2 className="user-name">
+                  {currentUser.first_name || "Placeholder"}
+                </h2>
                 <Link to="/">
                   <button onClick={() => logout()}>Logout</button>
                 </Link>
@@ -182,11 +201,11 @@ class Profile extends Component {
                         onDoubleClick={() => this.toggleUserBioEdit()}
                       >
                         {!this.state.toggleUserBioEdit ? (
-                          <p>{ bio }</p>
+                          <p>{bio}</p>
                         ) : (
                           <div>
                             <input
-                              placeholder="Enter Bio"
+                              placeholder={currentUser.bio || "Enter Bio"}
                               onChange={e =>
                                 this.setState({ userBio: e.target.value })
                               }
@@ -217,6 +236,7 @@ class Profile extends Component {
                           ) : (
                             <div>
                               <input
+                              placeholder={currentUser.company_name || "Enter Company Name"}
                                 onChange={e =>
                                   this.setState({ companyName: e.target.value })
                                 }
@@ -252,39 +272,28 @@ class Profile extends Component {
                     ) : (
                       <div>
                         {!this.state.toggleExperienceEdit ? (
-                          <div>
+                          <div onDoubleClick={() => this.toggleExperienceEdit()}>
                             {currentUser.experience === 1 ? (
-                              <p
-                                onDoubleClick={() =>
-                                  this.toggleExperienceEdit()
-                                }
-                              >
+                              <p>
                                 Junior
                               </p>
                             ) : currentUser.experience === 2 ? (
-                              <p
-                                onDoubleClick={() =>
-                                  this.toggleExperienceEdit()
-                                }
-                              >
+                              <p>
                                 Mid-Level
                               </p>
                             ) : (
-                              <p
-                                onDoubleClick={() =>
-                                  this.toggleExperienceEdit()
-                                }
-                              >
+                              <p>
                                 Senior
                               </p>
                             )}
                           </div>
                         ) : (
-                          <div>
+                          <div onDoubleClick={() => this.toggleExperienceEdit()}>
                             <button
                               onClick={() =>
                                 this.setState({ userExperience: 1 })
                               }
+                              className={ currentUser.experience === 1 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
                             >
                               Junior
                             </button>
@@ -292,6 +301,7 @@ class Profile extends Component {
                               onClick={() =>
                                 this.setState({ userExperience: 2 })
                               }
+                              className={ currentUser.experience === 2 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
                             >
                               Mid-Level
                             </button>
@@ -299,6 +309,7 @@ class Profile extends Component {
                               onClick={() =>
                                 this.setState({ userExperience: 3 })
                               }
+                              className={ currentUser.experience === 3 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
                             >
                               Senior
                             </button>
@@ -328,7 +339,7 @@ class Profile extends Component {
                         <p>{currentUser.birthdate}</p>
                       ) : (
                         <input
-                          placeholder="MM/DD/YYYY"
+                          placeholder={currentUser.birthdate || "MM/DD/YYYY"}
                           onChange={e =>
                             this.setState({ birthday: e.target.value })
                           }
@@ -339,31 +350,98 @@ class Profile extends Component {
                 </div>
                 <div className="user-location">
                   <p className="info-title">Location: </p>
-                  {!currentUser.location ? (
+                  {currentUser.location ? (
                     <div>
-                      <input
-                        placeholder="City, State"
-                        onChange={e =>
-                          this.setState({ location: e.target.value })
-                        }
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className="info"
-                      onDoubleClick={() => this.toggleUserLocationEdit()}
-                    >
                       {!this.state.toggleUserLocationEdit ? (
-                        <p>{currentUser.location}</p>
+                        <p onDoubleClick={() => this.toggleUserLocationEdit()}>{currentUser.location}</p>
                       ) : (
-                        <input
-                          placeholder="City, State"
-                          onChange={e =>
-                            this.setState({ location: e.target.value })
-                          }
-                        />
+                        <PlacesAutocomplete
+                          value={this.state.locationSearch}
+                          onChange={value => this.handleLocation(value)}
+                        >
+                          {({
+                            getInputProps,
+                            suggestions,
+                            getSuggestionItemProps
+                          }) => (
+                            <div>
+                              <input
+                                {...getInputProps({
+                                  placeholder: "Search Location...",
+                                  className: "location search-input"
+                                })}
+                                onDoubleClick={() =>
+                                  this.toggleUserLocationEdit()
+                                }
+                              />
+                              <div className="autocomplete-dropdown-container">
+                                {suggestions.map(suggestion => {
+                                  const className = suggestion.active
+                                    ? "suggestion-item--active"
+                                    : "suggestion-item";
+                                  const style = suggestion.active
+                                    ? { backgroundColor: "#f3f3f3" }
+                                    : { backgroundColor: "#ffffff" };
+
+                                  return (
+                                    <div
+                                      {...getSuggestionItemProps(suggestion, {
+                                        className,
+                                        style
+                                      })}
+                                    >
+                                      <span>{suggestion.description}</span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </PlacesAutocomplete>
                       )}
                     </div>
+                  ) : (
+                    <PlacesAutocomplete
+                      value={this.state.locationSearch}
+                      onChange={value => this.handleLocation(value)}
+                    >
+                      {({
+                        getInputProps,
+                        suggestions,
+                        getSuggestionItemProps
+                      }) => (
+                        <div>
+                          <input
+                            {...getInputProps({
+                              placeholder: "Search Location...",
+                              className: "location search-input"
+                            })}
+                            onDoubleClick={() => this.toggleUserLocationEdit()}
+                          />
+                          <div className="autocomplete-dropdown-container">
+                            {suggestions.map(suggestion => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active"
+                                : "suggestion-item";
+                              const style = suggestion.active
+                                ? { backgroundColor: "#fafafa" }
+                                : { backgroundColor: "#ffffff" };
+
+                              return (
+                                <div
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style
+                                  })}
+                                >
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </PlacesAutocomplete>
                   )}
                 </div>
                 <p>Double Click or Double Tap to edit your info.</p>
@@ -384,7 +462,7 @@ class Profile extends Component {
                         this.state.birthday || currentUser.birthdate,
                         this.state.userBio || currentUser.bio,
                         this.state.userExperience || currentUser.experience,
-                        this.state.location || currentUser.location,
+                        this.state.locationSearch || currentUser.location,
                         this.state.companyName || currentUser.company_name
                       )
                       .then(() => this.props.loginUser());
@@ -403,28 +481,36 @@ class Profile extends Component {
                     </div>
                   ) : (
                     <div>
-                      {
-                        userPosts.map((cur, ind) => {
-                          return (
-                            <div key={ind} className="post-container">
-                              <div className="user-container">
-                                <img src={cur.profile_picture} className="post-pfp" />
-                                <h3 id={cur.user_id} className="post-username">
-                                  {cur.first_name}
-                                </h3>
-                                <div>
-                                <button onClick={() => {deletePost(cur.post_id); this.props.getUserPosts(this.props.currentUser.user_id)}}>
+                      {userPosts.map((cur, ind) => {
+                        return (
+                          <div key={ind} className="post-container">
+                            <div className="user-container">
+                              <img
+                                src={cur.profile_picture}
+                                className="post-pfp"
+                              />
+                              <h3 id={cur.user_id} className="post-username">
+                                {cur.first_name}
+                              </h3>
+                              <div>
+                                <button
+                                  onClick={() => {
+                                    deletePost(cur.post_id);
+                                    this.props.getUserPosts(
+                                      this.props.currentUser.user_id
+                                    );
+                                  }}
+                                >
                                   DELETE POST
                                 </button>
-                                </div>
                               </div>
-                              <p id={cur.post_id} className="post-body">
-                                {cur.post_body}
-                              </p>
                             </div>
-                          )
-                        })
-                      }
+                            <p id={cur.post_id} className="post-body">
+                              {cur.post_body}
+                            </p>
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
                 </div>

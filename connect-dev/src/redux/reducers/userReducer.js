@@ -100,8 +100,10 @@ export default function userReducer(state = initialState, action) {
             return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio, birthdate: toString(data.birthdate), companyName: data.company_name }
         case `${LOGOUT}_FULFILLED` :
             return { ...initialState }
+        case `${GET_POSTS}_PENDING` :
+            return { ...state, isLoading: true}
         case `${GET_POSTS}_FULFILLED` :
-            return { ...state, posts: action.payload.data }
+            return { ...state, posts: action.payload.data, isLoading: false }
         case `${GET_EMPLOYERS_POSTS}_FULFILLED` :
             return { ...state, employerPosts: action.payload.data }
         case `${NEW_POST}_FULFILLED` :

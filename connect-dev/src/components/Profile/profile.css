@@ -46,3 +46,12 @@
 .not-logged{
     margin-top: 20%;
 }
+
+.profile-button{
+    border-style: none;
+    padding: 3px;
+}
+
+.profile-active{
+    background-color: #27c2eb;
+}

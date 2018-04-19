@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlacesAutocomplete from "react-places-autocomplete";
 import "../Devs/devs.css";
 import AddPost from "../Devs/AddPost/AddPost";
 
@@ -13,10 +14,12 @@ class Devs extends Component {
     super();
     this.state = {
       usernameSearch: "",
-      locationSearch: ""
+      locationSearch: "",
+      errorMessage: ""
     };
-    this.handleUsernameSearch - this.handleUsernameSearch.bind(this);
-    this.handleLocationSearch - this.handleLocationSearch.bind(this);
+    this.handleUsernameSearch = this.handleUsernameSearch.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   componentDidMount() {
@@ -24,12 +27,16 @@ class Devs extends Component {
     this.props.getEmployersPosts();
   }
 
-  handleUsernameSearch(val) {
-    this.setState({ usernameSearch: val });
+  handleLocation(address) {
+    this.setState({ locationSearch: address });
   }
 
-  handleLocationSearch(val) {
-    this.setState({ locationSearch: val });
+  handleError(err) {
+    this.setState({ errorMessage: `GOOGLE LOCATION ERROR: ${err}` });
+  }
+
+  handleUsernameSearch(val) {
+    this.setState({ usernameSearch: val });
   }
 
   render() {
@@ -49,6 +56,7 @@ class Devs extends Component {
                   {cur.first_name}
                 </h3>
               </Link>
+              <p>{cur.location}</p>
             </div>
             <p id={cur.post_id} className="post-body">
               {cur.post_body}
@@ -62,10 +70,42 @@ class Devs extends Component {
           placeholder="Username..."
           onChange={e => this.handleUsernameSearch(e.target.value)}
         />
-        <input
-          placeholder="Username..."
-          onChange={e => this.handleLocationSearch(e.target.value)}
-        />
+        <PlacesAutocomplete
+          value={this.state.locationSearch}
+          onChange={value => this.handleLocation(value)}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+            <div>
+              <input
+                {...getInputProps({
+                  placeholder: "Search Location...",
+                  className: "location search-input"
+                })}
+              />
+              <div className="autocomplete-dropdown-container">
+                {suggestions.map(suggestion => {
+                  const className = suggestion.active
+                    ? "suggestion-item--active"
+                    : "suggestion-item";
+                  const style = suggestion.active
+                    ? { backgroundColor: "#fafafa" }
+                    : { backgroundColor: "#ffffff" };
+
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </PlacesAutocomplete>
         {this.props.employerPosts && this.props.employerPosts.length > 0 ? (
           <div>
             {filtered}

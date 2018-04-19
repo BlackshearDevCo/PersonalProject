@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PlacesAutocomplete from "react-places-autocomplete";
 import "./devs.css";
 import AddPost from "./AddPost/AddPost";
 
@@ -13,10 +14,12 @@ class Devs extends Component {
     super();
     this.state = {
       usernameSearch: "",
-      locationSearch: ""
+      locationSearch: "",
+      errorMessage: ""
     };
     this.handleUsernameSearch = this.handleUsernameSearch.bind(this);
-    this.handleLocationSearch = this.handleLocationSearch.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   componentDidMount() {
@@ -24,56 +27,90 @@ class Devs extends Component {
     this.props.getPosts();
   }
 
+  handleLocation(address) {
+    this.setState({ locationSearch: address });
+  }
+
+  handleError(err) {
+    this.setState({ errorMessage: `GOOGLE LOCATION ERROR: ${err}` });
+  }
+
   handleUsernameSearch(val) {
     this.setState({ usernameSearch: val });
   }
 
-  handleLocationSearch(val) {
-    this.setState({ locationSearch: val });
-  }
-
   render() {
     let filtered = this.props.posts
-    .filter(
-      cur =>
-        cur.first_name.includes(this.state.usernameSearch) &&
-        cur.location.includes(this.state.locationSearch)
-    )
-    .map((cur, ind) => {
-      return (
-        <div key={ind} className="post-container">
-          <div className="user-container">
-            <img src={cur.profile_picture} className="post-pfp" />
-            <Link to={`/user/${cur.user_id}`}>
-              <h3 id={cur.user_id} className="post-username">
-                {cur.first_name}
-              </h3>
-            </Link>
-            <p>{cur.location}</p>
+      .filter(
+        cur =>
+          cur.first_name.includes(this.state.usernameSearch) &&
+          cur.location.includes(this.state.locationSearch)
+      )
+      .map((cur, ind) => {
+        return (
+          <div key={ind} className="post-container">
+            <div className="user-container">
+              <img src={cur.profile_picture} className="post-pfp" />
+              <Link to={`/user/${cur.user_id}`}>
+                <h3 id={cur.user_id} className="post-username">
+                  {cur.first_name}
+                </h3>
+              </Link>
+              <p>{cur.location}</p>
+            </div>
+            <p id={cur.post_id} className="post-body">
+              {cur.post_body}
+            </p>
           </div>
-          <p id={cur.post_id} className="post-body">
-            {cur.post_body}
-          </p>
-        </div>
-      );
-    })
+        );
+      });
+
     return (
       <div>
-        <section className="search-container">
-          <input
-            placeholder="Username..."
-            onChange={e => this.handleUsernameSearch(e.target.value)}
-          />
-          <input
-            placeholder="Location..."
-            onChange={e => this.handleLocationSearch(e.target.value)}
-          />
-        </section>
+        <input
+          placeholder="Username..."
+          onChange={e => this.handleUsernameSearch(e.target.value)}
+        />
+        <PlacesAutocomplete
+          value={this.state.locationSearch}
+          onChange={value => this.handleLocation(value)}
+        >
+          {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+            <div>
+              <input
+                {...getInputProps({
+                  placeholder: "Search Location...",
+                  className: "location search-input"
+                })}
+              />
+              <div className="autocomplete-dropdown-container">
+                {suggestions.map(suggestion => {
+                  const className = suggestion.active
+                    ? "suggestion-item--active"
+                    : "suggestion-item";
+                  const style = suggestion.active
+                    ? { backgroundColor: "#fafafa" }
+                    : { backgroundColor: "#ffffff" };
 
+                  return (
+                    <div
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </PlacesAutocomplete>
         {this.props.posts && this.props.posts.length > 0 ? (
           <div>
-          {filtered}
-          {!filtered.length && <h1>No posts match your filter</h1>}
+            {filtered}
+            {!filtered.length && <h1>No posts match your search</h1>}
           </div>
         ) : (
           <h1>No Posts</h1>

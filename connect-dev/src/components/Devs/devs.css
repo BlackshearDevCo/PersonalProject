@@ -26,3 +26,17 @@
     padding: 15px;
     font-weight: 200;
 }
+
+.search-input{
+    position: absolute;
+    left: 0%;
+    top: 20%;
+}
+
+.autocomplete-dropdown-container{
+    width: 15vw;
+    margin: 0;
+    position: absolute;
+    left: 0%;
+    top: 24%;
+}
