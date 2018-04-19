@@ -37,7 +37,7 @@ class ViewProfile extends Component {
       birthdate,
       location
     } = this.props;
-
+console.log(users)
     return (
       <div>
         {users ? (
@@ -53,7 +53,12 @@ class ViewProfile extends Component {
                     </h2>
                     <div className="user-type">
                       <p className="info-title">User Type: </p>
-                      <p className="info">{cur.use_type || "Developer"}</p>
+                      <p className="info">
+                        {cur.user_type === 1 ?
+                        "Developer"
+                        :
+                        "Employer"
+                        }</p>
                     </div>
                     <div className="user-email">
                       <p className="info-title">Email: </p>
