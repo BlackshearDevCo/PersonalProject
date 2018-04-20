@@ -28,6 +28,7 @@ class Profile extends Component {
       userExperience: 0,
       companyName: "",
       toggleUserTypeEdit: false,
+      toggleUserPortfolioEdit: false,
       toggleUserBioEdit: false,
       toggleExperienceEdit: false,
       toggleCompanyNameEdit: false,
@@ -38,6 +39,7 @@ class Profile extends Component {
       errorMessage: ""
     };
     this.toggleUserTypeEdit = this.toggleUserTypeEdit.bind(this);
+    this.toggleUserPortfolioEdit = this.toggleUserPortfolioEdit.bind(this);
     this.toggleUserBioEdit = this.toggleUserBioEdit.bind(this);
     this.toggleExperienceEdit = this.toggleExperienceEdit.bind(this);
     this.toggleCompanyNameEdit = this.toggleCompanyNameEdit.bind(this);
@@ -60,6 +62,12 @@ class Profile extends Component {
   toggleUserTypeEdit() {
     this.setState({
       toggleUserTypeEdit: !this.state.toggleUserTypeEdit
+    });
+  }
+
+  toggleUserPortfolioEdit() {
+    this.setState({
+      toggleUserPortfolioEdit: !this.state.toggleUserPortfolioEdit
     });
   }
 
@@ -207,6 +215,42 @@ class Profile extends Component {
                       : "0"}
                   </p>
                 </div>
+                {!this.state.toggleUserPortfolioEdit
+                  ? currentUser.user_type == 1 && (
+                      <div
+                        className="user-link"
+                        onDoubleClick={() => this.toggleUserPortfolioEdit()}
+                      >
+                        <p className="info-title">Portfolio: </p>
+                        <p className="info">
+                          {currentUser.portfolio ? (
+                            <a href={currentUser.portfolio}>
+                              {currentUser.portfolio}
+                            </a>
+                            ||
+                            <p>User does not have a portfolio.</p>
+                          ) : (
+                            "User does not have a portfolio."
+                          )}
+                        </p>
+                      </div>
+                    )
+                  : currentUser.user_type == 1 && (
+                      <div
+                        className="user-link"
+                        onDoubleClick={() => this.toggleUserPortfolioEdit()}
+                      >
+                        <p className="info-title">Portfolio: </p>
+                        <input
+                          placeholder={currentUser.portfolio || "Portfolio"}
+                          onChange={e =>
+                            this.setState({
+                              toggleUserPortfolioEdit: e.target.value
+                            })
+                          }
+                        />
+                      </div>
+                    )}
                 <div className="user-bio">
                   <p className="info-title">Bio: </p>
                   <div>
@@ -492,7 +536,8 @@ class Profile extends Component {
                       toggleExperienceEdit: false,
                       toggleCompanyNameEdit: false,
                       toggleUserBirthdayEdit: false,
-                      toggleUserLocationEdit: false
+                      toggleUserLocationEdit: false,
+                      toggleUserPortfolioEdit: false
                     });
                     this.props
                       .updateUserInfo(
@@ -502,7 +547,9 @@ class Profile extends Component {
                         this.state.userBio || currentUser.bio,
                         this.state.userExperience || currentUser.experience,
                         this.state.locationSearch || currentUser.location,
-                        this.state.companyName || currentUser.company_name
+                        this.state.companyName || currentUser.company_name,
+                        this.state.toggleUserPortfolioEdit ||
+                          currentUser.portfolio
                       )
                       .then(() => this.props.loginUser());
                   }}

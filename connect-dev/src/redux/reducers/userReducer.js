@@ -83,7 +83,8 @@ export function updateUserInfo(
   bio,
   experience,
   location,
-  company
+  company,
+  portfolio
 ) {
   return {
     type: UPDATE_USER_INFO,
@@ -93,7 +94,8 @@ export function updateUserInfo(
       bio,
       experience,
       location,
-      company
+      company,
+      portfolio
     })
   };
 }

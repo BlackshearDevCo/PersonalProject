@@ -27,7 +27,15 @@ const getAllUsers = (req, res) => {
 
 const updateUserInfo = (req, res) => {
   const db = req.app.get("db");
-  const { user_type, birthdate, bio, experience, location, company } = req.body;
+  const {
+    user_type,
+    birthdate,
+    bio,
+    experience,
+    location,
+    company,
+    portfolio
+  } = req.body;
 
   db
     .update_user_info([
@@ -37,7 +45,8 @@ const updateUserInfo = (req, res) => {
       bio,
       experience,
       location,
-      company
+      company,
+      portfolio
     ])
     .then(response => res.status(200).json(response))
     .catch(err => re.status(500).json(err));
