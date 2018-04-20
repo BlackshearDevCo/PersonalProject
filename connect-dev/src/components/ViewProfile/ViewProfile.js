@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Footer from '../Footer/Footer';
+import Footer from "../Footer/Footer";
 
 import { connect } from "react-redux";
 
 import {
   getAllUsers,
   loginUser,
-  getUserPosts
+  getUserPosts,
+  connectWithUser
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -35,9 +36,10 @@ class ViewProfile extends Component {
       userType,
       experience,
       birthdate,
-      location
+      location,
+      connectWithUser
     } = this.props;
-
+console.log(this.props.viewUserConnections)
     return (
       <div>
         {users ? (
@@ -51,14 +53,21 @@ class ViewProfile extends Component {
                     <h2 className="user-name">
                       {cur.first_name || "Username"}
                     </h2>
+                    {currentUser.user_id &&
+                    currentUser.user_id !== cur.user_id ? (
+                      <button
+                        onClick={() =>
+                          connectWithUser(currentUser.user_id, cur.user_id)
+                        }
+                      >
+                        Connect
+                      </button>
+                    ) : null}
                     <div className="user-type">
                       <p className="info-title">User Type: </p>
                       <p className="info">
-                        {cur.user_type === 1 ?
-                        "Developer"
-                        :
-                        "Employer"
-                        }</p>
+                        {cur.user_type === 1 ? "Developer" : "Employer"}
+                      </p>
                     </div>
                     <div className="user-email">
                       <p className="info-title">Email: </p>
@@ -159,9 +168,7 @@ class ViewProfile extends Component {
                 </div>
                 <div className="user-experience">
                   <p className="info-title">Experience: </p>
-                  <p className="info">
-                    {"User has no experience"}
-                  </p>
+                  <p className="info">{"User has no experience"}</p>
                 </div>
                 <div className="user-birthday">
                   <p className="info-title">Birthday: </p>
@@ -192,5 +199,6 @@ const mapStateToProp = state => {
 export default connect(mapStateToProp, {
   getAllUsers,
   loginUser,
-  getUserPosts
+  getUserPosts,
+  connectWithUser
 })(ViewProfile);

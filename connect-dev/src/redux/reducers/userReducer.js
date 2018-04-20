@@ -14,7 +14,8 @@ let initialState = {
     employerPosts: [],
     experience: 0,
     postDate: "",
-    postLikes: 0,
+    currentUserConnections: 0,
+    unreadUserConnections: 0
 }
 
 //ACTION TYPE
@@ -27,6 +28,8 @@ const GET_ALL_USERS = 'GET_ALL_USERS';
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 const GET_USER_POSTS = 'GET_USER_POSTS';
 const DELETE_POST = 'DELETE_POST';
+const CONNECT_WITH_USER = 'CONNECT_WITH_USER';
+const GET_CONNECTION_COUNT = 'GET_CONNECTION_COUNT';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -92,6 +95,20 @@ export function deletePost(id) {
     }
 }
 
+export function connectWithUser(id, connectorId) {
+    return {
+        type: CONNECT_WITH_USER,
+        payload: axios.post(`/api/connectWithUser/${id}`, {connectorId})
+    }
+}
+
+export function getConnectionCount(id){
+    return {
+        type: GET_CONNECTION_COUNT,
+        payload: axios.get(`/api/getConnectionCount/${id}`)
+    }
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -114,6 +131,10 @@ export default function userReducer(state = initialState, action) {
             return { ...state, userPosts: action.payload.data }
         case `${DELETE_POST}_FULFILLED` :
             return { ...state, posts: action.payload.data }
+        // case `${CONNECT_WITH_USER}_FULFILLED` :
+        //     return { ...state, viewUserConnections: action.payload.data }
+        case `${GET_CONNECTION_COUNT}_FULFILLED` :
+            return { ...state, currentUserConnections: action.payload.data }
         default: 
             return state;
     }

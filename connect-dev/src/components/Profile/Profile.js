@@ -12,7 +12,8 @@ import {
   loginUser,
   updateUserInfo,
   getUserPosts,
-  deletePost
+  deletePost,
+  getConnectionCount
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -47,9 +48,10 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.currentUser ? this.props.loginUser() : null;
-    this.props.currentUser
-      ? this.props.getUserPosts(this.props.currentUser.user_id)
-      : null;
+    this.props.currentUser &&
+      this.props.getUserPosts(this.props.currentUser.user_id);
+    this.props.currentUser &&
+      this.props.getConnectionCount(this.props.currentUser.user_id);
   }
 
   toggleUserTypeEdit() {
@@ -107,7 +109,8 @@ class Profile extends Component {
       posts,
       logout,
       userPosts,
-      deletePost
+      deletePost,
+      currentUserConnections
     } = this.props;
 
     return (
@@ -166,11 +169,21 @@ class Profile extends Component {
                         <div>
                           <button
                             onClick={() => this.setState({ userType: 1 })}
+                            className={
+                              currentUser.user_type === 1
+                                ? "profile-active profile-button"
+                                : "profile-inactive profile-button"
+                            }
                           >
                             Developer
                           </button>
                           <button
                             onClick={() => this.setState({ userType: 2 })}
+                            className={
+                              currentUser.user_type === 2
+                                ? "profile-active profile-button"
+                                : "profile-inactive profile-button"
+                            }
                           >
                             Employer
                           </button>
@@ -182,6 +195,14 @@ class Profile extends Component {
                 <div className="user-email">
                   <p className="info-title">Email: </p>
                   <p className="info">{email || "User has no email"}</p>
+                </div>
+                <div>
+                  <p className="info-title">Connections: </p>
+                  <p className="info">
+                    {currentUserConnections[0]
+                      ? currentUserConnections[0].count
+                      : "0"}
+                  </p>
                 </div>
                 <div className="user-bio">
                   <p className="info-title">Bio: </p>
@@ -236,7 +257,10 @@ class Profile extends Component {
                           ) : (
                             <div>
                               <input
-                              placeholder={currentUser.company_name || "Enter Company Name"}
+                                placeholder={
+                                  currentUser.company_name ||
+                                  "Enter Company Name"
+                                }
                                 onChange={e =>
                                   this.setState({ companyName: e.target.value })
                                 }
@@ -272,28 +296,30 @@ class Profile extends Component {
                     ) : (
                       <div>
                         {!this.state.toggleExperienceEdit ? (
-                          <div onDoubleClick={() => this.toggleExperienceEdit()}>
+                          <div
+                            onDoubleClick={() => this.toggleExperienceEdit()}
+                          >
                             {currentUser.experience === 1 ? (
-                              <p>
-                                Junior
-                              </p>
+                              <p>Junior</p>
                             ) : currentUser.experience === 2 ? (
-                              <p>
-                                Mid-Level
-                              </p>
+                              <p>Mid-Level</p>
                             ) : (
-                              <p>
-                                Senior
-                              </p>
+                              <p>Senior</p>
                             )}
                           </div>
                         ) : (
-                          <div onDoubleClick={() => this.toggleExperienceEdit()}>
+                          <div
+                            onDoubleClick={() => this.toggleExperienceEdit()}
+                          >
                             <button
                               onClick={() =>
                                 this.setState({ userExperience: 1 })
                               }
-                              className={ currentUser.experience === 1 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
+                              className={
+                                currentUser.experience === 1
+                                  ? "profile-active profile-button"
+                                  : "profile-inactive profile-button"
+                              }
                             >
                               Junior
                             </button>
@@ -301,7 +327,11 @@ class Profile extends Component {
                               onClick={() =>
                                 this.setState({ userExperience: 2 })
                               }
-                              className={ currentUser.experience === 2 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
+                              className={
+                                currentUser.experience === 2
+                                  ? "profile-active profile-button"
+                                  : "profile-inactive profile-button"
+                              }
                             >
                               Mid-Level
                             </button>
@@ -309,7 +339,11 @@ class Profile extends Component {
                               onClick={() =>
                                 this.setState({ userExperience: 3 })
                               }
-                              className={ currentUser.experience === 3 ? 'profile-active profile-button' : 'profile-inactive profile-button' }
+                              className={
+                                currentUser.experience === 3
+                                  ? "profile-active profile-button"
+                                  : "profile-inactive profile-button"
+                              }
                             >
                               Senior
                             </button>
@@ -353,7 +387,9 @@ class Profile extends Component {
                   {currentUser.location ? (
                     <div>
                       {!this.state.toggleUserLocationEdit ? (
-                        <p onDoubleClick={() => this.toggleUserLocationEdit()}>{currentUser.location}</p>
+                        <p onDoubleClick={() => this.toggleUserLocationEdit()}>
+                          {currentUser.location}
+                        </p>
                       ) : (
                         <PlacesAutocomplete
                           value={this.state.locationSearch}
@@ -533,5 +569,6 @@ export default connect(mapStateToProps, {
   loginUser,
   updateUserInfo,
   getUserPosts,
-  deletePost
+  deletePost,
+  getConnectionCount
 })(Profile);

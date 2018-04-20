@@ -1,0 +1,1 @@
+SELECT COUNT(connector_id) FROM connections WHERE user_id = $1;
