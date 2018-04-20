@@ -1,0 +1,1 @@
+UPDATE users SET notifications = notifications+1 WHERE user_id = $1;

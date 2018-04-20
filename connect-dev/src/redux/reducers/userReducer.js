@@ -1,141 +1,181 @@
-import axios from 'axios';
+import axios from "axios";
 
 //INITIAL STATE
 let initialState = {
-    isLoading: false,
-    users: [],
-    currentUser: [],
-    name: "",
-    authID: "",
-    userType: 0,
-    companyName: "",
-    posts: [],
-    userPosts: [],
-    employerPosts: [],
-    experience: 0,
-    postDate: "",
-    currentUserConnections: 0,
-    unreadUserConnections: 0
-}
+  isLoading: false,
+  users: [],
+  currentUser: [],
+  name: "",
+  authID: "",
+  userType: 0,
+  companyName: "",
+  posts: [],
+  userPosts: [],
+  employerPosts: [],
+  experience: 0,
+  postDate: "",
+  currentUserConnections: 0,
+  userNotifications: 0
+};
 
 //ACTION TYPE
-const LOGIN_USER = 'LOGIN_USER';
-const LOGOUT = 'LOGOUT';
-const GET_POSTS = 'GET_POSTS';
-const GET_EMPLOYERS_POSTS = 'GET_EMPLOYERS_POSTS';
-const NEW_POST = 'NEW_POST';
-const GET_ALL_USERS = 'GET_ALL_USERS';
-const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
-const GET_USER_POSTS = 'GET_USER_POSTS';
-const DELETE_POST = 'DELETE_POST';
-const CONNECT_WITH_USER = 'CONNECT_WITH_USER';
-const GET_CONNECTION_COUNT = 'GET_CONNECTION_COUNT';
+const LOGIN_USER = "LOGIN_USER";
+const LOGOUT = "LOGOUT";
+const GET_POSTS = "GET_POSTS";
+const GET_EMPLOYERS_POSTS = "GET_EMPLOYERS_POSTS";
+const NEW_POST = "NEW_POST";
+const GET_ALL_USERS = "GET_ALL_USERS";
+const UPDATE_USER_INFO = "UPDATE_USER_INFO";
+const GET_USER_POSTS = "GET_USER_POSTS";
+const DELETE_POST = "DELETE_POST";
+const CONNECT_WITH_USER = "CONNECT_WITH_USER";
+const GET_CONNECTION_COUNT = "GET_CONNECTION_COUNT";
+const SEND_USER_NOTIFICATION = "SEND_USER_NOTIFICATION";
+const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 
 //ACTION CREATOR
 export function loginUser() {
-    return {
-        type: LOGIN_USER,
-        payload: axios.get(`/api/user`)
-    }
+  return {
+    type: LOGIN_USER,
+    payload: axios.get(`/api/user`)
+  };
 }
 
 export function logout() {
-    return {
-        type: LOGOUT,
-        payload: axios.get('/api/logout')
-    }
+  return {
+    type: LOGOUT,
+    payload: axios.get("/api/logout")
+  };
 }
 
 export function getPosts() {
-    return {
-        type: GET_POSTS,
-        payload: axios.get('/api/getPosts')
-    }
+  return {
+    type: GET_POSTS,
+    payload: axios.get("/api/getPosts")
+  };
 }
 
 export function getEmployersPosts() {
-    return {
-        type: GET_EMPLOYERS_POSTS,
-        payload: axios.get('/api/getEmployersPosts')
-    }
+  return {
+    type: GET_EMPLOYERS_POSTS,
+    payload: axios.get("/api/getEmployersPosts")
+  };
 }
 
 export function newPost(id, post) {
-    return {
-        type: NEW_POST,
-        payload: axios.post('/api/newPost', {id, post})
-    }
+  return {
+    type: NEW_POST,
+    payload: axios.post("/api/newPost", { id, post })
+  };
 }
 
 export function getAllUsers(id) {
-    return {
-        type: GET_ALL_USERS,
-        payload: axios.get(`/api/getAllUsers/${id}`)
-    }
+  return {
+    type: GET_ALL_USERS,
+    payload: axios.get(`/api/getAllUsers/${id}`)
+  };
 }
 
-export function updateUserInfo(id, user_type, birthdate, bio, experience, location, company) {
-    return{
-        type: UPDATE_USER_INFO,
-        payload: axios.put(`/api/updateUserInfo/${id}`, { user_type, birthdate, bio, experience, location, company })
-    }
+export function updateUserInfo(
+  id,
+  user_type,
+  birthdate,
+  bio,
+  experience,
+  location,
+  company
+) {
+  return {
+    type: UPDATE_USER_INFO,
+    payload: axios.put(`/api/updateUserInfo/${id}`, {
+      user_type,
+      birthdate,
+      bio,
+      experience,
+      location,
+      company
+    })
+  };
 }
 
 export function getUserPosts(id) {
-    return {
-        type: GET_USER_POSTS,
-        payload: axios.get(`/api/getUserPosts/${id}`)
-    }
+  return {
+    type: GET_USER_POSTS,
+    payload: axios.get(`/api/getUserPosts/${id}`)
+  };
 }
 
 export function deletePost(id) {
-    return {
-        type: DELETE_POST,
-        payload: axios.delete(`/api/deletePost/${id}`)
-    }
+  return {
+    type: DELETE_POST,
+    payload: axios.delete(`/api/deletePost/${id}`)
+  };
 }
 
 export function connectWithUser(id, connectorId) {
-    return {
-        type: CONNECT_WITH_USER,
-        payload: axios.post(`/api/connectWithUser/${id}`, {connectorId})
-    }
+  return {
+    type: CONNECT_WITH_USER,
+    payload: axios.post(`/api/connectWithUser/${id}`, { connectorId })
+  };
 }
 
-export function getConnectionCount(id){
-    return {
-        type: GET_CONNECTION_COUNT,
-        payload: axios.get(`/api/getConnectionCount/${id}`)
-    }
+export function getConnectionCount(id) {
+  return {
+    type: GET_CONNECTION_COUNT,
+    payload: axios.get(`/api/getConnectionCount/${id}`)
+  };
+}
+
+export function sendUserNotification(id) {
+  return {
+    type: SEND_USER_NOTIFICATION,
+    payload: axios.put(`/api/sendNotification/${id}`)
+  };
+}
+
+export function getNotifications(id) {
+  return {
+    type: GET_NOTIFICATIONS,
+    payload: axios.get(`/api/getNotifications/${id}`)
+  };
 }
 
 //REDUCER
 export default function userReducer(state = initialState, action) {
-    switch(action.type) {
-        case `${LOGIN_USER}_FULFILLED` :
-        const { data } = action.payload;
-            return { ...state, currentUser: data, name: data.first_name, email: data.email, profilePic: data.profile_picture, bio: data.bio, birthdate: toString(data.birthdate), companyName: data.company_name }
-        case `${LOGOUT}_FULFILLED` :
-            return { ...initialState }
-        case `${GET_POSTS}_PENDING` :
-            return { ...state, isLoading: true}
-        case `${GET_POSTS}_FULFILLED` :
-            return { ...state, posts: action.payload.data, isLoading: false }
-        case `${GET_EMPLOYERS_POSTS}_FULFILLED` :
-            return { ...state, employerPosts: action.payload.data }
-        case `${NEW_POST}_FULFILLED` :
-            return { ...state, posts: action.payload.data }
-        case `${GET_ALL_USERS}_FULFILLED` :
-            return { ...state, users: action.payload.data }
-        case `${GET_USER_POSTS}_FULFILLED` :
-            return { ...state, userPosts: action.payload.data }
-        case `${DELETE_POST}_FULFILLED` :
-            return { ...state, posts: action.payload.data }
-        // case `${CONNECT_WITH_USER}_FULFILLED` :
-        //     return { ...state, viewUserConnections: action.payload.data }
-        case `${GET_CONNECTION_COUNT}_FULFILLED` :
-            return { ...state, currentUserConnections: action.payload.data }
-        default: 
-            return state;
-    }
-};
+  switch (action.type) {
+    case `${LOGIN_USER}_FULFILLED`:
+      const { data } = action.payload;
+      return {
+        ...state,
+        currentUser: data,
+        name: data.first_name,
+        email: data.email,
+        profilePic: data.profile_picture,
+        bio: data.bio,
+        birthdate: toString(data.birthdate),
+        companyName: data.company_name
+      };
+    case `${LOGOUT}_FULFILLED`:
+      return { ...initialState };
+    case `${GET_POSTS}_PENDING`:
+      return { ...state, isLoading: true };
+    case `${GET_POSTS}_FULFILLED`:
+      return { ...state, posts: action.payload.data, isLoading: false };
+    case `${GET_EMPLOYERS_POSTS}_FULFILLED`:
+      return { ...state, employerPosts: action.payload.data };
+    case `${NEW_POST}_FULFILLED`:
+      return { ...state, posts: action.payload.data };
+    case `${GET_ALL_USERS}_FULFILLED`:
+      return { ...state, users: action.payload.data };
+    case `${GET_USER_POSTS}_FULFILLED`:
+      return { ...state, userPosts: action.payload.data };
+    case `${DELETE_POST}_FULFILLED`:
+      return { ...state, posts: action.payload.data };
+    case `${GET_NOTIFICATIONS}_FULFILLED`:
+      return { ...state, userNotifications: action.payload.data };
+    case `${GET_CONNECTION_COUNT}_FULFILLED`:
+      return { ...state, currentUserConnections: action.payload.data };
+    default:
+      return state;
+  }
+}

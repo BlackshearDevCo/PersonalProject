@@ -1,0 +1,1 @@
+SELECT notifications FROM users WHERE user_id = $1;

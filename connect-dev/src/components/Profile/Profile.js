@@ -13,7 +13,8 @@ import {
   updateUserInfo,
   getUserPosts,
   deletePost,
-  getConnectionCount
+  getConnectionCount,
+  getNotifications
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -52,6 +53,8 @@ class Profile extends Component {
       this.props.getUserPosts(this.props.currentUser.user_id);
     this.props.currentUser &&
       this.props.getConnectionCount(this.props.currentUser.user_id);
+    this.props.currentUser &&
+      this.props.getNotifications(this.props.currentUser.user_id);
   }
 
   toggleUserTypeEdit() {
@@ -570,5 +573,6 @@ export default connect(mapStateToProps, {
   updateUserInfo,
   getUserPosts,
   deletePost,
-  getConnectionCount
+  getConnectionCount,
+  getNotifications
 })(Profile);

@@ -104,9 +104,11 @@ app.get('/api/getEmployersPosts', postCtrl.getEmployersPosts);
 app.get('/api/getAllUsers/:id', userCtrl.getAllUsers);
 app.get('/api/getUserPosts/:id', postCtrl.getUserPosts);
 app.get('/api/getConnectionCount/:id', userCtrl.getUserConnections);
+app.get('/api/getNotifications/:id', userCtrl.getNotifications);
 app.post('/api/connectWithUser/:id', userCtrl.connectWithUser);
 app.post('/api/newPost', postCtrl.newPost);
 app.put('/api/updateUserInfo/:id', userCtrl.updateUserInfo);
+app.put('/api/sendNotification/:id', userCtrl.sendNotification);
 app.delete('/api/deletePost/:id', postCtrl.deletePost);
 
 const port = 3001;

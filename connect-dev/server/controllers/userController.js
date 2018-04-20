@@ -61,11 +61,31 @@ const getUserConnections = (req, res) => {
     .catch(err => res.status(500).json(err));
 };
 
+const sendNotification = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .send_notification([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
+const getNotifications = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_notifications([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   logout,
   getUser,
   getAllUsers,
   updateUserInfo,
   connectWithUser,
-  getUserConnections
+  getUserConnections,
+  sendNotification,
+  getNotifications
 };

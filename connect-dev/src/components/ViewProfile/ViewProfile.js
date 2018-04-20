@@ -7,7 +7,8 @@ import {
   getAllUsers,
   loginUser,
   getUserPosts,
-  connectWithUser
+  connectWithUser,
+  sendUserNotification
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -37,9 +38,10 @@ class ViewProfile extends Component {
       experience,
       birthdate,
       location,
-      connectWithUser
+      connectWithUser,
+      sendUserNotification
     } = this.props;
-console.log(this.props.viewUserConnections)
+
     return (
       <div>
         {users ? (
@@ -57,7 +59,8 @@ console.log(this.props.viewUserConnections)
                     currentUser.user_id !== cur.user_id ? (
                       <button
                         onClick={() =>
-                          connectWithUser(currentUser.user_id, cur.user_id)
+                          {connectWithUser(currentUser.user_id, cur.user_id);
+                          sendUserNotification(cur.user_id)}
                         }
                       >
                         Connect
@@ -200,5 +203,6 @@ export default connect(mapStateToProp, {
   getAllUsers,
   loginUser,
   getUserPosts,
-  connectWithUser
+  connectWithUser,
+  sendUserNotification
 })(ViewProfile);
