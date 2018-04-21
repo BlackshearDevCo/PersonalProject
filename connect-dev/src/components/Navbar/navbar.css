@@ -2,26 +2,43 @@
     display: none;
 }
 
-/* .nav{
+.nav-pfp, .nav-pfp-hide{
+    opacity: 0;
+    width: 60vw;
+    height: 60vw;
+    background-image: url(../../images/default-pfp-2.png);
+    background-size: 200%;
+    background-position: center;
     position: absolute;
-    top: 0;
-} */
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%);
+    z-index: 10;
+    transition: ease-in-out .7s;
+}
 
-.nav-links{
+.nav-pfp-hide{
+    top: 35%;
+    opacity: 1;
+}
+
+.nav-links, .nav-true{
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    top: 30vh;
+    text-align: right;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    align-items: flex-end;
-    transform: translate(-100%);
+    transition: ease-in-out 1s;
+    z-index: 10;
+}
+
+.nav-links{
+    left: -100vw;
 }
 
 .nav-true{
-    animation: slide-in .75s ease-in-out .2s;
-    animation-fill-mode: forwards;
+    /* left: 50vw; */
+    left: -100vw;
 }
 
 .link{
@@ -32,61 +49,20 @@
     margin-right: 40px;
 }
 
-.slide-down{
-    width: 100vw;
-    height: 50vh;
+.grow, .shrink{
+    width: 0;
+    height: 0;
     background-color: #10161f;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(0, -100%);
-    z-index: 2;
+    border-radius: 50%;
+    position: absolute;
+    top: 4vh;
+    left: 5vh;
+    transition: ease-in-out .7s;
+    z-index: 5;
 }
 
-.slide-down-true{
-    animation: slide-down .5s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-.slide-up{
-    width: 100vw;
-    height: 51vh;
-    background-color: #10161f;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    transform: translate(0, 100%);
-    z-index: 2;
-}
-
-.slide-up-true{
-    animation: slide-up .5s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-@keyframes slide-up{
-    from{
-        transform: translate(0, 100%);
-    }
-    to{
-        transform: translate(0, 0);
-    }
-}
-
-@keyframes slide-down{
-    from{
-        transform: translate(0, -100%);
-    }
-    to{
-        transform: translate(0, 0);
-    }
-}
-
-@keyframes slide-in{
-    from{
-        transform: translate(-100%);
-    }
-    to{
-        transform: translate(0%);
-    }
+.grow{
+    width: 250vh;
+    height: 250vh;
+    transform: translate(-50%, -50%);
 }

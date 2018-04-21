@@ -12,9 +12,9 @@ class Navbar extends Component {
     const { menuFlag, toggleMenuFlag } = this.props;
 
     return (
-      <div>
-        <div className="nav">
-          <div className={!menuFlag ? "nav-links" : "nav-links nav-true"}>
+      <div className='nav'>
+        <div className={!menuFlag ? 'nav-pfp' : 'nav-pfp-hide'} />
+          <div className={!menuFlag ? "nav-links" : "nav-true"}>
             <Link to="/" className="link" onClick={() => toggleMenuFlag()}>
               Home
             </Link>
@@ -69,12 +69,8 @@ class Navbar extends Component {
               </a>
             )}
           </div>
-          <div
-            className={!menuFlag ? "slide-down" : "slide-down slide-down-true"}
-          />
-          <div className={!menuFlag ? "slide-up" : "slide-up slide-up-true"} />
+          <div className={!menuFlag ? "shrink" : "grow"} />
         </div>
-      </div>
     );
   }
 }

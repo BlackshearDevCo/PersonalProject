@@ -32,38 +32,31 @@ class Header extends Component {
 
     return (
       <div className="header">
+        <Navbar
+          menuFlag={this.state.menuFlag}
+          toggleMenuFlag={this.toggleMenuFlag}
+        />
         <div className="header-container">
-          <Navbar
-            menuFlag={this.state.menuFlag}
-            toggleMenuFlag={this.toggleMenuFlag}
-          />
           <div
-            className={!this.state.menuFlag ? null : "showExit"}
+            className={!this.state.menuFlag ? "showExit" : "showExit"}
             onClick={() => this.toggleMenuFlag()}
           >
             <div className={!this.state.menuFlag ? null : "exit-one"} />
             <div className={!this.state.menuFlag ? null : "exit-two"} />
           </div>
           <div className="menu-container" onClick={() => this.toggleMenuFlag()}>
-            <div className="top-menu" />
-            <div className="mid-menu" />
-            <div className="bottom-menu" />
+            <div className={!this.state.menuFlag ? 'hamburger-menu-left' : 'exit-menu-left'} />
+            <div className={!this.state.menuFlag ? 'hamburger-menu-mid' : 'exit-menu-mid'} />
+            <div className={!this.state.menuFlag ? 'hamburger-menu-right' : 'exit-menu-right'} />
           </div>
           <div className="main-logo" />
-          <div>
-            {name ? (
-              <Link to="/profile">
-                <img
-                  src={currentUser.profile_picture}
-                  alt=""
-                  className="pfp-container"
-                />
-              </Link>
-            ) : (
-              <Link to="/profile">
-                <div className="pfp-container" />
-              </Link>
+          <div className="notifications">
+            {this.props.userNotifications && (
+              <div className="notification-count-container">
+                {/* {this.props.userNotifications} */}
+              </div>
             )}
+            <div className="notification-bell" />
           </div>
         </div>
       </div>
