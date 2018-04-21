@@ -27,26 +27,62 @@
     top: 30vh;
     text-align: right;
     display: flex;
+    left: 35vw;
     flex-direction: column;
-    transition: ease-in-out 1s;
+    transition: ease-in-out .7s;
     z-index: 10;
+    font-size: 26px;
 }
 
 .nav-links{
-    left: -100vw;
+    opacity: 0;
+    top: 25vh;
 }
 
 .nav-true{
-    /* left: 50vw; */
-    left: -100vw;
+    opacity: 1;
+    top: 30vh;
 }
 
-.link{
-    text-decoration: none;
-    color: #e1e1e3;
-    font-size: 30px;
-    margin-top: 15px;
-    margin-right: 40px;
+.link-1, .link-2, .link-3, .link-4, .link-5, .link-6, .link-7, .link-8 {
+    opacity: 0;
+    transition: ease-in-out .7s;
+}
+
+.link-1-active, .link-2-active, .link-3-active, .link-4-active, .link-5-active, .link-6-active, .link-7-active, .link-8-active{
+    opacity: 1;
+}
+
+.link-1-active{
+    transition: ease-in-out .7s;
+}
+
+.link-2-active{
+    transition: ease-in-out .7s .1s;
+}
+
+.link-3-active{
+    transition: ease-in-out .7s .2s;
+}
+
+.link-4-active{
+    transition: ease-in-out .7s .3s;
+}
+
+.link-5-active{
+    transition: ease-in-out .7s .4s;
+}
+
+.link-6-active{
+    transition: ease-in-out .7s .5s;
+}
+
+.link-7-active{
+    transition: ease-in-out .7s .6s;
+}
+
+.link-8-active{
+    transition: ease-in-out .7s .7s;
 }
 
 .grow, .shrink{
