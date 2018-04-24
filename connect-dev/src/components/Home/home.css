@@ -65,11 +65,7 @@
 
 /* CONNECT */
 
-.connect{
-  height: 140vh;
-}
-
-.backgound-image {
+.background-image {
   position: relative;
   width: 100vw;
   height: 20vh;
@@ -107,21 +103,30 @@
 
 .connect-lines {
   background-image: url(../../images/feature-lines.png);
-  width: 100vw;
-  height: 100vh;
+  background-repeat: no-repeat;
+  width: 375px;
+  height: 700px;
   z-index: 0;
+  margin: auto;
 }
 
 /* CONNECT GLOBAL */
 
+.home-about {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh 0;
+}
+
 .devices,
 .career,
 .team {
-  position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  width: 75vw;
+  margin: 1.5vh auto;
 }
 
 .devices-image,
@@ -131,13 +136,14 @@
   height: 27vw;
   background-position: center;
   background-size: 200%;
+  background-repeat: no-repeat;
 }
 
 .devices-text,
 .career-text,
 .team-text {
   font-size: 14px;
-  text-align: right;
+  text-align: left;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -147,15 +153,11 @@
 /* DEVICES */
 
 .devices {
-  margin-top: 10vw;
-  margin-left: 12vw;
-  min-height: 60vw;
-  width: 35vw;
+  margin-top: 25px;
 }
 
 .devices-text {
-  width: 30vw;
-  transform: rotate(-90deg);
+  width: 40vw;
 }
 
 .devices-image {
@@ -165,17 +167,13 @@
 /* CAREER */
 
 .career {
-  min-width: 35vw;
-  min-height: 65vw;
-  margin-top: 37vh;
-  left: 50vw;
+  flex-direction: row-reverse;
+  top: 155vh;
 }
 
 .career-text {
-  transform: rotate(90deg);
-  text-align: left;
-  min-height: 15vw;
-  width: 35vw;
+  text-align: right;
+  width: 40vw;
 }
 
 .career-image {
@@ -185,106 +183,216 @@
 
 /* TEAM */
 
-.team{
-  align-items: flex-start;
-  min-width: 35vw;
-  height: 50vw;
-  top: 212vh;
-  left: 12vw;
+.team {
+  align-items: center;
+  width: 75vw;
 }
 
-.team-text{
-  font-size: 18px;
+.team-text {
+  font-size: 16px;
   text-align: left;
-  padding: 20px;
+  padding: 10px 0 10px 20px;
   border-left: 1px solid #27c2eb;
 }
 
 .team-image {
   background-image: url(../../images/group-blue.png);
   background-size: contain;
-  margin-left: 20px;
+  background-repeat: no-repeat;
+  margin-right: 20px;
 }
 
 /* MEDIA QUIREIES */
 
-@media(min-width: 425px){
-  /* .main-section{
+@media (min-width: 425px) {
+  .background-image {
+    background-image: none;
+    height: 15vh;
+  }
 
-  } */
+  .connect-header {
+    left: 50%;
+    top: 105vh;
+    transform: translate(-50%);
+    text-align: center;
+    width: 100%;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 22vw;
+    height: 22vw;
+  }
 }
 
-@media(min-width: 528px){
-  .main-section{
+@media (min-width: 528px) {
+  .main-section {
     background-position: -60vw;
   }
 
-  .container{
+  .container {
     width: 60vw;
   }
 
-  .connect-button{
+  .connect-button {
     width: 40%;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  .devices,
+  .career,
+  .team {
+    width: 65vw;
+    width: 65vw;
   }
 }
 
-@media(min-width: 620px){
-  .main-section{
+@media (min-width: 620px) {
+  .main-section {
     background-position: -50vw;
     background-size: 200%;
   }
 
-  .container{
+  .container {
     top: 40%;
     width: 40vw;
   }
 
-  .connect-button{
+  .connect-button {
     width: 35%;
+  }
+
+  .connect-text {
+    font-size: 24px;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 16vw;
+    height: 16vw;
   }
 }
 
-@media(min-width: 900px){
-  .main-section{
+@media (min-width: 790px) {
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 14vw;
+    height: 14vw;
+  }
+
+  .team-image{
+    width: 12vw;
+  }
+
+  .devices-text,
+  .career-text,
+  .team-text {
+    font-size: 16px;
+  }
+
+  .devices,
+  .career,
+  .team {
+    width: 60vw;
+  }
+
+  .connect-text-container{
+    width: 60vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .main-section {
     background-position: -30vw;
     background-size: 150%;
   }
 
-  .container{
+  .container {
     top: 40%;
   }
 
-  .connect-button{
+  .connect-button {
     width: 25%;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .devices,
+  .career,
+  .team{
+    width: 55vw;
   }
 }
 
-@media(min-width: 1025px){
-  .main-section{
+@media (min-width: 1025px) {
+  .main-section {
     background-size: 130%;
   }
 
-  .container{
+  .container {
     top: 40%;
   }
 
-  .connect-button{
+  .connect-button {
     width: 20%;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 11vw;
+    height: 11vw;
   }
 }
 
-@media(min-width: 1250px){
-  .main-section{
+@media (min-width: 1250px) {
+  .main-section {
     background-position: -20vw;
     background-size: 120%;
   }
 
-  .container{
+  .container {
     top: 40%;
     width: 25vw;
   }
 
-  .connect-button{
+  .connect-button {
     width: 15vw;
+  }
+
+  .connect-text-container{
+    width: 50vw;
+  }
+
+  .devices,
+  .career,
+  .team{
+    width: 40vw;
+  }
+
+  .devices-image,
+  .career-image,
+  .team-image {
+    width: 10vw;
+    height: 10vw;
+    margin: 10px;
+  }
+
+  .team-image{
+    width: 8vw;
   }
 }
