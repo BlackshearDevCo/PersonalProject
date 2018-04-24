@@ -1,40 +1,43 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.header{
-    width: 100vw;
-    height: 10vh;
-    position: absolute;
+.header {
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
 }
 
-.header-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+.header-container {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.menu-container{
-    width: 9vw;
-    height: 3vh;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+.menu-container {
+  width: 9vw;
+  height: 3vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
 }
 
-.hamburger-menu-left, .hamburger-menu-right, .hamburger-menu-mid{
-    background-color: #e1e1e3;
-    width: 100%;
-    height: 20%;
-    border-radius: 5px;
-    transition: ease-in-out .7s;
+.hamburger-menu-left,
+.hamburger-menu-right,
+.hamburger-menu-mid {
+  background-color: #e1e1e3;
+  width: 100%;
+  height: 20%;
+  border-radius: 5px;
+  transition: ease-in-out 0.7s;
 }
 
 /* .hamburger-menu-left{
@@ -53,56 +56,160 @@
     transform: translate(0, -50%);
 } */
 
-.hamburger-menu-mid{
-    opacity: 1;
-    transition: ease-in-out .5s;
+.hamburger-menu-mid {
+  opacity: 1;
+  transition: ease-in-out 0.5s;
 }
 
-.exit-menu-left, .exit-menu-right, .exit-menu-mid{
-    transition: ease-in-out .7s;
-    background-color: #e1e1e3;
-    width: 86%;
-    height: 20%;
-    border-radius: 5px;
+.exit-menu-left,
+.exit-menu-right,
+.exit-menu-mid {
+  transition: ease-in-out 0.7s;
+  background-color: #e1e1e3;
+  width: 86%;
+  height: 20%;
+  border-radius: 5px;
 }
 
-.exit-menu-mid{
-    opacity: 0;
-    transition: ease-in-out .5s;
+.exit-menu-mid {
+  opacity: 0;
+  transition: ease-in-out 0.5s;
 }
 
-.exit-menu-left{
-    transform:rotate(-45deg);
-    transform-origin: right top;
+.exit-menu-left {
+  transform: rotate(-45deg);
+  transform-origin: right top;
 }
 
-.exit-menu-right{
-    transform:rotate(45deg);
-    transform-origin: right bottom;
+.exit-menu-right {
+  transform: rotate(45deg);
+  transform-origin: right bottom;
 }
 
-.showExit{
-    position: absolute;
+.showExit {
+  position: absolute;
 }
 
-.main-logo{
-    width: 40%;
-    height: 70%;
-    background-image: url(../../images/ConnectDevLargeWhite.png);
-    background-size: cover;
-    background-position: center;
+.main-logo {
+  width: 40%;
+  height: 70%;
+  background-image: url(../../images/ConnectDevLargeWhite.png);
+  background-size: cover;
+  background-position: center;
 }
 
-.notifications{
-    display: flex;
-    align-items: center;
+.notifications {
+  display: flex;
+  align-items: center;
 }
 
-.notification-bell{
-    width: 12vw;
-    height: 12vw;
-    background-image: url(../../images/bell-white.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.notification-bell {
+  width: 12vw;
+  height: 12vw;
+  background-image: url(../../images/bell-white.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 425px) {
+  .main-logo {
+    width: 30%;
+    height: 60%;
+  }
+
+  .notification-bell {
+    width: 10vw;
+    height: 10vw;
+  }
+}
+
+@media (min-width: 528px) {
+  .main-logo {
+    width: 20%;
+    height: 60%;
+  }
+
+  .menu-container {
+    width: 7vw;
+  }
+
+  .notification-bell {
+    width: 8vw;
+    height: 8vw;
+  }
+}
+
+@media (min-width: 620px) {
+  .main-logo {
+    width: 15%;
+    height: 60%;
+  }
+
+  .menu-container {
+    width: 6vw;
+  }
+
+  .notification-bell {
+    width: 6vw;
+    height: 6vw;
+  }
+}
+
+@media (min-width: 900px) {
+  .main-logo {
+    width: 12%;
+    height: 60%;
+  }
+
+  .menu-container {
+    width: 5vw;
+  }
+
+  .notification-bell {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .header-container{
+      width: 85%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .main-logo {
+    width: 10%;
+    height: 60%;
+  }
+
+  .menu-container {
+    width: 4vw;
+  }
+
+  .notification-bell {
+    width: 4vw;
+    height: 4vw;
+  }
+}
+
+@media (min-width: 1250px) {
+  .main-logo {
+    width: 8%;
+    height: 60%;
+  }
+
+  .menu-container {
+    width: 3vw;
+  }
+
+  .notification-bell {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .header-container{
+      width: 90%
+  }
 }

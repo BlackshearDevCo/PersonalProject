@@ -31,7 +31,7 @@
 
 .container {
   position: absolute;
-  top: 35%;
+  top: 37%;
   left: 50%;
   transform: translate(-50%, 10%);
   z-index: 1;
@@ -204,4 +204,87 @@
   background-image: url(../../images/group-blue.png);
   background-size: contain;
   margin-left: 20px;
+}
+
+/* MEDIA QUIREIES */
+
+@media(min-width: 425px){
+  /* .main-section{
+
+  } */
+}
+
+@media(min-width: 528px){
+  .main-section{
+    background-position: -60vw;
+  }
+
+  .container{
+    width: 60vw;
+  }
+
+  .connect-button{
+    width: 40%;
+  }
+}
+
+@media(min-width: 620px){
+  .main-section{
+    background-position: -50vw;
+    background-size: 200%;
+  }
+
+  .container{
+    top: 40%;
+    width: 40vw;
+  }
+
+  .connect-button{
+    width: 35%;
+  }
+}
+
+@media(min-width: 900px){
+  .main-section{
+    background-position: -30vw;
+    background-size: 150%;
+  }
+
+  .container{
+    top: 40%;
+  }
+
+  .connect-button{
+    width: 25%;
+  }
+}
+
+@media(min-width: 1025px){
+  .main-section{
+    background-size: 130%;
+  }
+
+  .container{
+    top: 40%;
+  }
+
+  .connect-button{
+    width: 20%;
+  }
+}
+
+@media(min-width: 1250px){
+  .main-section{
+    background-position: -20vw;
+    background-size: 120%;
+  }
+
+  .container{
+    top: 40%;
+    width: 25vw;
+  }
+
+  .connect-button{
+    width: 15vw;
+  }
 }
