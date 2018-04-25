@@ -1,11 +1,22 @@
+textarea{
+    resize: none;
+    color: #27c2eb;
+}
+
+textarea::placeholder{
+    color: #27c2eb;
+}
+
 .post-btn{
-    width: 15vw;
-    height: 15vw;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: cadetblue;
+    background: #27c2eb;
+    border: white 1px solid;
     position: fixed;
-    bottom: 2vh;
-    left: 2vh;
+    bottom: 16px;
+    left: 16px;
+    /* background-image: url() */
 }
 
 .new-post-pontainer{
@@ -13,32 +24,74 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70vw;
-    height: 30vh;
-    background: dodgerblue;
+    width: 80vw;
+    height: 200px;
+    background: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.219) 0 0 10px;
 }
 
 .textarea{
     width: 90%;
-    height: 60%;
+    height: 70%;
     font-size: 20px;
     font-weight: 300;
-}
-
-.character-limit{
-    font-size: 12px;
-    font-weight: 200;
-    margin-bottom: 10px;
-    margin-top: 5px;
+    margin: 10px 0;
+    padding: 5px;
 }
 
 .add-post{
     padding: 5px;
-    margin-top: 10px;
+    margin: 10px 0;
     margin-bottom: 5px;
     border-style: none;
+    border-radius: 50px;
+    width: 25vw;
+    background-color: white;
+    color: #27c2eb;
+}
+
+@media(min-width: 528px) {
+    .new-post-pontainer{
+        height: 275px;
+    }
+
+    .textarea{
+        font-size: 22px;
+    }
+}
+
+@media(min-width: 620px) {
+    .new-post-pontainer{
+        height: 325px;
+    }
+
+    .textarea{
+        font-size: 24px;
+    }
+}
+
+@media(min-width: 900px) {
+    .new-post-pontainer{
+        height: 400px;
+    }
+
+    .textarea{
+        font-size: 26px;
+    }
+
+    .add-post{
+        height: 35px;
+        font-size: 18px;
+    }
+}
+
+@media(min-width: 1025px) {
+    .new-post-pontainer{
+        width: 65%;
+    }
 }

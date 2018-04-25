@@ -3,7 +3,11 @@ import "./addPost.css";
 
 import { connect } from "react-redux";
 
-import { newPost, loginUser, getEmployersPosts } from "../../../redux/reducers/userReducer";
+import {
+  newPost,
+  loginUser,
+  getEmployersPosts
+} from "../../../redux/reducers/userReducer";
 
 class AddPost extends Component {
   constructor() {
@@ -15,9 +19,6 @@ class AddPost extends Component {
     this.togglePostFlag = this.togglePostFlag.bind(this);
     this.createPost = this.createPost.bind(this);
   }
-  // componentDidMount(){
-  //     console.log(this.props)
-  // }
 
   togglePostFlag() {
     this.setState({
@@ -32,7 +33,7 @@ class AddPost extends Component {
   }
 
   render() {
-    const { newPost, currentUser } = this.props;
+    const { newPost, currentUser, addExperienceSpecialty } = this.props;
 
     return (
       <div>
@@ -44,19 +45,24 @@ class AddPost extends Component {
               <textarea
                 className="textarea"
                 onChange={e => this.createPost(e.target.value)}
+                placeholder="Limit 300 Characters..."
               />
               <button
                 className="add-post"
                 onClick={() => {
-                  this.props.newPost(currentUser.user_id, this.state.newPost),
-                    this.props.loginUser(),
-                    this.props.getEmployersPosts(),
-                    this.togglePostFlag();
+                  this.props.newPost.length > 300
+                    ? alert('Too many characters!')
+                    : (this.props.newPost(
+                        currentUser.user_id,
+                        this.state.newPost),
+                      this.props.loginUser(),
+                      this.props.getEmployersPosts(),
+                      this.togglePostFlag()
+                    )
                 }}
               >
                 Add Post
               </button>
-              <h3 className="character-limit">Limit 300 Characters</h3>
             </div>
             <div className="post-btn" onClick={() => this.togglePostFlag()} />
           </div>
@@ -70,4 +76,8 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { newPost, loginUser, getEmployersPosts })(AddPost);
+export default connect(mapStateToProps, {
+  newPost,
+  loginUser,
+  getEmployersPosts
+})(AddPost);
