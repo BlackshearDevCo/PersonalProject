@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
-import Footer from "../Footer/Footer";
 import "./profile.css";
 
 import { Link } from "react-router-dom";
@@ -130,16 +129,10 @@ class Profile extends Component {
           <div className="profile-banner">
             <img src={profilePic} className="profile-pic" />
             <section className="user-info">
-              <h2 className="user-name not-logged">
-                Oops! You aren't logged in!
-              </h2>
+              <h2 className="not-logged">Oops! You aren't logged in!</h2>
               <a href="http://localhost:3001/auth">
-                <button>Log In</button>
+                <button className="profile-log-in">Log In</button>
               </a>
-            </section>
-            <section className="posts-container">
-              <h2 className="posts-title">Previous Posts</h2>
-              <div className="post">Post</div>
             </section>
           </div>
         ) : (
@@ -151,9 +144,6 @@ class Profile extends Component {
                 <h2 className="user-name">
                   {currentUser.first_name || "Placeholder"}
                 </h2>
-                <Link to="/">
-                  <button onClick={() => logout()}>Logout</button>
-                </Link>
                 <div className="user-type">
                   <p className="info-title">User Type: </p>
                   {!currentUser.user_type ? (
@@ -223,15 +213,16 @@ class Profile extends Component {
                       >
                         <p className="info-title">Portfolio: </p>
                         <p className="info">
-                          {currentUser.portfolio ? (
-                            <a href={currentUser.portfolio}>
-                              {currentUser.portfolio}
-                            </a>
-                            ||
-                            <p>User does not have a portfolio.</p>
-                          ) : (
-                            "User does not have a portfolio."
-                          )}
+                          {currentUser.portfolio
+                            ? (
+                                <a
+                                  href={currentUser.portfolio}
+                                  className="user-port"
+                                >
+                                  {currentUser.portfolio}
+                                </a>
+                              ) || <p>User does not have a portfolio.</p>
+                            : "User does not have a portfolio."}
                         </p>
                       </div>
                     )
@@ -447,11 +438,12 @@ class Profile extends Component {
                             suggestions,
                             getSuggestionItemProps
                           }) => (
-                            <div>
+                            <div className="profile-location-container">
                               <input
                                 {...getInputProps({
                                   placeholder: "Search Location...",
-                                  className: "location search-input"
+                                  className:
+                                    "location search-input profile-location"
                                 })}
                                 onDoubleClick={() =>
                                   this.toggleUserLocationEdit()
@@ -493,7 +485,7 @@ class Profile extends Component {
                         suggestions,
                         getSuggestionItemProps
                       }) => (
-                        <div>
+                        <div className="profile-location-container">
                           <input
                             {...getInputProps({
                               placeholder: "Search Location...",
@@ -501,7 +493,7 @@ class Profile extends Component {
                             })}
                             onDoubleClick={() => this.toggleUserLocationEdit()}
                           />
-                          <div className="autocomplete-dropdown-container">
+                          <div className="autocomplete-dropdown-container autocomplete-dropdown-container-profile">
                             {suggestions.map(suggestion => {
                               const className = suggestion.active
                                 ? "suggestion-item--active"
@@ -527,35 +519,48 @@ class Profile extends Component {
                     </PlacesAutocomplete>
                   )}
                 </div>
-                <p>Double Click or Double Tap to edit your info.</p>
-                <button
-                  onClick={() => {
-                    this.setState({
-                      toggleUserTypeEdit: false,
-                      toggleUserBioEdit: false,
-                      toggleExperienceEdit: false,
-                      toggleCompanyNameEdit: false,
-                      toggleUserBirthdayEdit: false,
-                      toggleUserLocationEdit: false,
-                      toggleUserPortfolioEdit: false
-                    });
-                    this.props
-                      .updateUserInfo(
-                        currentUser.user_id,
-                        this.state.userType || currentUser.user_type,
-                        this.state.birthday || currentUser.birthdate,
-                        this.state.userBio || currentUser.bio,
-                        this.state.userExperience || currentUser.experience,
-                        this.state.locationSearch || currentUser.location,
-                        this.state.companyName || currentUser.company_name,
-                        this.state.toggleUserPortfolioEdit ||
-                          currentUser.portfolio
-                      )
-                      .then(() => this.props.loginUser());
-                  }}
-                >
-                  Update Info
-                </button>
+                <p className="edit-tut">
+                  Double Click or Double Tap to edit your info.
+                </p>
+                <div className="button-container">
+                  <button
+                    className="update-info-btn"
+                    onClick={() => {
+                      this.setState({
+                        toggleUserTypeEdit: false,
+                        toggleUserBioEdit: false,
+                        toggleExperienceEdit: false,
+                        toggleCompanyNameEdit: false,
+                        toggleUserBirthdayEdit: false,
+                        toggleUserLocationEdit: false,
+                        toggleUserPortfolioEdit: false
+                      });
+                      this.props
+                        .updateUserInfo(
+                          currentUser.user_id,
+                          this.state.userType || currentUser.user_type,
+                          this.state.birthday || currentUser.birthdate,
+                          this.state.userBio || currentUser.bio,
+                          this.state.userExperience || currentUser.experience,
+                          this.state.locationSearch || currentUser.location,
+                          this.state.companyName || currentUser.company_name,
+                          this.state.toggleUserPortfolioEdit ||
+                            currentUser.portfolio
+                        )
+                        .then(() => this.props.loginUser());
+                    }}
+                  >
+                    Update Info
+                  </button>
+                  <Link to="/" className="log-out-btn">
+                    <button
+                      className="profile-log-out"
+                      onClick={() => logout()}
+                    >
+                      Logout
+                    </button>
+                  </Link>
+                </div>
               </section>
 
               <section className="posts-container">
@@ -580,6 +585,7 @@ class Profile extends Component {
                               </h3>
                               <div>
                                 <button
+                                  className="delete-post"
                                   onClick={() => {
                                     deletePost(cur.post_id);
                                     this.props.getUserPosts(
@@ -587,12 +593,20 @@ class Profile extends Component {
                                     );
                                   }}
                                 >
-                                  DELETE POST
+                                  DELETE
                                 </button>
                               </div>
                             </div>
                             <p id={cur.post_id} className="post-body">
                               {cur.post_body}
+                            </p>
+                            <p className="post-experience">
+                              {cur.experience === 1
+                                ? "Junior "
+                                : cur.experience === 2
+                                  ? "Mid-Level "
+                                  : "Senior "}
+                              Dev
                             </p>
                           </div>
                         );
@@ -604,7 +618,6 @@ class Profile extends Component {
             </div>
           </div>
         )}
-        <Footer />
       </div>
     );
   }

@@ -69,7 +69,7 @@ class Devs extends Component {
                 : cur.experience === 2
                   ? "Mid-Level "
                   : "Senior "}
-               Dev
+              Dev
             </p>
           </div>
         );
@@ -89,7 +89,7 @@ class Devs extends Component {
             onChange={value => this.handleLocation(value)}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div>
+              <div className="location-container">
                 <input
                   {...getInputProps({
                     placeholder: "Location...",
@@ -124,10 +124,12 @@ class Devs extends Component {
         {this.props.posts && this.props.posts.length > 0 ? (
           <div className="devs-container">
             {filtered}
-            {!filtered.length && <h1>No posts match your search</h1>}
+            {!filtered.length && (
+              <h1 className="no-posts">No posts match your search</h1>
+            )}
           </div>
         ) : (
-          <h1>No Posts</h1>
+          <h1 className='devs-loading'>Loading...</h1>
         )}
         <div>
           {this.props.currentUser && this.props.currentUser.user_type === 1 ? (

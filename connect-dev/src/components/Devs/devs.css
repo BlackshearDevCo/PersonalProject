@@ -1,5 +1,5 @@
 .background{
-    background: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+    background: linear-gradient(to bottom right, #27c2eb, #1de0e7);
     position: fixed;
     top: 0;
     width: 100vw;
@@ -9,9 +9,11 @@
 
 .devs-container{
     margin-top: 2vh;
+    color: white;
 }
 
 .input-container{
+    max-width: 750px;
     width: 85vw;
     margin: auto;
     display: flex;
@@ -21,11 +23,13 @@
 }
 
 .post-container{
+    min-width: 300px;
     width: 85vw;
+    max-width: 750px;
     min-height: 5vh;
     background-color: #fff;
     margin: 2vh auto;
-    color: #27c2eb;
+    color: #333;
     border-radius: 10px;
 }
 
@@ -57,6 +61,7 @@
 .post-username{
     font-weight: 600;
     color: #27c2eb;
+    text-align: left;
 }
 
 .post-body{
@@ -69,14 +74,21 @@
 }
 
 .post-experience{
-    padding: 10px 0;
+    padding: 15px 0;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+.username{
+    width: 45%;
+}
+
+.location{
+    width: 100%;
+}
+
 .search-input{
-    width: 40vw;
     border-radius: 50px;
     border-style: none;
     height: 30px;
@@ -86,17 +98,21 @@
     padding-left: 20px;
 }
 
+.location-container{
+    width: 45%;
+}
+
 .search-input::placeholder{
     color: white;
 }
 
 .autocomplete-dropdown-container{
-    width: 35vw;
+    width: 95%;
     position: absolute;
     top: 30px;
     right: 20px;
     z-index: 5;
-    color: #27c2eb;
+    color: #333;
     box-shadow: rgba(0, 0, 0, 0.315) 0 0 5px;
 }
 
@@ -104,16 +120,28 @@
     margin-bottom: 25px;
 }
 
+.no-posts, .devs-loading{
+    margin: 70px;
+    color: white;
+}
+
 @media (min-width: 425px) {
     .post-pfp{
-        width: 11vw;
-        height: 11vw;
+        width: 50px;
+        height: 50px;
     }
 }
 
-@media (min-width: 528px) {
+/* @media (min-width: 528px) {
     .post-pfp{
         width: 8vw;
         height: 8vw;
     }
 }
+
+@media (min-width: 620px) {
+    .post-pfp{
+        width: 6vw;
+        height: 6vw;
+    }
+} */
