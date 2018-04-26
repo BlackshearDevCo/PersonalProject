@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
+import './viewprofile.css'
 
 import { connect } from "react-redux";
 
@@ -58,6 +58,7 @@ class ViewProfile extends Component {
                     {currentUser.user_id &&
                     currentUser.user_id !== cur.user_id ? (
                       <button
+                      className='user-connect'
                         onClick={() =>
                           {connectWithUser(currentUser.user_id, cur.user_id);
                           sendUserNotification(cur.user_id)}
@@ -189,7 +190,6 @@ class ViewProfile extends Component {
             </div>
           </div>
         )}
-        <Footer />
       </div>
     );
   }

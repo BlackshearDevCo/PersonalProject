@@ -51,12 +51,14 @@ class Devs extends Component {
           <div key={ind} className="post-container">
             <div className="user-container">
               <img src={cur.profile_picture} className="post-pfp" />
-              <Link to={`/user/${cur.user_id}`}>
-                <h3 id={cur.user_id} className="post-username">
-                  {cur.first_name}
-                </h3>
-              </Link>
-              <p>{cur.location}</p>
+              <div className="name-container">
+                <Link to={`/user/${cur.user_id}`}>
+                  <h3 id={cur.user_id} className="post-username">
+                    {cur.first_name}
+                  </h3>
+                </Link>
+                <p>{cur.location}</p>
+              </div>
             </div>
             <p id={cur.post_id} className="post-body">
               {cur.post_body}
@@ -66,46 +68,50 @@ class Devs extends Component {
       });
     return (
       <div>
-        <input
-          placeholder="Username..."
-          onChange={e => this.handleUsernameSearch(e.target.value)}
-        />
-        <PlacesAutocomplete
-          value={this.state.locationSearch}
-          onChange={value => this.handleLocation(value)}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-            <div>
-              <input
-                {...getInputProps({
-                  placeholder: "Search Location...",
-                  className: "location search-input"
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {suggestions.map(suggestion => {
-                  const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
-                  const style = suggestion.active
-                    ? { backgroundColor: "#fafafa" }
-                    : { backgroundColor: "#ffffff" };
+        <div className="background" />
+        <div className="input-container">
+          <input
+            placeholder="Username..."
+            onChange={e => this.handleUsernameSearch(e.target.value)}
+            className="username search-input"
+          />
+          <PlacesAutocomplete
+            value={this.state.locationSearch}
+            onChange={value => this.handleLocation(value)}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: "Search Location...",
+                    className: "location search-input"
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
+                    const style = suggestion.active
+                      ? { backgroundColor: "#fafafa" }
+                      : { backgroundColor: "#ffffff" };
 
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
-                    </div>
-                  );
-                })}
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
+            )}
+          </PlacesAutocomplete>
+        </div>
         {this.props.employerPosts && this.props.employerPosts.length > 0 ? (
           <div>
             {filtered}

@@ -1,0 +1,9 @@
+.user-connect{
+    width: 30%;
+    height: 30px;
+    border-style: none;
+    border-radius: 50px;
+    background: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+    color: white;
+    margin: auto;
+}

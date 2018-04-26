@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
 import "./community.css";
 
 import io from "socket.io-client";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Community extends Component {
   constructor(props) {
@@ -39,61 +38,63 @@ class Community extends Component {
     return (
       <div>
         <div className="chat">
-          <div className="chat-container">
-            <section>
+          <div className="background" />
+          <div>
+            <section className='chat-container'>
               {this.state.messages.map((cur, ind) => {
                 return (
-                  <div key={ind}>
-                    {cur.user}: {cur.message}
+                  <div key={ind} className='message-container'>
+                    <h3 className='message-username'>{cur.user}: <span className='message-message'>{cur.message}</span></h3>
                   </div>
                 );
               })}
             </section>
           </div>
           <div>
-            {
-              this.props.name ?
-              <section className="input-container">
-            <div>
-              {this.props.name ? (
-                <div>
-                  <h3>{this.props.name}</h3>
-                </div>
-              ) : (
+            {this.props.name ? (
+              <section className="community-container">
+                {/* <div>
+                  {this.props.name ? (
+                    <div className='username-container'>
+                      <h3 className='communty-username'>{this.props.name}</h3>
+                    </div>
+                  ) : (
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      value={this.state.username}
+                      onChange={e =>
+                        this.setState({ username: e.target.value })
+                      }
+                      className="username-input"
+                    />
+                  )}
+                </div> */}
+                <br />
                 <input
                   type="text"
-                  placeholder="Username"
-                  value={this.state.username}
-                  onChange={e => this.setState({ username: e.target.value })}
-                  className="username-input"
+                  placeholder="Message"
+                  className="message-input"
+                  value={this.state.userInput}
+                  onChange={e => this.setState({ userInput: e.target.value })}
                 />
-              )}
-            </div>
-            <br />
-            <input
-              type="text"
-              placeholder="Message"
-              className="message-input"
-              value={this.state.userInput}
-              onChange={e => this.setState({ userInput: e.target.value })}
-            />
-            <button
-              onClick={
-                !this.state.userInput || !this.state.username
-                  ? () => alert("Please enter in a vaild Username and Message!")
-                  : this.sendMessage
-              }
-              className="send-message"
-            >
-              Send
-            </button>
-          </section>
-          :
-          <h3>You must sign in to chat!</h3>
-            }
+                <button
+                  onClick={
+                    !this.state.userInput || !this.state.username
+                      ? () =>
+                          alert("Please enter in a vaild Message!")
+                      : this.sendMessage
+                  }
+                  className="send-message"
+                >
+                  Send
+                </button>
+              </section>
+            ) : (
+              <h3 className="community-text">You must sign in to chat!</h3>
+            )}
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
