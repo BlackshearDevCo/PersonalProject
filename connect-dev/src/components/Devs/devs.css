@@ -132,16 +132,21 @@
     }
 }
 
-/* @media (min-width: 528px) {
-    .post-pfp{
-        width: 8vw;
-        height: 8vw;
+@media (min-width: 1025px) {
+    .background{
+        animation: bg-animated 3s ease-in-out infinite; 
+        /* transform-origin: center; */
+    }
+
+    @keyframes bg-animated{
+        0%{
+            background-color: linear-gradient(to bottom right, #27c2eb, #1de0e7);
+        }
+        50%{
+            background-color: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+        }
+        100%{
+            background-color: linear-gradient(to bottom right, #27c2eb, #1de0e7);
+        }
     }
 }
-
-@media (min-width: 620px) {
-    .post-pfp{
-        width: 6vw;
-        height: 6vw;
-    }
-} */
