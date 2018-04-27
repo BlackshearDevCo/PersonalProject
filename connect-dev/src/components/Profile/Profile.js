@@ -600,14 +600,16 @@ class Profile extends Component {
                             <p id={cur.post_id} className="post-body">
                               {cur.post_body}
                             </p>
-                            <p className="post-experience">
-                              {cur.experience === 1
-                                ? "Junior "
-                                : cur.experience === 2
-                                  ? "Mid-Level "
-                                  : "Senior "}
-                              Dev
-                            </p>
+                            {cur.user_type === 1 && (
+                              <p className="post-experience">
+                                {cur.experience === 1
+                                  ? "Junior "
+                                  : cur.experience === 2
+                                    ? "Mid-Level "
+                                    : "Senior "}
+                                Dev
+                              </p>
+                            )}
                           </div>
                         );
                       })}

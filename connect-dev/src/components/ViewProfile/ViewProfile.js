@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './viewprofile.css'
+import "./viewprofile.css";
 
 import { connect } from "react-redux";
 
@@ -58,11 +58,11 @@ class ViewProfile extends Component {
                     {currentUser.user_id &&
                     currentUser.user_id !== cur.user_id ? (
                       <button
-                      className='user-connect'
-                        onClick={() =>
-                          {connectWithUser(currentUser.user_id, cur.user_id);
-                          sendUserNotification(cur.user_id)}
-                        }
+                        className="user-connect"
+                        onClick={() => {
+                          connectWithUser(currentUser.user_id, cur.user_id);
+                          sendUserNotification(cur.user_id);
+                        }}
                       >
                         Connect
                       </button>
@@ -77,6 +77,18 @@ class ViewProfile extends Component {
                       <p className="info-title">Email: </p>
                       <p className="info">{cur.email || "User has no email"}</p>
                     </div>
+                    {cur.user_type === 1 && (
+                      <div className="user-port">
+                        <p className="info-title">Portfolio: </p>
+                        <p className="info">
+                          {
+                            cur.portfolio ? <a href={cur.portfolio} className='user-port'>{cur.portfolio}</a>
+                            :
+                            'User does not have a portfolio'
+                          }
+                        </p>
+                      </div>
+                    )}
                     <div className="user-bio">
                       <p className="info-title">Bio: </p>
                       <p className="info">{cur.bio || "User has no bio"}</p>
