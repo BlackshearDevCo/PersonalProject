@@ -354,11 +354,33 @@
     width: 20%;
   }
 
+  .home-about{
+    flex-direction: row;
+    width: 80vw;
+    margin: 25px auto;
+  }
+
+  .devices, .career, .team{
+    flex-direction: column;
+    width: 30%;
+    margin-bottom: 25px;
+  }
+
+  .devices-text, .career-text, .team-text{
+    width: 40%;
+    text-align: left;
+    border: none;
+    padding: 0;
+    line-height: 1.6em;
+  }
+
   .devices-image,
   .career-image,
   .team-image {
     width: 11vw;
     height: 11vw;
+    margin: 0;
+    margin-bottom: 20px;
   }
 }
 

@@ -46,6 +46,7 @@ class ViewProfile extends Component {
       <div>
         {users ? (
           users.map((cur, ind) => {
+            console.log(cur)
             return (
               <div key={ind}>
                 <div className="profile-banner">
@@ -77,6 +78,14 @@ class ViewProfile extends Component {
                       <p className="info-title">Email: </p>
                       <p className="info">{cur.email || "User has no email"}</p>
                     </div>
+                    <div>
+                  <p className="info-title">Connections: </p>
+                  <p className="info">
+                    {cur.notifications
+                      ? cur.notifications
+                      : "0"}
+                  </p>
+                </div>
                     {cur.user_type === 1 && (
                       <div className="user-port">
                         <p className="info-title">Portfolio: </p>

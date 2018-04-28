@@ -22,6 +22,15 @@
   font-size: large;
 }
 
+.background{
+  background: linear-gradient(to bottom right, #27c2eb, #1de0e7);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
