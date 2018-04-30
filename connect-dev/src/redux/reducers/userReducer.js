@@ -33,6 +33,7 @@ const GET_CONNECTION_COUNT = "GET_CONNECTION_COUNT";
 const SEND_USER_NOTIFICATION = "SEND_USER_NOTIFICATION";
 const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 const ADD_EXPERIENCE_SPECIALTY = 'ADD_EXPERIENCE_SPECIALTY';
+const SEND_EMAIL = 'SEND_EMAIL';
 
 //ACTION CREATOR
 export function loginUser() {
@@ -141,6 +142,13 @@ export function getNotifications(id) {
     type: GET_NOTIFICATIONS,
     payload: axios.get(`/api/getNotifications/${id}`)
   };
+}
+
+export function sendEmail(recieverEmail, recieverName, senderEmail, senderName, link) {
+  return {
+    type: SEND_EMAIL,
+    payload: axios.post('/api/sendMail', {recieverEmail, recieverName, senderEmail, senderName, link})
+  }
 }
 
 //REDUCER

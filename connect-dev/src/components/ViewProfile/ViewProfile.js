@@ -9,7 +9,8 @@ import {
   getUserPosts,
   connectWithUser,
   sendUserNotification,
-  getConnectionCount
+  getConnectionCount,
+  sendEmail
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -43,9 +44,10 @@ class ViewProfile extends Component {
       currentUserConnections,
       connectWithUser,
       sendUserNotification,
-      getConnectionCount
+      getConnectionCount,
+      sendEmail
     } = this.props;
-
+console.log(currentUser)
     return (
       <div>
         {users ? (
@@ -67,6 +69,7 @@ class ViewProfile extends Component {
                           connectWithUser(currentUser.user_id, cur.user_id);
                           sendUserNotification(cur.user_id);
                           getConnectionCount(cur.user_id);
+                          sendEmail(cur.email, cur.first_name, currentUser.email, currentUser.first_name, currentUser.portfolio);
                         }}
                       >
                         Connect
@@ -246,5 +249,6 @@ export default connect(mapStateToProp, {
   getUserPosts,
   connectWithUser,
   sendUserNotification,
-  getConnectionCount
+  getConnectionCount,
+  sendEmail
 })(ViewProfile);

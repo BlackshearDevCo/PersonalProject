@@ -134,42 +134,4 @@ io.on("connection", socket => {
 
 //NODEMAILER
 
-const nodemailer = require("nodemailer");
-
-app.post("/api/sendMail", () => {
-  nodemailer.createTestAccount((err, account) => {
-    console.log(account);
-    let transporter = nodemailer.createTransport({
-      service: "Gmail",
-      secure: false,
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASS
-      }
-    });
-
-    let mailOptions = {
-      to: "theshiftybapple@gmail.com",
-      subject: "ConnectDev",
-      test: `Aaron Blackshear wants to Connect!`,
-      html: `<p>Hello Jasmine! Aaron Blackshear wants to get in touch with you. Check out their profile <a href='http://localhost:3000/#/user/8'>here</a>!
-      If you like them, don't hesitate to get back in touch with them. Their email is: theshiftybapple@gmail.com <br>
-      Have a great day!
-      </p>`
-    };
-    // let mailOptions = {
-    //   to: reciever,
-    //   subject: 'ConnectDev',
-    //   test: `${user} wants to Connect!`,
-    //   html: `<p>Hello ${recieverName}! ${sender} wants to get in touch with you. Check out their profile <a href='${link}'>here</a>!</p>`
-    // };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return console.log(error);
-      }
-      console.log(info.messageId);
-      console.log(nodemailer.getTestMessageUrl(info));
-    });
-  });
-});
+app.post("/api/sendMail", userCtrl.sendEmail);
