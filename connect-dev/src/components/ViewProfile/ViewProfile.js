@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./viewprofile.css";
 
+import swal from 'sweetalert'
+
 import { connect } from "react-redux";
 
 import {
@@ -62,7 +64,7 @@ class ViewProfile extends Component {
                       {cur.first_name || "Username"}
                     </h2>
                     {currentUser.user_id &&
-                    currentUser.user_id !== cur.user_id ? (
+                    currentUser.user_id !== cur.user_id && (
                       <button
                         className="user-connect"
                         onClick={() => {
@@ -70,11 +72,12 @@ class ViewProfile extends Component {
                           sendUserNotification(cur.user_id);
                           getConnectionCount(cur.user_id);
                           sendEmail(cur.email, cur.first_name, currentUser.email, currentUser.first_name, currentUser.portfolio);
+                          swal('Awesome!', `You connected with ${cur.first_name}!`, 'success')
                         }}
                       >
                         Connect
                       </button>
-                    ) : null}
+                    )}
                     <div className="user-type">
                       <p className="info-title">User Type: </p>
                       <p className="info">
