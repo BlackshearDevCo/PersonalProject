@@ -47,7 +47,7 @@ class ViewProfile extends Component {
       getConnectionCount,
       sendEmail
     } = this.props;
-console.log(currentUser)
+
     return (
       <div>
         {users ? (

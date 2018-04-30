@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { getPosts, loginUser } from "../../redux/reducers/userReducer";
+import {
+  getPosts,
+  loginUser,
+  getConnectionCount
+} from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
   constructor() {
@@ -15,11 +19,14 @@ class Devs extends Component {
     this.state = {
       usernameSearch: "",
       locationSearch: "",
-      errorMessage: ""
+      errorMessage: "",
+      mouseHover: false,
+      postInd: 0
     };
     this.handleUsernameSearch = this.handleUsernameSearch.bind(this);
     this.handleLocation = this.handleLocation.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.handleMouseHover = this.handleMouseHover.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +46,10 @@ class Devs extends Component {
     this.setState({ usernameSearch: val });
   }
 
+  handleMouseHover() {
+    this.setState({ mouseHover: !this.state.mouseHover });
+  }
+
   render() {
     let filtered = this.props.posts
       .filter(
@@ -48,29 +59,112 @@ class Devs extends Component {
       )
       .map((cur, ind) => {
         return (
-          <div key={ind} className="post-container">
-            <div className="user-container">
-              <img src={cur.profile_picture} className="post-pfp" />
-              <div className="name-container">
-                <Link to={`/user/${cur.user_id}`}>
-                  <h3 id={cur.user_id} className="post-username">
-                    {cur.first_name}
-                  </h3>
-                </Link>
-                <p className="post-location">{cur.location}</p>
+          <div>
+            <div key={ind} className="post-container">
+              <div className="user-container">
+                <img
+                  src={cur.profile_picture}
+                  className="post-pfp"
+                  onMouseEnter={() => {
+                    this.handleMouseHover();
+                    this.props.getConnectionCount(cur.user_id);
+                    this.setState({ postInd: ind });
+                  }}
+                  onMouseLeave={() => {
+                    this.handleMouseHover();
+                  }}
+                />
+                <div className="name-container">
+                  <Link to={`/user/${cur.user_id}`}>
+                    <h3
+                      id={cur.user_id}
+                      className="post-username"
+                      onMouseEnter={() => {
+                        this.handleMouseHover();
+                        this.props.getConnectionCount(cur.user_id);
+                        this.setState({ postInd: ind });
+                      }}
+                      onMouseLeave={() => {
+                        this.handleMouseHover();
+                      }}
+                    >
+                      {cur.first_name}
+                    </h3>
+                  </Link>
+                  <p className="post-location">{cur.location}</p>
+                </div>
               </div>
+              <p id={cur.post_id} className="post-body">
+                {cur.post_body}
+              </p>
+              <p className="post-experience">
+                {cur.experience === 1
+                  ? "Junior "
+                  : cur.experience === 2
+                    ? "Mid-Level "
+                    : "Senior "}
+                Dev
+              </p>
             </div>
-            <p id={cur.post_id} className="post-body">
-              {cur.post_body}
-            </p>
-            <p className="post-experience">
-              {cur.experience === 1
-                ? "Junior "
-                : cur.experience === 2
-                  ? "Mid-Level "
-                  : "Senior "}
-              Dev
-            </p>
+            {this.state.postInd === ind ? (
+              <div
+                className={
+                  this.state.mouseHover ? "show-quick-look" : "hide-quick-look"
+                }
+              >
+                <div className="quick-look-container">
+                  <img src={cur.profile_picture} className="post-pfp" />
+                  <h3 className="quick-look-name">{cur.first_name}</h3>
+                  <p className="quick-look-location">
+                    {cur.location ||
+                      "User has chosen not to share their location"}
+                  </p>
+                  <div className="quick-look-email">
+                    <p className="quick-look-info-title">Email: </p>
+                    <p className="quick-look-info">
+                      {cur.email || "User does not have an email"}
+                    </p>
+                  </div>
+                  <div className="quick-look-connections">
+                    <p className="quick-look-info-title">Connections: </p>
+                    <p className="quick-look-info">
+                      {this.props.currentUserConnections.length || "0"}
+                    </p>
+                  </div>
+                  <div className="quick-look-bio">
+                    <p className="quick-look-info-title">Bio: </p>
+                    <p className="quick-look-info">
+                      {cur.bio || "User does not have a bio"}
+                    </p>
+                  </div>
+                  <div>
+                    {cur.user_type === 1 ? (
+                      <div className="quick-look-experience">
+                        <p className="quick-look-info-title">Experience: </p>
+                        <p className="quick-look-info">
+                          {cur.experience === 1
+                            ? "Junior Dev"
+                            : cur.experience === 2
+                              ? "Mid-Level Dev"
+                              : "Senior Dev"}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="quick-look-company">
+                        <p className="quick-look-info-title">Company Name: </p>
+                        <p className="quick-look-info">{cur.company_name}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div
+                className={
+                  this.state.mouseHover ? "show-quick-look" : "hide-quick-look"
+                }
+              />
+            )}
           </div>
         );
       });
@@ -148,4 +242,8 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { getPosts, loginUser })(Devs);
+export default connect(mapStateToProps, {
+  getPosts,
+  loginUser,
+  getConnectionCount
+})(Devs);

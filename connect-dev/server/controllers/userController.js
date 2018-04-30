@@ -91,10 +91,15 @@ const getNotifications = (req, res) => {
 };
 
 const sendEmail = (req, res) => {
-  const { recieverEmail, recieverName, senderEmail, senderName, link } = req.body;
+  const {
+    recieverEmail,
+    recieverName,
+    senderEmail,
+    senderName,
+    link
+  } = req.body;
 
   nodemailer.createTestAccount((err, account) => {
-    console.log(account);
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       secure: false,
@@ -104,18 +109,9 @@ const sendEmail = (req, res) => {
       }
     });
 
-    // let mailOptions = {
-    //   to: "theshiftybapple@gmail.com",
-    //   subject: "ConnectDev",
-    //   test: `Aaron Blackshear wants to Connect!`,
-    //   html: `<p>Hello Jasmine! Aaron Blackshear wants to get in touch with you. Check out their profile <a href='http://localhost:3000/#/user/8'>here</a>!
-    //   If you like them, don't hesitate to get back in touch with them. Their email is: theshiftybapple@gmail.com <br>
-    //   Have a great day!
-    //   </p>`
-    // };
     let mailOptions = {
       to: recieverEmail,
-      subject: 'ConnectDev',
+      subject: "ConnectDev",
       test: `${senderName} wants to Connect!`,
       html: `<p>Hello ${recieverName}! ${senderName} wants to get in touch with you. Head to <a href='http://localhost:3000/#/'>ConnectDev</a> and look them up.
        If you like them, don't hesitate to get back in touch with them. Their email is: ${senderEmail} <br>
@@ -130,7 +126,7 @@ const sendEmail = (req, res) => {
       console.log(nodemailer.getTestMessageUrl(info));
     });
   });
-}
+};
 
 module.exports = {
   logout,
