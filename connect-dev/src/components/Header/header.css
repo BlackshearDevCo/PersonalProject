@@ -83,14 +83,18 @@
   background-position: center;
 }
 
-.header-pfp{
+.header-pfp, .default-header-pfp {
   width: 6vh;
   height: 6vh;
-  background-image: url(../../images/default-pfp-2.png);
+  background-size: contain;
   background-position: center;
-  background-size: 225%;
   background-repeat: no-repeat;
   border-radius: 50%;
+  background-image: url(../../images/default-pfp-2.png);
+}
+
+.default-header-pfp{
+  background-size: 225%;
 }
 
 /* MEDIA QUERIES */
@@ -139,12 +143,12 @@
     width: 5vw;
   }
 
-  .header-pfp{
+  .default-header-pfp {
     background-size: 275%;
   }
 
-  .header-container{
-      width: 85%;
+  .header-container {
+    width: 85%;
   }
 }
 
@@ -167,9 +171,5 @@
 
   .menu-container {
     width: 3vw;
-  }
-
-  .header-container{
-      width: 90%
   }
 }

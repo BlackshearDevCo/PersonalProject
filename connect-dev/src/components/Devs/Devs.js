@@ -226,12 +226,12 @@ class Devs extends Component {
           <h1 className="devs-loading">Loading...</h1>
         )}
         <div>
-          {this.props.currentUser && this.props.currentUser.user_type === 1 ? (
+          {this.props.currentUser && this.props.currentUser.user_type === 1 && (
             <div>
               <AddPost className="small" />
               <AddPost className="large" />
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     );

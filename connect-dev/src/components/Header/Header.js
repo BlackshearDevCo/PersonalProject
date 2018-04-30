@@ -50,9 +50,12 @@ class Header extends Component {
             <div className={!this.state.menuFlag ? 'hamburger-menu-right' : 'exit-menu-right'} />
           </div>
           <div className="main-logo" />
-          <div className="notifications">
-            <div className="header-pfp" />
-          </div>
+            {
+              currentUser.profile_picture ?
+              <div style={{backgroundImage: `url(${currentUser.profile_picture})`}} className='header-pfp' />
+              :
+              <div className='default-header-pfp' />
+            }
         </div>
       </div>
     );

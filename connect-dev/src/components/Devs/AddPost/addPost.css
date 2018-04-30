@@ -55,6 +55,10 @@ textarea::placeholder{
     color: #27c2eb;
 }
 
+.new-post-container-full{
+    display: none;
+}
+
 @media(min-width: 528px) {
     .new-post-container{
         height: 275px;
@@ -91,11 +95,36 @@ textarea::placeholder{
 }
 
 @media(min-width: 1025px) {
-    /* .new-post-pontainer, .new-post-container, .post-btn{
-        display: none;
-    } */
-
     .new-post-container{
         width: 820px
     }
+}
+
+@media (min-width: 1250px) {
+    .post-btn {
+        display:none;
+    }
+
+    .new-post-container-full {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        width: 17vw;
+        height: 50vh;
+        background: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+        border-radius: 10px;
+        border: rgba(0, 0, 0, 0.199) 1px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* box-shadow: rgba(0, 0, 0, 0.219) 0 0 10px; */
+        transform: translate(10%, -50%);
+    }
+
+    .add-post{
+        width: 80%;
+    }
+
 }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Footer from "../Footer/Footer";
 import "./home.css";
 
+import { Link } from 'react-router-dom';
+
 import { connect } from "react-redux";
 
 import { loginUser } from "../../redux/reducers/userReducer";
@@ -20,7 +22,17 @@ class Home extends Component {
               The number one connection site for developers
             </h1>
           </div>
-          <button className="connect-button">Connect</button>
+          {
+            this.props.currentUser.length === 0 ?
+            <a href='http://localhost:3001/auth'><button className="connect-button">Connect</button></a>
+            :
+            (
+              this.props.currentUser.user_type === 1 ?
+              <Link to='/employers'><button className="connect-button">Connect</button></Link>
+              :
+              <Link to='/devs'><button className="connect-button">Connect</button></Link>
+            )
+          }
           <div className="overlay" />
         </main>
 

@@ -51,14 +51,14 @@ class AddPost extends Component {
                 className="add-post"
                 onClick={() => {
                   this.props.newPost.length > 300
-                    ? alert('Too many characters!')
+                    ? alert("Too many characters!")
                     : (this.props.newPost(
                         currentUser.user_id,
-                        this.state.newPost),
+                        this.state.newPost
+                      ),
                       this.props.loginUser(),
                       this.props.getEmployersPosts(),
-                      this.togglePostFlag()
-                    )
+                      this.togglePostFlag());
                 }}
               >
                 Add Post
@@ -67,6 +67,26 @@ class AddPost extends Component {
             <div className="post-btn" onClick={() => this.togglePostFlag()} />
           </div>
         )}
+        <div className="new-post-container-full">
+          <textarea
+            className="textarea"
+            onChange={e => this.createPost(e.target.value)}
+            placeholder="Limit 300 Characters..."
+          />
+          <button
+            className="add-post"
+            onClick={() => {
+              this.props.newPost.length > 300
+                ? alert("Too many characters!")
+                : (this.props.newPost(currentUser.user_id, this.state.newPost),
+                  this.props.loginUser(),
+                  this.props.getEmployersPosts(),
+                  this.togglePostFlag());
+            }}
+          >
+            Add Post
+          </button>
+        </div>
       </div>
     );
   }
