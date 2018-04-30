@@ -19,7 +19,7 @@ textarea::placeholder{
     /* background-image: url() */
 }
 
-.new-post-pontainer{
+.new-post-container{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -56,7 +56,7 @@ textarea::placeholder{
 }
 
 @media(min-width: 528px) {
-    .new-post-pontainer{
+    .new-post-container{
         height: 275px;
     }
 
@@ -66,7 +66,7 @@ textarea::placeholder{
 }
 
 @media(min-width: 620px) {
-    .new-post-pontainer{
+    .new-post-container{
         height: 325px;
     }
 
@@ -76,7 +76,7 @@ textarea::placeholder{
 }
 
 @media(min-width: 900px) {
-    .new-post-pontainer{
+    .new-post-container{
         height: 400px;
     }
 
@@ -91,7 +91,11 @@ textarea::placeholder{
 }
 
 @media(min-width: 1025px) {
-    .new-post-pontainer{
-        width: 65%;
+    /* .new-post-pontainer, .new-post-container, .post-btn{
+        display: none;
+    } */
+
+    .new-post-container{
+        width: 820px
     }
 }

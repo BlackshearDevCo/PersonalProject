@@ -8,7 +8,8 @@ import {
   loginUser,
   getUserPosts,
   connectWithUser,
-  sendUserNotification
+  sendUserNotification,
+  getConnectionCount
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -17,9 +18,10 @@ class ViewProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.currentUser ? this.props.loginUser() : null;
+    this.props.currentUser && this.props.loginUser();
     this.props.getUserPosts(this.props.match.params.id);
     this.props.getAllUsers(this.props.match.params.id);
+    this.props.getConnectionCount(this.props.match.params.id);
   }
 
   render() {
@@ -38,15 +40,16 @@ class ViewProfile extends Component {
       experience,
       birthdate,
       location,
+      currentUserConnections,
       connectWithUser,
-      sendUserNotification
+      sendUserNotification,
+      getConnectionCount
     } = this.props;
 
     return (
       <div>
         {users ? (
           users.map((cur, ind) => {
-            console.log(cur)
             return (
               <div key={ind}>
                 <div className="profile-banner">
@@ -63,6 +66,7 @@ class ViewProfile extends Component {
                         onClick={() => {
                           connectWithUser(currentUser.user_id, cur.user_id);
                           sendUserNotification(cur.user_id);
+                          getConnectionCount(cur.user_id);
                         }}
                       >
                         Connect
@@ -79,22 +83,24 @@ class ViewProfile extends Component {
                       <p className="info">{cur.email || "User has no email"}</p>
                     </div>
                     <div>
-                  <p className="info-title">Connections: </p>
-                  <p className="info">
-                    {cur.notifications
-                      ? cur.notifications
-                      : "0"}
-                  </p>
-                </div>
+                      <p className="info-title">Connections: </p>
+                      <p className="info">
+                        {currentUserConnections
+                          ? currentUserConnections.length
+                          : "0"}
+                      </p>
+                    </div>
                     {cur.user_type === 1 && (
                       <div className="user-port">
                         <p className="info-title">Portfolio: </p>
                         <p className="info">
-                          {
-                            cur.portfolio ? <a href={cur.portfolio} className='user-port'>{cur.portfolio}</a>
-                            :
-                            'User does not have a portfolio'
-                          }
+                          {cur.portfolio ? (
+                            <a href={cur.portfolio} className="user-port">
+                              {cur.portfolio}
+                            </a>
+                          ) : (
+                            "User does not have a portfolio"
+                          )}
                         </p>
                       </div>
                     )}
@@ -103,19 +109,33 @@ class ViewProfile extends Component {
                       <p className="info">{cur.bio || "User has no bio"}</p>
                     </div>
                     <div className="user-experience">
-                      <p className="info-title">Experience: </p>
+                      {
+                        cur.user_type === 1 ?
+                          (<p className="info-title">Experience: </p>)
+                          :
+                          (<p className="info-title">Company: </p>)
+                      }
                       <div className="info">
-                        {(
+                        {cur.user_type === 1 ? (
                           <div>
-                            {cur.experience === 3 ? (
-                              <p>Senior</p>
-                            ) : cur.experience === 2 ? (
-                              <p>Mid-Level</p>
-                            ) : (
-                              <p>Junior</p>
-                            )}
+                            {(
+                              <div>
+                                {cur.experience === 3 ? (
+                                  <p>Senior</p>
+                                ) : cur.experience === 2 ? (
+                                  <p>Mid-Level</p>
+                                ) : (
+                                  <p>Junior</p>
+                                )}
+                              </div>
+                            ) || "User has no experience"}
                           </div>
-                        ) || "User has no experience"}
+                        ) : (
+                          <div>
+                            {cur.company_name ||
+                              "Company does not have a name"}
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="user-birthday">
@@ -225,5 +245,6 @@ export default connect(mapStateToProp, {
   loginUser,
   getUserPosts,
   connectWithUser,
-  sendUserNotification
+  sendUserNotification,
+  getConnectionCount
 })(ViewProfile);

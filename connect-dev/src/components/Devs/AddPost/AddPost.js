@@ -41,7 +41,7 @@ class AddPost extends Component {
           <div className="post-btn" onClick={() => this.togglePostFlag()} />
         ) : (
           <div>
-            <div className="new-post-pontainer">
+            <div className="new-post-container">
               <textarea
                 className="textarea"
                 onChange={e => this.createPost(e.target.value)}

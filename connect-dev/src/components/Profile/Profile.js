@@ -278,7 +278,7 @@ class Profile extends Component {
                 <div className="user-experience">
                   <div>
                     {currentUser.user_type === 2 ? (
-                      <p className="info-title">Company Name: </p>
+                      <p className="info-title">Company: </p>
                     ) : (
                       <p className="info-title">Experience: </p>
                     )}
