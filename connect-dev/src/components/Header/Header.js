@@ -51,12 +51,7 @@ class Header extends Component {
           </div>
           <div className="main-logo" />
           <div className="notifications">
-            {this.props.userNotifications && (
-              <div className="notification-count-container">
-                {/* {this.props.userNotifications} */}
-              </div>
-            )}
-            <div className="notification-bell" />
+            <div className="header-pfp" />
           </div>
         </div>
       </div>

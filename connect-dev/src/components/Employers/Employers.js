@@ -80,10 +80,10 @@ class Devs extends Component {
             onChange={value => this.handleLocation(value)}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div>
+              <div className="location-container">
                 <input
                   {...getInputProps({
-                    placeholder: "Search Location...",
+                    placeholder: "Location...",
                     className: "location search-input"
                   })}
                 />

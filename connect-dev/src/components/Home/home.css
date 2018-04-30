@@ -357,7 +357,12 @@
   .home-about{
     flex-direction: row;
     width: 80vw;
-    margin: 25px auto;
+    margin: 75px auto;
+  }
+
+  .connect-text{
+    font-size: 28px;
+    font-weight: 300;
   }
 
   .devices, .career, .team{
@@ -367,8 +372,10 @@
   }
 
   .devices-text, .career-text, .team-text{
+    font-weight: 300;
+    font-size: 20px;
     width: 40%;
-    text-align: left;
+    text-align: center;
     border: none;
     padding: 0;
     line-height: 1.6em;
