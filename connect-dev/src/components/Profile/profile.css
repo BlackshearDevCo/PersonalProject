@@ -8,17 +8,21 @@
   z-index: -1;
 }
 
-.profile-pic {
+.profile-pic, .default-profile-pic {
   margin-top: 10vh;
   margin-bottom: -6vh;
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-image: url(../../images/default-pfp-2.png);
-  background-position: center center;
+  background-position: center;
   background-size: 300%;
   background-color: #27c2eb;
   border: 1px solid #10161f;
+}
+
+.default-profile-pic{
+    background-image: url(../../images/default-pfp-2.png);
+    background-size: 311%;
 }
 
 .user-info {

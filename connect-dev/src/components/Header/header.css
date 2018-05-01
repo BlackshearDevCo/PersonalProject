@@ -22,8 +22,8 @@
 }
 
 .menu-container {
-  width: 9vw;
-  height: 3vh;
+  width: 10vw;
+  height: 4vh;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -75,17 +75,23 @@
   position: absolute;
 }
 
-.main-logo {
+.main-logo-link {
   width: 40%;
   height: 70%;
+}
+
+.main-logo {
+  width: 100%;
+  height: 100%;
   background-image: url(../../images/ConnectDevLargeWhite.png);
   background-size: cover;
   background-position: center;
 }
 
-.header-pfp, .default-header-pfp {
-  width: 6vh;
-  height: 6vh;
+.header-pfp,
+.default-header-pfp {
+  width: 8vh;
+  height: 8vh;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -93,27 +99,87 @@
   background-image: url(../../images/default-pfp-2.png);
 }
 
-.default-header-pfp{
-  background-size: 225%;
+.default-header-pfp {
+  background-size: 250%;
+}
+
+.header-pfp-hover, .header-pfp-hover-true{
+  width: 1px;
+  height: 0vh;
+  position: relative;
+  float: right;
+  margin-right: 50%;
+  right: 0; 
+  color: rgba(0,0,0,0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-pfp-hover{
+  transition: ease-in-out .7s;
+  animation: header-pfp-out linear .5s forwards;
+}
+
+.header-pfp-hover-true{
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  animation: header-pfp-in linear .5s forwards;
+}
+
+.header-pfp-hover-true a{
+  color: rgba(0,0,0,0);
+  animation: header-pfp-in linear .5s forwards;
+}
+
+.header-pfp-text{
+  font-style: italic;
+  font-weight: 400;
+  padding: 10px 0;
+  animation: header-text-in linear .5s forwards;
+}
+
+.header-pfp-login{
+  opacity: 0;
+  border-style: none;
+  border-radius: 50px;
+  width: 50%;
+  height: 25px;
+  background: linear-gradient(to top left, #27c2eb, #1de0e7);
+  color: white;
+  animation: header-button-in linear .5s forwards;
+}
+
+.header-pfp-username{
+  font-weight: 400;
+  font-size: 20px;
+  padding: 10px 0;
+  color: rgba(0,0,0,0);
+  animation: header-text-in linear .5s forwards;
+}
+
+.header-pfp-info{
+  font-weight: 400;
+  font-size: 16px;
+  padding-bottom: 5px;
+  color: rgba(0,0,0,0);
+  animation: header-text-in linear .5s forwards;
 }
 
 /* MEDIA QUERIES */
 
 @media (min-width: 425px) {
-  .main-logo {
+  .main-logo-link {
     width: 30%;
     height: 60%;
-  }
-
-  .notification-bell {
-    width: 10vw;
-    height: 10vw;
   }
 }
 
 @media (min-width: 528px) {
-  .main-logo {
-    width: 20%;
+  .main-logo-link {
+    width: 25%;
     height: 60%;
   }
 
@@ -123,8 +189,8 @@
 }
 
 @media (min-width: 620px) {
-  .main-logo {
-    width: 15%;
+  .main-logo-link {
+    width: 20%;
     height: 60%;
   }
 
@@ -134,8 +200,8 @@
 }
 
 @media (min-width: 900px) {
-  .main-logo {
-    width: 12%;
+  .main-logo-link {
+    width: 17%;
     height: 60%;
   }
 
@@ -153,8 +219,8 @@
 }
 
 @media (min-width: 1025px) {
-  .main-logo {
-    width: 10%;
+  .main-logo-link {
+    width: 13%;
     height: 60%;
   }
 
@@ -164,12 +230,60 @@
 }
 
 @media (min-width: 1250px) {
-  .main-logo {
-    width: 8%;
+  .main-logo-link {
+    width: 10%;
     height: 60%;
   }
 
   .menu-container {
     width: 3vw;
+  }
+
+  @keyframes header-pfp-in {
+    50%{
+      height: 150px;
+      width: 1px;
+      color: rgba(0,0,0,0);
+      font-size: 1px;
+    }
+    100%{
+      width: 250px;
+      height: 150px;
+      color: black;
+      font-size: 30px;
+    }
+  }
+
+  @keyframes header-pfp-out {
+    0%{
+      width: 250px;
+      height: 150px;
+      color: black;
+      font-size: 30px;
+    }
+    50%{
+      height: 150px;
+      width: 1px;
+      color: rgba(0,0,0,0);
+      font-size: 1px;
+    }
+  }
+
+  @keyframes header-button-in {
+    50%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+
+  @keyframes header-text-in {
+    50%{
+      color: rgba(0,0,0,0);
+    }
+    100%{
+      color: black;
+    }
   }
 }

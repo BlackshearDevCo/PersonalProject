@@ -49,13 +49,13 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.currentUser ? this.props.loginUser() : null;
+    this.props.currentUser && this.props.loginUser();
     this.props.currentUser &&
       this.props.getUserPosts(this.props.currentUser.user_id);
     this.props.currentUser &&
       this.props.getConnectionCount(this.props.currentUser.user_id);
-    this.props.currentUser &&
-      this.props.getNotifications(this.props.currentUser.user_id);
+    // this.props.currentUser &&
+    //   this.props.getNotifications(this.props.currentUser.user_id);
   }
 
   toggleUserTypeEdit() {
@@ -127,7 +127,7 @@ class Profile extends Component {
       <div>
         {!name ? (
           <div className="profile-banner">
-            <img src={profilePic} className="profile-pic" />
+            <img src={profilePic} className="default-profile-pic" />
             <section className="user-info">
               <h2 className="not-logged">Oops! You aren't logged in!</h2>
               <a href="http://localhost:3001/auth">
@@ -201,7 +201,7 @@ class Profile extends Component {
                   <p className="info-title">Connections: </p>
                   <p className="info">
                     {currentUserConnections[0]
-                      ? currentUserConnections[0].count
+                      ? currentUserConnections.length
                       : "0"}
                   </p>
                 </div>
