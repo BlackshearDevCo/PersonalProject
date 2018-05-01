@@ -110,7 +110,7 @@ class Header extends Component {
                       this.props.toggleUserTypeEdit();
                     }}
                   >
-                    Edit Profile
+                    <p className="header-edit">Edit Profile</p>
                   </Link>
                   <a href="http://localhost:3000/#/">
                     <button
