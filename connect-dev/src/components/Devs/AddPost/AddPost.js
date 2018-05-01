@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./addPost.css";
+import swal from 'sweetalert';
 
 import { connect } from "react-redux";
 
@@ -62,7 +63,7 @@ class AddPost extends Component {
                 className="add-post"
                 onClick={() => {
                   this.props.newPost.length > 300
-                    ? alert("Too many characters!")
+                    ? swal("Too many characters!")
                     : (this.props.newPost(
                         currentUser.user_id,
                         this.state.newPost
@@ -85,7 +86,7 @@ class AddPost extends Component {
             onChange={e => this.createPost(e.target.value)}
             placeholder="Limit 300 Characters..."
           />
-          <button className="add-post" onClick={() => this.handleAddPost()}>
+          <button className="add-post" onClick={() => {this.props.getEmployersPosts(); this.handleAddPost()}}>
             Add Post
           </button>
         </div>
