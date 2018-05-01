@@ -76,7 +76,7 @@ class Profile extends Component {
       deletePost,
       currentUserConnections
     } = this.props;
-
+console.log(window.innerWidth)
     return (
       <div>
         {!name ? (
