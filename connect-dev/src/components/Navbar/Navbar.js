@@ -13,7 +13,6 @@ class Navbar extends Component {
 
     return (
       <div className='nav'>
-        {/* <Link to='/profile' onClick={() => toggleMenuFlag()}><div className={!menuFlag ? 'nav-pfp' : 'nav-pfp-hide'} /></Link> */}
           <div className={!menuFlag ? "nav-links" : "nav-true"}>
             <Link to="/" className={!menuFlag ? 'link-1' : 'link-1-active' } onClick={() => toggleMenuFlag()}>
               Home

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import "./profile.css";
+import swal from "sweetalert";
 
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,14 @@ import {
   getUserPosts,
   deletePost,
   getConnectionCount,
-  getNotifications
+  getNotifications,
+  toggleUserTypeEdit,
+  toggleUserPortfolioEdit,
+  toggleUserBioEdit,
+  toggleExperienceEdit,
+  toggleCompanyNameEdit,
+  toggleUserBirthdayEdit,
+  toggleUserLocationEdit
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -26,24 +34,15 @@ class Profile extends Component {
       userBio: "",
       userExperience: 0,
       companyName: "",
-      toggleUserTypeEdit: false,
-      toggleUserPortfolioEdit: false,
-      toggleUserBioEdit: false,
-      toggleExperienceEdit: false,
-      toggleCompanyNameEdit: false,
-      toggleUserBirthdayEdit: false,
-      toggleUserLocationEdit: false,
+      userPortfolio: "",
+      userBio: "",
+      // userCompanyName: '',
+      userBirthday: "",
+      userLocation: "",
       usernameSearch: "",
       locationSearch: "",
       errorMessage: ""
     };
-    this.toggleUserTypeEdit = this.toggleUserTypeEdit.bind(this);
-    this.toggleUserPortfolioEdit = this.toggleUserPortfolioEdit.bind(this);
-    this.toggleUserBioEdit = this.toggleUserBioEdit.bind(this);
-    this.toggleExperienceEdit = this.toggleExperienceEdit.bind(this);
-    this.toggleCompanyNameEdit = this.toggleCompanyNameEdit.bind(this);
-    this.toggleUserBirthdayEdit = this.toggleUserBirthdayEdit.bind(this);
-    this.toggleUserLocationEdit = this.toggleUserLocationEdit.bind(this);
     this.handleLocation - this.handleLocation.bind(this);
     this.handleError - this.handleError.bind(this);
   }
@@ -54,51 +53,6 @@ class Profile extends Component {
       this.props.getUserPosts(this.props.currentUser.user_id);
     this.props.currentUser &&
       this.props.getConnectionCount(this.props.currentUser.user_id);
-    // this.props.currentUser &&
-    //   this.props.getNotifications(this.props.currentUser.user_id);
-  }
-
-  toggleUserTypeEdit() {
-    this.setState({
-      toggleUserTypeEdit: !this.state.toggleUserTypeEdit
-    });
-  }
-
-  toggleUserPortfolioEdit() {
-    this.setState({
-      toggleUserPortfolioEdit: !this.state.toggleUserPortfolioEdit
-    });
-  }
-
-  toggleUserBioEdit() {
-    this.setState({
-      toggleUserBioEdit: !this.state.toggleUserBioEdit
-    });
-  }
-
-  toggleExperienceEdit() {
-    this.setState({
-      toggleExperienceEdit: !this.state.toggleExperienceEdit
-    });
-  }
-
-  toggleCompanyNameEdit() {
-    this.setState({
-      toggleCompanyNameEdit: !this.state.toggleCompanyNameEdit
-    });
-  }
-
-  toggleUserBirthdayEdit() {
-    this.setState({
-      toggleUserBirthdayEdit: !this.state.toggleUserBirthdayEdit
-    });
-  }
-
-  toggleUserLocationEdit() {
-    this.setState({
-      toggleUserLocationEdit: !this.state.toggleUserLocationEdit,
-      locationSearch: this.props.currentUser.location || ""
-    });
   }
 
   handleLocation(address) {
@@ -158,9 +112,9 @@ class Profile extends Component {
                   ) : (
                     <div
                       className="info"
-                      onDoubleClick={() => this.toggleUserTypeEdit()}
+                      // onDoubleClick={() => this.props.toggleUserTypeEdit()}
                     >
-                      {!this.state.toggleUserTypeEdit ? (
+                      {!this.props.userTypeEdit ? (
                         <p>
                           {currentUser.user_type === 1
                             ? "Developer"
@@ -205,11 +159,11 @@ class Profile extends Component {
                       : "0"}
                   </p>
                 </div>
-                {!this.state.toggleUserPortfolioEdit
+                {!this.props.userPortfolioEdit
                   ? currentUser.user_type == 1 && (
                       <div
                         className="user-link"
-                        onDoubleClick={() => this.toggleUserPortfolioEdit()}
+                        // onDoubleClick={() => this.props.toggleUserPortfolioEdit()}
                       >
                         <p className="info-title">Portfolio: </p>
                         <p className="info">
@@ -229,15 +183,13 @@ class Profile extends Component {
                   : currentUser.user_type == 1 && (
                       <div
                         className="user-link"
-                        onDoubleClick={() => this.toggleUserPortfolioEdit()}
+                        // onDoubleClick={() => this.props.toggleUserPortfolioEdit()}
                       >
                         <p className="info-title">Portfolio: </p>
                         <input
                           placeholder={currentUser.portfolio || "Portfolio"}
                           onChange={e =>
-                            this.setState({
-                              toggleUserPortfolioEdit: e.target.value
-                            })
+                            this.setState({ userPortfolio: e.target.value })
                           }
                         />
                       </div>
@@ -257,9 +209,9 @@ class Profile extends Component {
                     ) : (
                       <div
                         className="info"
-                        onDoubleClick={() => this.toggleUserBioEdit()}
+                        // onDoubleClick={() => this.props.toggleUserBioEdit()}
                       >
-                        {!this.state.toggleUserBioEdit ? (
+                        {!this.props.userBioEdit ? (
                           <p>{bio}</p>
                         ) : (
                           <div>
@@ -288,9 +240,9 @@ class Profile extends Component {
                       currentUser.company_name ? (
                         <div
                           className="info"
-                          onDoubleClick={() => this.toggleCompanyNameEdit()}
+                          // onDoubleClick={() => this.props.toggleCompanyNameEdit()}
                         >
-                          {!this.state.toggleCompanyNameEdit ? (
+                          {!this.props.userCompanyNameEdit ? (
                             <p>{currentUser.company_name}</p>
                           ) : (
                             <div>
@@ -333,9 +285,9 @@ class Profile extends Component {
                       </div>
                     ) : (
                       <div>
-                        {!this.state.toggleExperienceEdit ? (
+                        {!this.props.userExperienceEdit ? (
                           <div
-                            onDoubleClick={() => this.toggleExperienceEdit()}
+                          // onDoubleClick={() => this.props.toggleExperienceEdit()}
                           >
                             {currentUser.experience === 1 ? (
                               <p>Junior</p>
@@ -347,7 +299,7 @@ class Profile extends Component {
                           </div>
                         ) : (
                           <div
-                            onDoubleClick={() => this.toggleExperienceEdit()}
+                          // onDoubleClick={() => this.props.toggleExperienceEdit()}
                           >
                             <button
                               onClick={() =>
@@ -405,9 +357,9 @@ class Profile extends Component {
                   ) : (
                     <div
                       className="info"
-                      onDoubleClick={() => this.toggleUserBirthdayEdit()}
+                      // onDoubleClick={() => this.props.toggleUserBirthdayEdit()}
                     >
-                      {!this.state.toggleUserBirthdayEdit ? (
+                      {!this.props.userBirthdayEdit ? (
                         <p>{currentUser.birthdate}</p>
                       ) : (
                         <input
@@ -424,8 +376,10 @@ class Profile extends Component {
                   <p className="info-title">Location: </p>
                   {currentUser.location ? (
                     <div>
-                      {!this.state.toggleUserLocationEdit ? (
-                        <p onDoubleClick={() => this.toggleUserLocationEdit()}>
+                      {!this.props.userLocationEdit ? (
+                        <p
+                        // onDoubleClick={() => this.props.toggleUserLocationEdit()}
+                        >
                           {currentUser.location}
                         </p>
                       ) : (
@@ -441,13 +395,10 @@ class Profile extends Component {
                             <div className="profile-location-container">
                               <input
                                 {...getInputProps({
-                                  placeholder: "Search Location...",
+                                  placeholder: currentUser.location || 'Search Location...',
                                   className:
                                     "location search-input profile-location"
                                 })}
-                                onDoubleClick={() =>
-                                  this.toggleUserLocationEdit()
-                                }
                               />
                               <div className="autocomplete-dropdown-container">
                                 {suggestions.map(suggestion => {
@@ -491,7 +442,6 @@ class Profile extends Component {
                               placeholder: "Search Location...",
                               className: "location search-input"
                             })}
-                            onDoubleClick={() => this.toggleUserLocationEdit()}
                           />
                           <div className="autocomplete-dropdown-container autocomplete-dropdown-container-profile">
                             {suggestions.map(suggestion => {
@@ -519,22 +469,18 @@ class Profile extends Component {
                     </PlacesAutocomplete>
                   )}
                 </div>
-                <p className="edit-tut">
-                  Double Click or Double Tap to edit your info.
-                </p>
                 <div className="button-container">
                   <button
                     className="update-info-btn"
                     onClick={() => {
-                      this.setState({
-                        toggleUserTypeEdit: false,
-                        toggleUserBioEdit: false,
-                        toggleExperienceEdit: false,
-                        toggleCompanyNameEdit: false,
-                        toggleUserBirthdayEdit: false,
-                        toggleUserLocationEdit: false,
-                        toggleUserPortfolioEdit: false
-                      });
+                      swal(
+                        "Update Successful",
+                        "Your profile was updated",
+                        "success",
+                        { button: "Nice!" }
+                      );
+                      this.props.userTypeEdit &&
+                        this.props.toggleUserTypeEdit();
                       this.props
                         .updateUserInfo(
                           currentUser.user_id,
@@ -587,6 +533,12 @@ class Profile extends Component {
                                 <button
                                   className="delete-post"
                                   onClick={() => {
+                                    swal(
+                                      "Delete Successful",
+                                      "Your post was deleted",
+                                      "success",
+                                      { button: "Nice!" }
+                                    );
                                     deletePost(cur.post_id);
                                     this.props.getUserPosts(
                                       this.props.currentUser.user_id
@@ -636,5 +588,12 @@ export default connect(mapStateToProps, {
   getUserPosts,
   deletePost,
   getConnectionCount,
-  getNotifications
+  getNotifications,
+  toggleUserTypeEdit,
+  toggleUserPortfolioEdit,
+  toggleUserBioEdit,
+  toggleExperienceEdit,
+  toggleCompanyNameEdit,
+  toggleUserBirthdayEdit,
+  toggleUserLocationEdit
 })(Profile);

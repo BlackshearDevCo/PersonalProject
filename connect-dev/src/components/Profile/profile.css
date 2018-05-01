@@ -97,6 +97,7 @@
     height: 25px;
     background: linear-gradient(to bottom right, #1de0e7, #29d6f5);
     color: white;
+    margin-top: 20px;
 }
 
 .profile-log-out{
@@ -105,12 +106,6 @@
 
 .log-out-btn{
     width: 45%;
-}
-
-.edit-tut{
-    padding: 10px 0;
-    font-weight: 300;
-    font-size: 14px;
 }
 
 .profile-log-in{

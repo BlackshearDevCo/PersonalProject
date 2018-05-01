@@ -15,7 +15,14 @@ let initialState = {
   experience: 0,
   postDate: "",
   currentUserConnections: 0,
-  userNotifications: 0
+  userNotifications: 0,
+  userTypeEdit: false,
+  userPortfolioEdit: false,
+  userBioEdit: false,
+  userExperienceEdit: false,
+  userCompanyNameEdit: false,
+  userBirthdayEdit: false,
+  userLocationEdit: false
 };
 
 //ACTION TYPE
@@ -32,8 +39,15 @@ const CONNECT_WITH_USER = "CONNECT_WITH_USER";
 const GET_CONNECTION_COUNT = "GET_CONNECTION_COUNT";
 const SEND_USER_NOTIFICATION = "SEND_USER_NOTIFICATION";
 const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
-const ADD_EXPERIENCE_SPECIALTY = 'ADD_EXPERIENCE_SPECIALTY';
-const SEND_EMAIL = 'SEND_EMAIL';
+const ADD_EXPERIENCE_SPECIALTY = "ADD_EXPERIENCE_SPECIALTY";
+const SEND_EMAIL = "SEND_EMAIL";
+const TOGGLE_USER_TYPE_EDIT = "TOGGLE_USER_TYPE_EDIT";
+const TOGGLE_USER_BIO_EDIT = "TOGGLE_USER_TYPE_EDIT";
+const TOGGLE_USER_PORTFOLIO_EDIT = "TOGGLE_USER_PORTFOLIO_EDIT";
+const TOGGLE_USER_EXPERIENCE_EDIT = "TOGGLE_USER_EXPERIENCE_EDIT";
+const TOGGLE_USER_COMPANY_NAME_EDIT = "TOGGLE_USER_COMPANY_NAME_EDIT";
+const TOGGLE_USER_BIRTHDAY_EDIT = "TOGGLE_USER_BIRTHDAY_EDIT";
+const TOGGLE_USER_LOCATION_EDIT = "TOGGLE_USER_LOCATION_EDIT";
 
 //ACTION CREATOR
 export function loginUser() {
@@ -144,11 +158,65 @@ export function getNotifications(id) {
   };
 }
 
-export function sendEmail(recieverEmail, recieverName, senderEmail, senderName, link) {
+export function sendEmail(
+  recieverEmail,
+  recieverName,
+  senderEmail,
+  senderName,
+  link
+) {
   return {
     type: SEND_EMAIL,
-    payload: axios.post('/api/sendMail', {recieverEmail, recieverName, senderEmail, senderName, link})
-  }
+    payload: axios.post("/api/sendMail", {
+      recieverEmail,
+      recieverName,
+      senderEmail,
+      senderName,
+      link
+    })
+  };
+}
+
+export function toggleUserTypeEdit() {
+  return {
+    type: TOGGLE_USER_TYPE_EDIT
+  };
+}
+
+export function toggleUserPortfolioEdit() {
+  return {
+    type: TOGGLE_USER_PORTFOLIO_EDIT
+  };
+}
+
+export function toggleUserBioEdit() {
+  return {
+    type: TOGGLE_USER_BIO_EDIT
+  };
+}
+
+export function toggleExperienceEdit() {
+  return {
+    type: TOGGLE_USER_EXPERIENCE_EDIT
+  };
+}
+
+export function toggleCompanyNameEdit() {
+  return {
+    type: TOGGLE_USER_COMPANY_NAME_EDIT
+  };
+}
+
+export function toggleUserBirthdayEdit() {
+  return {
+    type: TOGGLE_USER_BIRTHDAY_EDIT
+  };
+}
+
+export function toggleUserLocationEdit() {
+  return {
+    type: TOGGLE_USER_LOCATION_EDIT
+  };
 }
 
 //REDUCER
@@ -186,6 +254,17 @@ export default function userReducer(state = initialState, action) {
       return { ...state, userNotifications: action.payload.data };
     case `${GET_CONNECTION_COUNT}_FULFILLED`:
       return { ...state, currentUserConnections: action.payload.data };
+    case "TOGGLE_USER_TYPE_EDIT":
+      return {
+        ...state,
+        userTypeEdit: !state.userTypeEdit,
+        userPortfolioEdit: !state.userPortfolioEdit,
+        userCompanyNameEdit: !state.userCompanyNameEdit,
+        userLocationEdit: !state.userLocationEdit,
+        userBioEdit: !state.userBioEdit,
+        userBirthdayEdit: !state.userBirthdayEdit,
+        userExperienceEdit: !state.userExperienceEdit
+      };
     default:
       return state;
   }

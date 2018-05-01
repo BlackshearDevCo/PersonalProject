@@ -4,14 +4,20 @@ import "./header.css";
 import Navbar from "../Navbar/Navbar";
 
 import { Link } from "react-router-dom";
-// import onClickOutside from 'react-onclickoutside';
 
 import { connect } from "react-redux";
 
 import {
   loginUser,
   logout,
-  getConnectionCount
+  getConnectionCount,
+  toggleUserTypeEdit,
+  toggleUserPortfolioEdit,
+  toggleCompanyNameEdit,
+  toggleUserBioEdit,
+  toggleUserLocationEdit,
+  toggleExperienceEdit,
+  toggleUserBirthdayEdit
 } from "../../redux/reducers/userReducer";
 
 class Header extends Component {
@@ -36,7 +42,7 @@ class Header extends Component {
   render() {
     const { currentUser, name } = this.props;
 
-    this.props.currentUser &&
+    this.props.currentUser[0] &&
       this.props.getConnectionCount(this.props.currentUser.user_id);
 
     return (
@@ -98,6 +104,14 @@ class Header extends Component {
                   <p className="header-pfp-info">
                     {this.props.currentUserConnections.length} Connections
                   </p>
+                  <Link
+                    to="/profile"
+                    onClick={() => {
+                      this.props.toggleUserTypeEdit();
+                    }}
+                  >
+                    Edit Profile
+                  </Link>
                   <a href="http://localhost:3000/#/">
                     <button
                       className="header-pfp-login"
@@ -145,5 +159,12 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   loginUser,
   logout,
-  getConnectionCount
+  getConnectionCount,
+  toggleUserTypeEdit,
+  toggleUserPortfolioEdit,
+  toggleCompanyNameEdit,
+  toggleUserBioEdit,
+  toggleUserLocationEdit,
+  toggleExperienceEdit,
+  toggleUserBirthdayEdit
 })(Header);
