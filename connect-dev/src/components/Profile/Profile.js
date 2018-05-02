@@ -36,7 +36,6 @@ class Profile extends Component {
       companyName: "",
       userPortfolio: "",
       userBio: "",
-      // userCompanyName: '',
       userBirthday: "",
       userLocation: "",
       usernameSearch: "",
@@ -76,7 +75,7 @@ class Profile extends Component {
       deletePost,
       currentUserConnections
     } = this.props;
-console.log(window.innerWidth)
+
     return (
       <div>
         {!name ? (
@@ -163,7 +162,6 @@ console.log(window.innerWidth)
                   ? currentUser.user_type == 1 && (
                       <div
                         className="user-link"
-                        // onDoubleClick={() => this.props.toggleUserPortfolioEdit()}
                       >
                         <p className="info-title">Portfolio: </p>
                         <p className="info">
@@ -183,7 +181,6 @@ console.log(window.innerWidth)
                   : currentUser.user_type == 1 && (
                       <div
                         className="user-link"
-                        // onDoubleClick={() => this.props.toggleUserPortfolioEdit()}
                       >
                         <p className="info-title">Portfolio: </p>
                         <input
@@ -209,7 +206,6 @@ console.log(window.innerWidth)
                     ) : (
                       <div
                         className="info"
-                        // onDoubleClick={() => this.props.toggleUserBioEdit()}
                       >
                         {!this.props.userBioEdit ? (
                           <p>{bio}</p>
@@ -240,7 +236,6 @@ console.log(window.innerWidth)
                       currentUser.company_name ? (
                         <div
                           className="info"
-                          // onDoubleClick={() => this.props.toggleCompanyNameEdit()}
                         >
                           {!this.props.userCompanyNameEdit ? (
                             <p>{currentUser.company_name}</p>
@@ -287,7 +282,6 @@ console.log(window.innerWidth)
                       <div>
                         {!this.props.userExperienceEdit ? (
                           <div
-                          // onDoubleClick={() => this.props.toggleExperienceEdit()}
                           >
                             {currentUser.experience === 1 ? (
                               <p>Junior</p>
@@ -299,7 +293,6 @@ console.log(window.innerWidth)
                           </div>
                         ) : (
                           <div
-                          // onDoubleClick={() => this.props.toggleExperienceEdit()}
                           >
                             <button
                               onClick={() =>
@@ -357,7 +350,6 @@ console.log(window.innerWidth)
                   ) : (
                     <div
                       className="info"
-                      // onDoubleClick={() => this.props.toggleUserBirthdayEdit()}
                     >
                       {!this.props.userBirthdayEdit ? (
                         <p>{currentUser.birthdate}</p>
@@ -378,7 +370,6 @@ console.log(window.innerWidth)
                     <div>
                       {!this.props.userLocationEdit ? (
                         <p
-                        // onDoubleClick={() => this.props.toggleUserLocationEdit()}
                         >
                           {currentUser.location}
                         </p>

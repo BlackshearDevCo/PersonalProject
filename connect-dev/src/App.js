@@ -14,7 +14,6 @@ import { loginUser, getConnectionCount } from "./redux/reducers/userReducer";
 class App extends Component {
   componentDidMount() {
     this.props.loginUser();
-    this.props.currentUser.user_id && this.props.getConnectionCount(this.props.currentUser.user_id);
   }
 
   render() {
@@ -33,4 +32,6 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default withRouter(connect(mapStateToProps, { loginUser, getConnectionCount })(App));
+export default withRouter(
+  connect(mapStateToProps, { loginUser, getConnectionCount })(App)
+);

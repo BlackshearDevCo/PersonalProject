@@ -22,7 +22,8 @@ let initialState = {
   userExperienceEdit: false,
   userCompanyNameEdit: false,
   userBirthdayEdit: false,
-  userLocationEdit: false
+  userLocationEdit: false,
+  menuFlag: false
 };
 
 //ACTION TYPE
@@ -48,6 +49,7 @@ const TOGGLE_USER_EXPERIENCE_EDIT = "TOGGLE_USER_EXPERIENCE_EDIT";
 const TOGGLE_USER_COMPANY_NAME_EDIT = "TOGGLE_USER_COMPANY_NAME_EDIT";
 const TOGGLE_USER_BIRTHDAY_EDIT = "TOGGLE_USER_BIRTHDAY_EDIT";
 const TOGGLE_USER_LOCATION_EDIT = "TOGGLE_USER_LOCATION_EDIT";
+const TOGGLE_MENU_FLAG = "TOGGLE_MENU_FLAG";
 
 //ACTION CREATOR
 export function loginUser() {
@@ -221,6 +223,13 @@ export function toggleUserLocationEdit() {
   };
 }
 
+export function toggleMenuFlag() {
+  console.log("HIT");
+  return {
+    type: TOGGLE_MENU_FLAG
+  };
+}
+
 //REDUCER
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -267,6 +276,8 @@ export default function userReducer(state = initialState, action) {
         userBirthdayEdit: !state.userBirthdayEdit,
         userExperienceEdit: !state.userExperienceEdit
       };
+    case "TOGGLE_MENU_FLAG":
+      return { ...state, menuFlag: !state.menuFlag };
     default:
       return state;
   }

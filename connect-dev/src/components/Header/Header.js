@@ -17,164 +17,194 @@ import {
   toggleUserBioEdit,
   toggleUserLocationEdit,
   toggleExperienceEdit,
-  toggleUserBirthdayEdit
+  toggleUserBirthdayEdit,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class Header extends Component {
   constructor() {
     super();
     this.state = {
-      menuFlag: false,
-      exitFlag: false,
       mouseHover: false
     };
-    this.toggleMenuFlag = this.toggleMenuFlag.bind(this);
   }
 
   componentDidMount() {
     this.props.currentUser && this.props.loginUser();
   }
 
-  toggleMenuFlag() {
-    this.setState({ menuFlag: !this.state.menuFlag });
-  }
-
   render() {
-    const { currentUser, name } = this.props;
-
-    this.props.currentUser[0] &&
-      this.props.getConnectionCount(this.props.currentUser.user_id);
+    const { currentUser, name, menuFlag } = this.props;
 
     return (
       <div className="header">
-        <Navbar
-          menuFlag={this.state.menuFlag}
-          toggleMenuFlag={this.toggleMenuFlag}
-        />
+        <Navbar />
         <div className="header-container">
           <div
-            className={!this.state.menuFlag ? "showExit" : "showExit"}
-            onClick={() => this.toggleMenuFlag()}
+            className={!this.props.menuFlag ? "showExit" : "showExit"}
+            onClick={() => this.props.toggleMenuFlag()}
           >
-            <div className={this.state.menuFlag && "exit-one"} />
-            <div className={this.state.menuFlag && "exit-two"} />
+            <div className={this.props.menuFlag && "exit-one"} />
+            <div className={this.props.menuFlag && "exit-two"} />
           </div>
-          <div className="menu-container" onClick={() => this.toggleMenuFlag()}>
+          <div
+            className="menu-container"
+            onClick={() => {
+              this.props.toggleMenuFlag();
+              this.state.mouseHover &&
+                this.setState({ mouseHover: !this.state.mouseHover });
+            }}
+          >
             <div
               className={
-                !this.state.menuFlag ? "hamburger-menu-left" : "exit-menu-left"
+                !this.props.menuFlag ? "hamburger-menu-left" : "exit-menu-left"
               }
             />
             <div
               className={
-                !this.state.menuFlag ? "hamburger-menu-mid" : "exit-menu-mid"
+                !this.props.menuFlag ? "hamburger-menu-mid" : "exit-menu-mid"
               }
             />
             <div
               className={
-                !this.state.menuFlag
+                !this.props.menuFlag
                   ? "hamburger-menu-right"
                   : "exit-menu-right"
               }
             />
           </div>
-          <Link to="/" className="main-logo-link">
-            <div className="main-logo" />
-          </Link>
+          {!menuFlag ? (
+            <Link to="/" className="main-logo-link">
+              <div className="main-logo" />
+            </Link>
+          ) : (
+            <Link to="/" className="main-logo-link-true">
+              <div className="main-logo" />
+            </Link>
+          )}
           {currentUser.profile_picture ? (
             <div>
-              {window.innerWidth >= 900 ? (
-                <div
-                  onMouseEnter={() => this.setState({ mouseHover: true })}
-                  onMouseLeave={() => this.setState({ mouseHover: false })}
-                >
-                  <Link to="/profile">
+              <div
+                className={
+                  !this.props.menuFlag
+                    ? "header-pfp-container"
+                    : "header-pfp-container-true"
+                }
+              >
+                {window.innerWidth >= 900 ? (
+                  <div
+                    onMouseEnter={() => {
+                      this.props.currentUser &&
+                        this.props.getConnectionCount(
+                          this.props.currentUser.user_id
+                        );
+                      this.setState({ mouseHover: true });
+                    }}
+                    onMouseLeave={() => this.setState({ mouseHover: false })}
+                  >
+                    <Link to="/profile">
+                      <div
+                        style={{
+                          backgroundImage: `url(${currentUser.profile_picture})`
+                        }}
+                        className="header-pfp"
+                      />
+                    </Link>
+                    {this.state.mouseHover ? (
+                      <div className="header-pfp-hover-true">
+                        <h3 className="header-pfp-username">
+                          {currentUser.first_name}
+                        </h3>
+                        <p className="header-pfp-info">{currentUser.email}</p>
+                        <p className="header-pfp-info">
+                          {this.props.currentUserConnections.length} Connections
+                        </p>
+                        <Link
+                          to="/profile"
+                          onClick={() => {
+                            this.props.toggleUserTypeEdit();
+                          }}
+                        >
+                          <p className="header-edit">Edit Profile</p>
+                        </Link>
+                        <a href="http://localhost:3000/#/">
+                          <button
+                            className="header-pfp-login"
+                            onClick={() => this.props.logout()}
+                          >
+                            Log Out
+                          </button>
+                        </a>
+                      </div>
+                    ) : (
+                      <div className="header-pfp-hover" />
+                    )}
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => {
+                      this.props.currentUser &&
+                        this.props.getConnectionCount(
+                          this.props.currentUser.user_id
+                        );
+                      this.setState({ mouseHover: !this.state.mouseHover });
+                    }}
+                  >
                     <div
                       style={{
                         backgroundImage: `url(${currentUser.profile_picture})`
                       }}
                       className="header-pfp"
                     />
-                  </Link>
-                  {this.state.mouseHover ? (
-                    <div className="header-pfp-hover-true">
-                      <h3 className="header-pfp-username">
-                        {currentUser.first_name}
-                      </h3>
-                      <p className="header-pfp-info">{currentUser.email}</p>
-                      <p className="header-pfp-info">
-                        {this.props.currentUserConnections.length} Connections
-                      </p>
-                      <Link
-                        to="/profile"
-                        onClick={() => {
-                          this.props.toggleUserTypeEdit();
-                        }}
-                      >
-                        <p className="header-edit">Edit Profile</p>
-                      </Link>
-                      <a href="http://localhost:3000/#/">
-                        <button
-                          className="header-pfp-login"
-                          onClick={() => this.props.logout()}
+                    {this.state.mouseHover ? (
+                      <div className="header-pfp-hover-true">
+                        <h3 className="header-pfp-username">
+                          {currentUser.first_name}
+                        </h3>
+                        <p className="header-pfp-info">{currentUser.email}</p>
+                        <p className="header-pfp-info">
+                          {this.props.currentUserConnections.length} Connections
+                        </p>
+                        <Link
+                          to="/profile"
+                          onClick={() => {
+                            this.props.toggleUserTypeEdit();
+                          }}
                         >
-                          Log Out
-                        </button>
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="header-pfp-hover" />
-                  )}
-                </div>
-              ) : (
-                <div
-                  onClick={() =>
-                    this.setState({ mouseHover: !this.state.mouseHover })
-                  }
-                >
-                  <div
-                    style={{
-                      backgroundImage: `url(${currentUser.profile_picture})`
-                    }}
-                    className="header-pfp"
-                  />
-                  {this.state.mouseHover ? (
-                    <div className="header-pfp-hover-true">
-                      <h3 className="header-pfp-username">
-                        {currentUser.first_name}
-                      </h3>
-                      <p className="header-pfp-info">{currentUser.email}</p>
-                      <p className="header-pfp-info">
-                        {this.props.currentUserConnections.length} Connections
-                      </p>
-                      <Link
-                        to="/profile"
-                        onClick={() => {
-                          this.props.toggleUserTypeEdit();
-                        }}
-                      >
-                        <p className="header-edit">Edit Profile</p>
-                      </Link>
-                      <a href="http://localhost:3000/#/">
-                        <button
-                          className="header-pfp-login"
-                          onClick={() => this.props.logout()}
-                        >
-                          Log Out
-                        </button>
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="header-pfp-hover" />
-                  )}
-                </div>
-              )}
+                          <p className="header-edit">Edit Profile</p>
+                        </Link>
+                        <a href="http://localhost:3000/#/">
+                          <button
+                            className="header-pfp-login"
+                            onClick={() => this.props.logout()}
+                          >
+                            Log Out
+                          </button>
+                        </a>
+                      </div>
+                    ) : (
+                      <div className="header-pfp-hover" />
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <div>
+              {/* <div
+                className={
+                  !this.props.menuFlag
+                    ? "default-header-pfp-container"
+                    : "default-header-pfp-true"
+                }
+              > */}
               {window.innerWidth >= 900 ? (
                 <div
-                  className="default-header-pfp"
+                  className={
+                    !this.props.menuFlag
+                      ? "default-header-pfp"
+                      : "default-header-pfp-true"
+                  }
                   onMouseEnter={() => this.setState({ mouseHover: true })}
                   onMouseLeave={() => this.setState({ mouseHover: false })}
                 >
@@ -191,7 +221,11 @@ class Header extends Component {
                 </div>
               ) : (
                 <div
-                  className="default-header-pfp"
+                  className={
+                    !this.props.menuFlag
+                      ? "default-header-pfp"
+                      : "default-header-pfp-true"
+                  }
                   onClick={() =>
                     this.setState({ mouseHover: !this.state.mouseHover })
                   }
@@ -209,6 +243,7 @@ class Header extends Component {
                 </div>
               )}
             </div>
+            // </div>
           )}
         </div>
       </div>
@@ -230,5 +265,6 @@ export default connect(mapStateToProps, {
   toggleUserBioEdit,
   toggleUserLocationEdit,
   toggleExperienceEdit,
-  toggleUserBirthdayEdit
+  toggleUserBirthdayEdit,
+  toggleMenuFlag
 })(Header);

@@ -8,12 +8,21 @@
 
 /* MAIN SECTION */
 
-.body {
+.body, .body-slide {
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: -1;
   top: 0;
+  transition: ease-in-out .3s;
+}
+
+.body-slide{
+  transform: translate(100%);
+}
+
+.body{
+  transform: translate(0);
 }
 
 .main-section {

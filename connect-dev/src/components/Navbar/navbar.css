@@ -1,109 +1,51 @@
-.login{
-    display: none;
-}
-
-.nav-pfp, .nav-pfp-hide{
-    opacity: 0;
-    width: 60vw;
-    height: 60vw;
-    background-image: url(../../images/default-pfp-2.png);
-    background-size: 200%;
-    background-position: center;
+.nav, .nav-true{
+    width: 100vw;
+    height: 100vh;
+    background-color: #252B2D;
     position: absolute;
-    left: 50%;
-    top: 15%;
-    transform: translate(-50%);
-    z-index: 10;
-    transition: ease-in-out .7s;
-}
-
-/* .nav-pfp{
-    top: -250%;
-    opacity: 0;
-} */
-
-.nav-pfp-hide{
-    top: 35%;
-    opacity: 1;
-}
-
-.nav-links, .nav-true{
-    position: absolute;
-    top: 30vh;
-    text-align: right;
     display: flex;
-    left: 35vw;
     flex-direction: column;
-    transition: ease-in-out .7s;
-    z-index: 10;
-    font-size: 26px;
-}
-
-.nav-links{
-    opacity: 0;
-    top: 25vh;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out .3s;
+    z-index: 1000;
 }
 
 .nav-true{
-    opacity: 1;
-    top: 30vh;
+    transform: translate(0);
 }
 
-.link-1, .link-2, .link-3, .link-4, .link-5, .link-6, .link-7, .link-8 {
-    opacity: 0;
-    transition: ease-in-out .7s;
+.nav{
+    transform: translate(-100%);
 }
 
-.link-1-active, .link-2-active, .link-3-active, .link-4-active, .link-5-active, .link-6-active, .link-7-active, .link-8-active{
-    opacity: 1;
-}
-
-.link-1-active{
-    transition: ease-in-out .7s;
-}
-
-.link-2-active{
-    transition: ease-in-out .7s .1s;
-}
-
-.link-3-active{
-    transition: ease-in-out .7s .2s;
-}
-
-.link-4-active{
-    transition: ease-in-out .7s .3s;
-}
-
-.link-5-active{
-    transition: ease-in-out .7s .4s;
-}
-
-.link-6-active{
-    transition: ease-in-out .7s .5s;
-}
-
-.link-7-active{
-    transition: ease-in-out .7s .6s;
-}
-
-.link-8-active{
-    transition: ease-in-out .7s .7s;
-}
-
-.grow, .shrink{
-    width: 0;
-    height: 0;
-    background-color: #10161f;
+.default-nav-pfp, .user-nav-pfp{
+    margin-top: -8vh;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    position: absolute;
-    top: 4vh;
-    left: 5vh;
-    transition: ease-in-out .7s;
-    z-index: 5;
+    background-position: center;
 }
 
-.grow{
-    width: 250vh;
-    height: 250vh;
-    transform: translate(-50%, -50%);
+.default-nav-pfp{
+    background-image: url(../../images/default-pfp-2.png);
+    background-size: 300%;
+}
+
+.user-nav-pfp{
+    background-size: cover;
+}
+
+.nav-links, .nav-links-true{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    text-align: right;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.link{
+    margin: 3px 0;
 }

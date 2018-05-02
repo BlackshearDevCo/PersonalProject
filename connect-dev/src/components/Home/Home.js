@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { loginUser } from "../../redux/reducers/userReducer";
+import {
+  loginUser,
+  getConnectionCount
+} from "../../redux/reducers/userReducer";
 
 class Home extends Component {
   componentDidMount() {
@@ -15,7 +18,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="body">
+      <div className={this.props.menuFlag ? "body-slide" : "body"}>
         <main className="main-section">
           <div className="container">
             <h1 className="main-text">
@@ -78,4 +81,6 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { loginUser })(Home);
+export default connect(mapStateToProps, { loginUser, getConnectionCount })(
+  Home
+);
