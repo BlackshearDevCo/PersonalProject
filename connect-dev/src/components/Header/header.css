@@ -8,6 +8,8 @@
   width: 100vw;
   height: 10vh;
   z-index: 1000;
+  background-color: rgba(37, 43, 45, 0.822);
+  position: fixed;
 }
 
 .header-container {
@@ -25,7 +27,7 @@
   transform: translate(-50%);
 }
 
-.menu-container {
+.menu-container, .menu-container-true {
   width: 38px;
   height: 38px;
   z-index: 10;
@@ -100,6 +102,7 @@
 }
 
 .header-pfp,
+.header-pfp-true,
 .default-header-pfp,
 .default-header-pfp-true {
   width: 6vh;
@@ -122,6 +125,12 @@
   height: 0vh;
   border: 2px solid rgba(255, 255, 255, 0);
   background-size: 325%;
+}
+
+.header-pfp-true{
+  width: 0;
+  height: 0;
+  border: 2px solid rgba(255, 255, 255, 0);
 }
 
 .header-pfp-hover,
@@ -289,7 +298,7 @@
   }
 }
 
-@media (min-width: 780px){
+@media (min-width: 790px){
   .main-logo-link {
     width: 18%;
   }

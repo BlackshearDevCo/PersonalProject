@@ -1,11 +1,11 @@
 .nav, .nav-true{
     width: 100vw;
     height: 100vh;
-    background-color: #252B2D;
-    position: absolute;
+    background-color: #202124;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding-top: 25vh;
     align-items: center;
     transition: ease-in-out .3s;
     z-index: 1000;
@@ -13,6 +13,7 @@
 
 .nav-true{
     transform: translate(0);
+    box-shadow: rgba(0, 0, 0, 0.13) 5px 0px 25px;
 }
 
 .nav{
@@ -48,4 +49,46 @@
 
 .link{
     margin: 3px 0;
+}
+
+@media (min-width: 425px) {
+    .nav, .nav-true{
+        width: 80vw;
+    }
+}
+
+@media (min-width: 528px) {
+    .nav, .nav-true{
+        width: 70vw;
+    }
+}
+
+@media (min-width: 620px) {
+    .nav, .nav-true{
+        width: 50vw;
+    }
+}
+
+@media (min-width: 790px) {
+    .nav, .nav-true{
+        width: 40vw;
+    }
+}
+
+@media (min-width: 900px) {
+    .nav, .nav-true{
+        width: 35vw;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav, .nav-true{
+        width: 30vw;
+    }
+}
+
+@media (min-width: 1250px) {
+    .nav, .nav-true{
+        width: 20vw;
+    }
 }

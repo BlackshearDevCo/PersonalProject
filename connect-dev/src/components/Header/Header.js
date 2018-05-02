@@ -48,7 +48,7 @@ class Header extends Component {
             <div className={this.props.menuFlag && "exit-two"} />
           </div>
           <div
-            className="menu-container"
+            className={!this.props.menuFlag ? "menu-container" : "menu-container-true"}
             onClick={() => {
               this.props.toggleMenuFlag();
               this.state.mouseHover &&
@@ -107,7 +107,7 @@ class Header extends Component {
                         style={{
                           backgroundImage: `url(${currentUser.profile_picture})`
                         }}
-                        className="header-pfp"
+                        className={!this.props.menuFlag ? "header-pfp" : "header-pfp-true"}
                       />
                     </Link>
                     {this.state.mouseHover ? (
@@ -154,7 +154,7 @@ class Header extends Component {
                       style={{
                         backgroundImage: `url(${currentUser.profile_picture})`
                       }}
-                      className="header-pfp"
+                      className={!this.props.menuFlag ? "header-pfp" : "header-pfp-true"}
                     />
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
@@ -191,13 +191,6 @@ class Header extends Component {
             </div>
           ) : (
             <div>
-              {/* <div
-                className={
-                  !this.props.menuFlag
-                    ? "default-header-pfp-container"
-                    : "default-header-pfp-true"
-                }
-              > */}
               {window.innerWidth >= 900 ? (
                 <div
                   className={

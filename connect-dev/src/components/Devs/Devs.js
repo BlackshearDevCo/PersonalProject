@@ -170,7 +170,7 @@ class Devs extends Component {
       });
 
     return (
-      <div className="devs-container">
+      <div className={!this.props.menuFlag ? "devs-container" : "devs-container-slide"}>
         <div className="background" />
         <div className="input-container">
           <input

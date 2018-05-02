@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 
 import {
   loginUser,
-  getConnectionCount
+  getConnectionCount,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class Home extends Component {
@@ -18,7 +19,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className={this.props.menuFlag ? "body-slide" : "body"}>
+      <div
+        className={this.props.menuFlag ? "body-slide" : "body"}
+        onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}
+      >
         <main className="main-section">
           <div className="container">
             <h1 className="main-text">
@@ -116,6 +120,8 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { loginUser, getConnectionCount })(
-  Home
-);
+export default connect(mapStateToProps, {
+  loginUser,
+  getConnectionCount,
+  toggleMenuFlag
+})(Home);
