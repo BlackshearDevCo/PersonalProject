@@ -67,7 +67,42 @@ class Home extends Component {
                 <p className="home-get-connected-text">
                   What are you wating for?
                 </p>
-                <p className="home-get-connected-text">Go get Connected!</p>
+                {this.props.currentUser.length === 0 ? (
+                  <p className="home-get-connected-text">
+                    Go get
+                    <a
+                      href="http://localhost:3001/auth"
+                      className="home-get-connected-text highlight"
+                    >
+                      {" "}
+                      Connected!
+                    </a>
+                  </p>
+                ) : (
+                  <div>
+                    {this.props.currentUser.user_type === 1 ? (
+                      <p className="home-get-connected-text">
+                        Go get<Link
+                          to="/employers"
+                          className="home-get-connected-text highlight"
+                        >
+                          {" "}
+                          Connected
+                        </Link>
+                      </p>
+                    ) : (
+                      <p className="home-get-connected-text">
+                        Go get<Link
+                          to="/devs"
+                          className="home-get-connected-text highlight"
+                        >
+                          {" "}
+                          Connected
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
             </section>
           </section>
