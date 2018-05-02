@@ -45,7 +45,7 @@
 .color-overlay {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom right, #16bee1, #230fec);
+  /* background: linear-gradient(to bottom right, #16bee1, #230fec); */
   position: absolute;
   top: 0;
   opacity: 0.1;
@@ -88,9 +88,13 @@
 
 /* CONNECT GLOBAL */
 
+.home-about{
+  margin: 0;
+}
+
 .connect-container {
   width: 100vw;
-  height: 170%;
+  min-height: 100vh;
   background: linear-gradient(
     rgba(22, 191, 225, 0.123),
     rgba(33, 15, 236, 0.103)
@@ -99,17 +103,31 @@
 }
 
 .connect {
-  position: absolute;
+  /* position: absolute; */
   width: 100vw;
-  left: 0;
+  top: 100vh;
+  /* left: 0; */
+  height: 100%;
 }
 
 .devices,
 .connect-click,
 .home-community {
-  width: 100%;
-  margin: 15vh 0;
-  color: rgba(255, 255, 255, 0.294);
+  width: 100vw;
+  padding: 15vh 0;
+  color: rgba(255, 255, 255, 0.493);
+}
+
+.devices{
+  background: linear-gradient(to bottom right, rgba(15, 65, 112, 0.123), rgba(22, 10, 150, 0.103));
+}
+
+.connect-click{
+  background: linear-gradient(to bottom right, rgba(15, 204, 188, 0.089), rgba(119, 13, 206, 0.075));
+}
+
+.home-community{
+  background: linear-gradient(to bottom right, rgba(15, 181, 211, 0.103), rgba(9, 138, 30, 0.103));
 }
 
 .devices-image,
@@ -133,7 +151,7 @@
   border: none;
   padding: 0;
   line-height: 1.6em;
-  margin: 15px auto;
+  margin: 0px auto;
   width: 65%;
 }
 
@@ -154,9 +172,13 @@
 
 /* HOME GET CONNECTED */
 
+.home-get-connected{
+  margin: 10vh 0;
+}
+
 .home-get-connected-text {
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.685);
 }
 
@@ -175,9 +197,9 @@
     width: 40%;
   }
 
-  .connect-container {
+  /* .connect-container {
     height: 240%;
-  }
+  } */
 
   .devices-image,
   .connect-click-image,
@@ -202,10 +224,6 @@
     width: 35%;
   }
 
-  .connect-container {
-    height: 245%;
-  }
-
   .devices-image,
   .connect-click-image,
   .home-community-image {
@@ -215,14 +233,11 @@
 }
 
 @media (min-width: 790px) {
-  .connect-container {
-    height: 270%;
-  }
 
   .devices-image,
   .connect-click-image,
   .home-community-image {
-    width: 65%;
+    width: 55%;
     height: 55vh;
   }
 
@@ -263,8 +278,15 @@
 
   .home-about {
     flex-direction: row;
-    width: 80vw;
-    margin: 75px auto;
+    width: 100vw;
+    margin: 0;
+  }
+
+  .devices-image,
+  .connect-click-image,
+  .home-community-image {
+    width: 45%;
+    height: 75vh;
   }
 }
 
@@ -291,18 +313,12 @@
   .connect-click,
   .home-community {
     width: 100%;
-    margin: 25vh 0;
-    color: rgba(255, 255, 255, 0.294);
   }
 
   .devices-image,
   .connect-click-image,
   .home-community-image {
-    width: 65%;
+    width: 45%;
     height: 75vh;
-  }
-
-  .connect-container {
-    height: 365%;
   }
 }
