@@ -96,6 +96,7 @@ const sendEmail = (req, res) => {
     recieverName,
     senderEmail,
     senderName,
+    senderLocation,
     link
   } = req.body;
 
@@ -113,7 +114,7 @@ const sendEmail = (req, res) => {
       to: recieverEmail,
       subject: "ConnectDev",
       test: `${senderName} wants to Connect!`,
-      html: `<p>Hello ${recieverName}! ${senderName} wants to get in touch with you. Head to <a href='http://localhost:3000/#/'>ConnectDev</a> and look them up.
+      html: `<p>Hello ${recieverName}! ${senderName} from ${senderLocation} wants to get in touch with you. Head to <a href='http://localhost:3000/#/'>ConnectDev</a> and look them up.
        If you like them, don't hesitate to get back in touch with them. Their email is: ${senderEmail} <br>
        Have a great day!`
     };

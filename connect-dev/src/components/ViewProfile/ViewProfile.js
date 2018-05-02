@@ -71,7 +71,7 @@ class ViewProfile extends Component {
                           connectWithUser(currentUser.user_id, cur.user_id);
                           sendUserNotification(cur.user_id);
                           getConnectionCount(cur.user_id);
-                          sendEmail(cur.email, cur.first_name, currentUser.email, currentUser.first_name, currentUser.portfolio);
+                          sendEmail(cur.email, cur.first_name, currentUser.email, currentUser.first_name, currentUser.location, currentUser.portfolio);
                           swal('Awesome!', `You connected with ${cur.first_name}!`, 'success')
                         }}
                       >

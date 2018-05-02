@@ -163,6 +163,7 @@ export function sendEmail(
   recieverName,
   senderEmail,
   senderName,
+  senderLocation,
   link
 ) {
   return {
@@ -172,6 +173,7 @@ export function sendEmail(
       recieverName,
       senderEmail,
       senderName,
+      senderLocation,
       link
     })
   };
