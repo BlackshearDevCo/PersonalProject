@@ -45,12 +45,6 @@ class Header extends Component {
     this.props.currentUser[0] &&
       this.props.getConnectionCount(this.props.currentUser.user_id);
 
-    // if(window.innerWidth >= 900){
-    //   console.log(window.innerWidth)
-    // }else {
-    //   console.log(this.state.mouseHover)
-    // }
-
     return (
       <div className="header">
         <Navbar
@@ -91,7 +85,6 @@ class Header extends Component {
             <div>
               {window.innerWidth >= 900 ? (
                 <div
-                  className="header-pfp"
                   onMouseEnter={() => this.setState({ mouseHover: true })}
                   onMouseLeave={() => this.setState({ mouseHover: false })}
                 >
@@ -135,20 +128,16 @@ class Header extends Component {
                 </div>
               ) : (
                 <div
-                  className="header-pfp"
                   onClick={() =>
                     this.setState({ mouseHover: !this.state.mouseHover })
                   }
-                  // onClick={() => this.setState({ mouseHover: false })}
                 >
-                  {/* <Link to="/profile"> */}
                   <div
                     style={{
                       backgroundImage: `url(${currentUser.profile_picture})`
                     }}
                     className="header-pfp"
                   />
-                  {/* </Link> */}
                   {this.state.mouseHover ? (
                     <div className="header-pfp-hover-true">
                       <h3 className="header-pfp-username">
@@ -189,10 +178,6 @@ class Header extends Component {
                   onMouseEnter={() => this.setState({ mouseHover: true })}
                   onMouseLeave={() => this.setState({ mouseHover: false })}
                 >
-                  {console.log(window.innerWidth)}
-                  <Link to="/profile">
-                    <div className="default-header-pfp" />
-                  </Link>
                   {this.state.mouseHover ? (
                     <div className="header-pfp-hover-true">
                       <h3 className="header-pfp-text">You are not logged in</h3>
@@ -211,8 +196,6 @@ class Header extends Component {
                     this.setState({ mouseHover: !this.state.mouseHover })
                   }
                 >
-                  {console.log(this.state.mouseHover)}
-                  <div className="default-header-pfp" />
                   {this.state.mouseHover === true ? (
                     <div className="header-pfp-hover-true">
                       <h3 className="header-pfp-text">You are not logged in</h3>

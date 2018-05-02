@@ -94,19 +94,18 @@
 
 .header-pfp,
 .default-header-pfp {
-  width: 8vh;
-  height: 8vh;
+  width: 6vh;
+  height: 6vh;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
   background-image: url(../../images/default-pfp-2.png);
-  /* position: absolute; */
-  right: 0;
+  border: 2px solid white;
 }
 
 .default-header-pfp {
-  background-size: 250%;
+  background-size: 325%;
 }
 
 .header-pfp-hover,
@@ -114,10 +113,8 @@
   width: 1px;
   height: 0vh;
   position: absolute;
-  /* right: -100%; */
-  /* float: right; */
-  /* margin-right: 50%; */
-  right: 2vw;
+  right: 6vw;
+  top: 9vh;
   color: rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
@@ -277,7 +274,7 @@
   }
 
   .default-header-pfp {
-    background-size: 275%;
+    background-size: 320%;
   }
 
   .header-container {

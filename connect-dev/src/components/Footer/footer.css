@@ -1,6 +1,7 @@
 footer{
     width: 100vw;
-    background-color: #27c2eb;
+    position: absolute;
+    bottom: 0;
     color: aliceblue;
     display: flex;
     flex-direction: row;
@@ -35,7 +36,6 @@ a{
 }
 
 .copyright{
-    background-color: #27c2eb;
     color: white;
     text-transform: uppercase;
     padding: 10px;

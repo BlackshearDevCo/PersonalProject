@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div>
-      <footer>
+      {/* <footer>
         <div className="footer-left">
           <h3 className="footer-title">Links</h3>
           <ul className='footer-ul'>
@@ -38,7 +38,7 @@ export default function Footer() {
             <li className="footer-link">Instagram</li>
           </ul>
         </div>
-      </footer>
+      </footer> */}
       <p className="copyright">Copyright ConnectDev 2018 &copy; </p>
     </div>
   );
