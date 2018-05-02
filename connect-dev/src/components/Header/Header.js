@@ -27,10 +27,16 @@ class Header extends Component {
     this.state = {
       mouseHover: false
     };
+
+    this.toggleMouseHover = this.toggleMouseHover.bind(this);
   }
 
   componentDidMount() {
     this.props.currentUser && this.props.loginUser();
+  }
+
+  toggleMouseHover() {
+    this.setState({mouseHover: !this.state.mouseHover})
   }
 
   render() {
@@ -93,28 +99,27 @@ class Header extends Component {
               >
                 {window.innerWidth >= 900 ? (
                   <div
-                    onMouseEnter={() => {
+                    onClick={() => {
                       this.props.currentUser &&
                         this.props.getConnectionCount(
                           this.props.currentUser.user_id
                         );
-                      this.setState({ mouseHover: true });
+                      this.toggleMouseHover()
                     }}
-                    onMouseLeave={() => this.setState({ mouseHover: false })}
                   >
-                    <Link to="/profile">
                       <div
                         style={{
                           backgroundImage: `url(${currentUser.profile_picture})`
                         }}
                         className={!this.props.menuFlag ? "header-pfp" : "header-pfp-true"}
                       />
-                    </Link>
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
+                      <Link to="/profile" className='header-pfp-name'>
                         <h3 className="header-pfp-username">
                           {currentUser.first_name}
                         </h3>
+                        </Link>
                         <p className="header-pfp-info">{currentUser.email}</p>
                         <p className="header-pfp-info">
                           {this.props.currentUserConnections.length} Connections
@@ -198,8 +203,7 @@ class Header extends Component {
                       ? "default-header-pfp"
                       : "default-header-pfp-true"
                   }
-                  onMouseEnter={() => this.setState({ mouseHover: true })}
-                  onMouseLeave={() => this.setState({ mouseHover: false })}
+                  onClick={() => this.toggleMouseHover()}
                 >
                   {this.state.mouseHover ? (
                     <div className="header-pfp-hover-true">

@@ -170,8 +170,7 @@ class Devs extends Component {
       });
 
     return (
-      <div className={!this.props.menuFlag ? "devs-container" : "devs-container-slide"}>
-        <div className="background" />
+      <div className="devs-container">
         <div className="input-container">
           <input
             placeholder="Username..."
@@ -216,22 +215,27 @@ class Devs extends Component {
           </PlacesAutocomplete>
         </div>
         {this.props.posts && this.props.posts.length > 0 ? (
-          <div className="devs-container">
+          <div className="devs-posts-container">
             {filtered}
             {!filtered.length && (
               <h1 className="no-posts">No posts match your search</h1>
             )}
+            <div className="devs-background" />
           </div>
         ) : (
-          <h1 className="devs-loading">Loading...</h1>
+          <div className="devs-container">
+            <div className="devs-background" />
+            <h1 className="devs-loading">Loading...</h1>
+          </div>
         )}
         <div>
-          {this.props.currentUser && this.props.currentUser.user_type === 1 && (
-            <div>
-              <AddPost className="small" />
-              <AddPost className="large" />
-            </div>
-          )}
+          {this.props.currentUser &&
+            this.props.currentUser.user_type === 1 && (
+              <div>
+                <AddPost className="small" />
+                <AddPost className="large" />
+              </div>
+            )}
         </div>
       </div>
     );

@@ -162,7 +162,7 @@ class Devs extends Component {
       });
     return (
       <div>
-        <div className="background" />
+        {/* <div className="background" /> */}
         <div className="input-container">
           <input
             placeholder="Username..."

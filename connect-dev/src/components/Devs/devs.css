@@ -1,20 +1,21 @@
-.background {
-  background: linear-gradient(to bottom right, #27c2eb, #1de0e7);
+.devs-background {
+  background-color: #202124;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
 }
 
-.devs-container {
-  margin-top: 2vh;
+.devs-container{
+  padding: 12vh 0 2vh 0;
   color: white;
+  background: linear-gradient(to bottom right, rgba(25, 119, 207, 0.2), rgba(45, 7, 95, 0.2));
+  z-index: 5;
+  min-height: 100vh;
+  width: 100vw;
 }
-
-/* .devs-container-slide{
-  margin-left: -20v
-} */
 
 .input-container {
   max-width: 750px;
@@ -31,10 +32,12 @@
   width: 85vw;
   max-width: 750px;
   min-height: 5vh;
-  background-color: #fff;
+  background-color: rgb(58, 65, 65);
   margin: 2vh auto;
-  color: #333;
+  color: white;
   border-radius: 10px;
+  z-index: 100;
+  border: 1px solid rgba(34, 144, 255, 0.753);
 }
 
 .post-pfp {
@@ -64,7 +67,7 @@
 
 .post-username {
   font-weight: 600;
-  color: #27c2eb;
+  color: white;
   text-align: left;
 }
 
@@ -74,7 +77,7 @@
   text-align: left;
   padding: 15px 10px;
   font-weight: 400;
-  border-bottom: 1px solid #27c2eb;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.712);
 }
 
 .post-experience {
@@ -86,6 +89,7 @@
 
 .username {
   width: 45%;
+  max-width: 250px;
 }
 
 .location {
@@ -96,14 +100,15 @@
   border-radius: 50px;
   border-style: none;
   height: 30px;
-  border: 1px solid white;
-  background-color: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(34, 144, 255, 0.753);
+  background-color: rgba(73, 82, 82, 0.829);
   color: white;
   padding-left: 20px;
 }
 
 .location-container {
   width: 45%;
+  max-width: 250px;
 }
 
 .search-input::placeholder {
@@ -120,10 +125,6 @@
   box-shadow: rgba(0, 0, 0, 0.315) 0 0 5px;
 }
 
-.devs-container {
-  margin-bottom: 25px;
-}
-
 .no-posts,
 .devs-loading {
   margin: 70px;
@@ -134,7 +135,6 @@
 .show-quick-look {
   display: none;
   position: fixed;
-  /* transform: translate(100%, -50%); */
 }
 
 @media (min-width: 425px) {
@@ -196,5 +196,9 @@
 
   .quick-look-info {
     font-weight: 300;
+  }
+
+  .post-body{
+    font-size: 20px;
   }
 }

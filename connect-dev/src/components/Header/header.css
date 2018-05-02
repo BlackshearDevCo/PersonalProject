@@ -10,6 +10,7 @@
   z-index: 1000;
   background-color: rgba(37, 43, 45, 0.822);
   position: fixed;
+  top: 0;
 }
 
 .header-container {
@@ -192,6 +193,10 @@
   animation: header-text-in linear 0.5s forwards;
 }
 
+.header-pfp-username:hover {
+  color: #2B7ED2;
+}
+
 .header-pfp-info {
   font-weight: 400;
   font-size: 16px;
@@ -206,7 +211,7 @@
 }
 
 .header-edit:hover {
-  color: #1de0e7;
+  color: #2B7ED2;
 }
 
 @keyframes header-pfp-in {
