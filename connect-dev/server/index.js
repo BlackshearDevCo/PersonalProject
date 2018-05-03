@@ -8,6 +8,8 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 const app = express();
 
+app.use(express.static(`${__dirname}/../build`))
+
 const userCtrl = require("./controllers/userController");
 const postCtrl = require("./controllers/postController");
 
@@ -115,6 +117,11 @@ app.post("/api/newPost", postCtrl.newPost);
 app.put("/api/updateUserInfo/:id", userCtrl.updateUserInfo);
 app.put("/api/sendNotification/:id", userCtrl.sendNotification);
 app.delete("/api/deletePost/:id", postCtrl.deletePost);
+
+const path = require("path")
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"))
+})
 
 const port = 3001;
 let server = app.listen(port, () => console.log(`Listening on port ${port}!`));
