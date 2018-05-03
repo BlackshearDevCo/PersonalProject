@@ -55,7 +55,7 @@ class AddPost extends Component {
           <div>
             <div className="post-btn-border">
               <div className="post-btn" onClick={() => this.togglePostFlag()}>
-                <div className='plus-symbol' />
+                <div className="plus-symbol" />
               </div>
             </div>
           </div>
@@ -79,13 +79,16 @@ class AddPost extends Component {
                       ),
                       this.props.loginUser(),
                       this.props.getEmployersPosts(),
-                      this.togglePostFlag());
+                      this.togglePostFlag(),
+                      this.setState({ newPost: "" }));
                 }}
               >
                 Add Post
               </button>
             </div>
-            <div className="post-btn" onClick={() => this.togglePostFlag()} />
+            <div className="post-btn" onClick={() => this.togglePostFlag()}>
+              <div className="plus-symbol" />
+            </div>
           </div>
         )}
         <div>
@@ -96,16 +99,23 @@ class AddPost extends Component {
               onChange={e => this.createPost(e.target.value)}
               placeholder="Limit 300 Characters..."
             />
+            <button
+              className="add-post-full"
+              onClick={() => {
+                this.props.newPost.length > 300
+                  ? swal("Too many characters!")
+                  : (this.props.newPost(
+                      currentUser.user_id,
+                      this.state.newPost
+                    ),
+                    this.props.loginUser(),
+                    this.props.getEmployersPosts(),
+                    this.setState({ newPost: "" }));
+              }}
+            >
+              Add Post
+            </button>
           </div>
-          <button
-            className="add-post"
-            onClick={() => {
-              this.props.getEmployersPosts();
-              this.handleAddPost();
-            }}
-          >
-            Add Post
-          </button>
         </div>
       </div>
     );

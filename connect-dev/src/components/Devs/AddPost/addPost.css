@@ -59,7 +59,7 @@ textarea::placeholder{
     border: none;
 }
 
-.add-post{
+.add-post, .add-post-full{
     padding: 5px;
     margin: 10px 0;
     margin-bottom: 5px;
@@ -112,7 +112,7 @@ textarea::placeholder{
         font-size: 26px;
     }
 
-    .add-post{
+    .add-post, .add-post-full{
         height: 35px;
         width: 200px;
         font-size: 18px;
@@ -142,11 +142,11 @@ textarea::placeholder{
         transform: translate(10%, -50%);
     }
 
-    .add-post{
+    .add-post-full{
         width: calc(350px / 2);
         position: fixed;
         top: calc(50% + 165px);
-        left: 40px;
+        left: 0px;
         background: linear-gradient(to right, #2291FF, #6B1180);
         color: white;
     }
