@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./community.css";
 
 import io from "socket.io-client";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 import { connect } from "react-redux";
+
+import { Link } from "react-router-dom";
 
 class Community extends Component {
   constructor(props) {
@@ -12,13 +14,16 @@ class Community extends Component {
     this.state = {
       username: this.props.name || "",
       userInput: "",
-      messages: []
+      messages: [],
+      user_id: this.props.userId,
+      user_pic: this.props.profilePic
     };
     this.socket = io("localhost:3001");
 
     this.sendMessage = () => {
-      // ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
+        userId: this.state.user_id,
+        userPic: this.state.user_pic,
         user: this.state.username,
         message: this.state.userInput
       });
@@ -26,6 +31,7 @@ class Community extends Component {
     };
 
     this.socket.on("RECIEVE_MESSAGE", data => {
+      console.log(data);
       addMessage(data);
     });
 
@@ -39,9 +45,9 @@ class Community extends Component {
   handleEnter(event) {
     if (event.keyCode === 13) {
       if (!this.state.userInput || !this.state.username) {
-        swal("Message Failed!", "Please enter in a vaild Message!", 'warning')
+        swal("Message Failed!", "Please enter in a vaild Message!", "warning");
       } else {
-        this.sendMessage()
+        this.sendMessage();
       }
     }
   }
@@ -51,25 +57,73 @@ class Community extends Component {
     return (
       <div>
         <div className="chat">
-          <div className="background" />
+          <div className="devs-background" />
           <div>
             <section className="chat-container">
               {this.state.messages.map((cur, ind) => {
                 return (
-                  <div key={ind} className="message-container">
-                    <h3 className="message-username">
-                      {cur.user}:{" "}
-                      <span className="message-message">{cur.message}</span>
-                    </h3>
+                  <div>
+                    {cur.userId == this.props.currentUser.user_id ? (
+                      <div className="single-user-message-container">
+                        <div className="message-pfp-border">
+                          <div
+                            style={{
+                              backgroundImage: `url(${
+                                this.props.currentUser.profile_picture
+                              })`
+                            }}
+                            className="message-pfp"
+                          />
+                        </div>
+                        <div className="message-content-container">
+                          <h3 className="user-message-username">{cur.user}</h3>
+                          <div
+                            key={ind}
+                            className={
+                              cur.userId == this.props.currentUser.user_id
+                                ? "user-message-container"
+                                : "message-container"
+                            }
+                          >
+                            <p className="message-message">{cur.message}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="single-message-container">
+                        <div className="message-pfp-border">
+                          <Link to={`/user/${cur.userId}`}>
+                            <div
+                              style={{
+                                backgroundImage: `url(${cur.userPic})`
+                              }}
+                              className="message-pfp"
+                            />
+                          </Link>
+                        </div>
+                        <div className="message-content-container">
+                          <h3 className="message-username">{cur.user}</h3>
+                          <div
+                            key={ind}
+                            className={
+                              cur.userId == this.props.currentUser.user_id
+                                ? "user-message-container"
+                                : "message-container"
+                            }
+                          >
+                            <p className="message-message">{cur.message}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </section>
           </div>
           <div>
-            {this.props.name ? (
+            {this.props.currentUser ? (
               <section className="community-container">
-                <br />
                 <input
                   type="text"
                   placeholder="Message"
@@ -81,12 +135,17 @@ class Community extends Component {
                 <button
                   onClick={
                     !this.state.userInput || !this.state.username
-                      ? () => swal("Message Failed!", "Please enter in a vaild Message!", 'warning')
+                      ? () =>
+                          swal(
+                            "Message Failed!",
+                            "Please enter in a vaild Message!",
+                            "warning"
+                          )
                       : this.sendMessage
                   }
                   className="send-message"
                 >
-                  Send
+                  <div className="send-arrow" />
                 </button>
               </section>
             ) : (
