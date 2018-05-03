@@ -224,7 +224,6 @@ export function toggleUserLocationEdit() {
 }
 
 export function toggleMenuFlag() {
-  console.log("HIT");
   return {
     type: TOGGLE_MENU_FLAG
   };

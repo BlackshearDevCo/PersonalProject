@@ -36,7 +36,7 @@ class Header extends Component {
   }
 
   toggleMouseHover() {
-    this.setState({mouseHover: !this.state.mouseHover})
+    this.setState({ mouseHover: !this.state.mouseHover });
   }
 
   render() {
@@ -54,7 +54,9 @@ class Header extends Component {
             <div className={this.props.menuFlag && "exit-two"} />
           </div>
           <div
-            className={!this.props.menuFlag ? "menu-container" : "menu-container-true"}
+            className={
+              !this.props.menuFlag ? "menu-container" : "menu-container-true"
+            }
             onClick={() => {
               this.props.toggleMenuFlag();
               this.state.mouseHover &&
@@ -104,45 +106,79 @@ class Header extends Component {
                         this.props.getConnectionCount(
                           this.props.currentUser.user_id
                         );
-                      this.toggleMouseHover()
+                      this.toggleMouseHover();
                     }}
                   >
-                      <div
-                        style={{
-                          backgroundImage: `url(${currentUser.profile_picture})`
-                        }}
-                        className={!this.props.menuFlag ? "header-pfp" : "header-pfp-true"}
-                      />
+                    <div
+                      style={{
+                        backgroundImage: `url(${currentUser.profile_picture})`
+                      }}
+                      className={
+                        !this.props.menuFlag ? "header-pfp" : "header-pfp-true"
+                      }
+                    />
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
-                      <Link to="/profile" className='header-pfp-name'>
-                        <h3 className="header-pfp-username">
-                          {currentUser.first_name}
-                        </h3>
-                        </Link>
-                        <p className="header-pfp-info">{currentUser.email}</p>
-                        <p className="header-pfp-info">
-                          {this.props.currentUserConnections.length} Connections
-                        </p>
-                        <Link
-                          to="/profile"
-                          onClick={() => {
-                            this.props.toggleUserTypeEdit();
-                          }}
-                        >
-                          <p className="header-edit">Edit Profile</p>
-                        </Link>
-                        <a href="http://localhost:3000/#/">
-                          <button
-                            className="header-pfp-login"
-                            onClick={() => this.props.logout()}
+                        <div className="inner-pfp-hover">
+                          <Link to="/profile" className="header-pfp-name">
+                            <h3 className="header-pfp-username">
+                              {currentUser.first_name}
+                            </h3>
+                          </Link>
+                          <p className="header-pfp-info">{currentUser.email}</p>
+                          <p className="header-pfp-info">
+                            {this.props.currentUserConnections.length}{" "}
+                            Connections
+                          </p>
+                          <Link
+                            to="/profile"
+                            onClick={() => {
+                              this.props.toggleUserTypeEdit();
+                            }}
                           >
-                            Log Out
-                          </button>
-                        </a>
+                            <p className="header-edit">Edit Profile</p>
+                          </Link>
+                          <a href="http://localhost:3000/#/">
+                            <button
+                              className="header-pfp-login"
+                              onClick={() => this.props.logout()}
+                            >
+                              Log Out
+                            </button>
+                          </a>
+                        </div>
                       </div>
                     ) : (
-                      <div className="header-pfp-hover" />
+                      <div className="header-pfp-hover">
+                        <div className="inner-pfp-hover">
+                          <Link to="/profile" className="header-pfp-name">
+                            <h3 className="header-pfp-username">
+                              {currentUser.first_name}
+                            </h3>
+                          </Link>
+                          <p className="header-pfp-info">{currentUser.email}</p>
+                          <p className="header-pfp-info">
+                            {this.props.currentUserConnections.length}{" "}
+                            Connections
+                          </p>
+                          <Link
+                            to="/profile"
+                            onClick={() => {
+                              this.props.toggleUserTypeEdit();
+                            }}
+                          >
+                            <p className="header-edit">Edit Profile</p>
+                          </Link>
+                          <a href="http://localhost:3000/#/">
+                            <button
+                              className="header-pfp-login"
+                              onClick={() => this.props.logout()}
+                            >
+                              Log Out
+                            </button>
+                          </a>
+                        </div>
+                      </div>
                     )}
                   </div>
                 ) : (
@@ -159,36 +195,68 @@ class Header extends Component {
                       style={{
                         backgroundImage: `url(${currentUser.profile_picture})`
                       }}
-                      className={!this.props.menuFlag ? "header-pfp" : "header-pfp-true"}
+                      className={
+                        !this.props.menuFlag ? "header-pfp" : "header-pfp-true"
+                      }
                     />
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
-                        <h3 className="header-pfp-username">
-                          {currentUser.first_name}
-                        </h3>
-                        <p className="header-pfp-info">{currentUser.email}</p>
-                        <p className="header-pfp-info">
-                          {this.props.currentUserConnections.length} Connections
-                        </p>
-                        <Link
-                          to="/profile"
-                          onClick={() => {
-                            this.props.toggleUserTypeEdit();
-                          }}
-                        >
-                          <p className="header-edit">Edit Profile</p>
-                        </Link>
-                        <a href="http://localhost:3000/#/">
-                          <button
-                            className="header-pfp-login"
-                            onClick={() => this.props.logout()}
+                        <div className="inner-pfp-hover">
+                          <h3 className="header-pfp-username">
+                            {currentUser.first_name}
+                          </h3>
+                          <p className="header-pfp-info">{currentUser.email}</p>
+                          <p className="header-pfp-info">
+                            {this.props.currentUserConnections.length}{" "}
+                            Connections
+                          </p>
+                          <Link
+                            to="/profile"
+                            onClick={() => {
+                              this.props.toggleUserTypeEdit();
+                            }}
                           >
-                            Log Out
-                          </button>
-                        </a>
+                            <p className="header-edit">Edit Profile</p>
+                          </Link>
+                          <a href="http://localhost:3000/#/">
+                            <button
+                              className="header-pfp-login"
+                              onClick={() => this.props.logout()}
+                            >
+                              Log Out
+                            </button>
+                          </a>
+                        </div>
                       </div>
                     ) : (
-                      <div className="header-pfp-hover" />
+                      <div className="header-pfp-hover">
+                        <div className="inner-pfp-hover">
+                          <h3 className="header-pfp-username">
+                            {currentUser.first_name}
+                          </h3>
+                          <p className="header-pfp-info">{currentUser.email}</p>
+                          <p className="header-pfp-info">
+                            {this.props.currentUserConnections.length}{" "}
+                            Connections
+                          </p>
+                          <Link
+                            to="/profile"
+                            onClick={() => {
+                              this.props.toggleUserTypeEdit();
+                            }}
+                          >
+                            <p className="header-edit">Edit Profile</p>
+                          </Link>
+                          <a href="http://localhost:3000/#/">
+                            <button
+                              className="header-pfp-login"
+                              onClick={() => this.props.logout()}
+                            >
+                              Log Out
+                            </button>
+                          </a>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}
@@ -207,13 +275,26 @@ class Header extends Component {
                 >
                   {this.state.mouseHover ? (
                     <div className="header-pfp-hover-true">
-                      <h3 className="header-pfp-text">You are not logged in</h3>
-                      <a href="http://localhost:3001/auth">
-                        <button className="header-pfp-login">Log in</button>
-                      </a>
+                      <div className="inner-pfp-hover">
+                        <h3 className="header-pfp-text">
+                          You are not logged in
+                        </h3>
+                        <a href="http://localhost:3001/auth">
+                          <button className="header-pfp-login">Log in</button>
+                        </a>
+                      </div>
                     </div>
                   ) : (
-                    <div className="header-pfp-hover" />
+                    <div className="header-pfp-hover">
+                      <div className="inner-pfp-hover">
+                        <h3 className="header-pfp-text">
+                          You are not logged in
+                        </h3>
+                        <a href="http://localhost:3001/auth">
+                          <button className="header-pfp-login">Log in</button>
+                        </a>
+                      </div>
+                    </div>
                   )}
                 </div>
               ) : (
@@ -227,20 +308,32 @@ class Header extends Component {
                     this.setState({ mouseHover: !this.state.mouseHover })
                   }
                 >
-                  {this.state.mouseHover === true ? (
+                  {this.state.mouseHover ? (
                     <div className="header-pfp-hover-true">
-                      <h3 className="header-pfp-text">You are not logged in</h3>
-                      <a href="http://localhost:3001/auth">
-                        <button className="header-pfp-login">Log in</button>
-                      </a>
+                      <div className="inner-pfp-hover-true">
+                        <h3 className="header-pfp-text">
+                          You are not logged in
+                        </h3>
+                        <a href="http://localhost:3001/auth">
+                          <button className="header-pfp-login">Log in</button>
+                        </a>
+                      </div>
                     </div>
                   ) : (
-                    <div className="header-pfp-hover" />
+                    <div className="header-pfp-hover">
+                      <div className="inner-pfp-hover-true">
+                        <h3 className="header-pfp-text">
+                          You are not logged in
+                        </h3>
+                        <a href="http://localhost:3001/auth">
+                          <button className="header-pfp-login">Log in</button>
+                        </a>
+                      </div>
+                    </div>
                   )}
                 </div>
               )}
             </div>
-            // </div>
           )}
         </div>
       </div>
