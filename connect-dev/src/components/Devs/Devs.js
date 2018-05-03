@@ -112,49 +112,57 @@ class Devs extends Component {
                   this.state.mouseHover ? "show-quick-look" : "hide-quick-look"
                 }
               >
-                <div className="quick-look-container">
-                  <img src={cur.profile_picture} className="post-pfp" />
-                  <h3 className="quick-look-name">{cur.first_name}</h3>
-                  <p className="quick-look-location">
-                    {cur.location ||
-                      "User has chosen not to share their location"}
-                  </p>
-                  <div className="quick-look-email">
-                    <p className="quick-look-info-title">Email: </p>
-                    <p className="quick-look-info">
-                      {cur.email || "User does not have an email"}
-                    </p>
-                  </div>
-                  <div className="quick-look-connections">
-                    <p className="quick-look-info-title">Connections: </p>
-                    <p className="quick-look-info">
-                      {this.props.currentUserConnections.length || "0"}
-                    </p>
-                  </div>
-                  <div className="quick-look-bio">
-                    <p className="quick-look-info-title">Bio: </p>
-                    <p className="quick-look-info">
-                      {cur.bio || "User does not have a bio"}
-                    </p>
-                  </div>
-                  <div>
-                    {cur.user_type === 1 ? (
-                      <div className="quick-look-experience">
-                        <p className="quick-look-info-title">Experience: </p>
-                        <p className="quick-look-info">
-                          {cur.experience === 1
-                            ? "Junior Dev"
-                            : cur.experience === 2
-                              ? "Mid-Level Dev"
-                              : "Senior Dev"}
+                <div className="quick-look-bg">
+                  <div className="quick-look-container">
+                    <div className="quick-look-user-container">
+                      <img src={cur.profile_picture} className="post-pfp" />
+                      <div className="quick-look-name-container">
+                        <h3 className="quick-look-name">{cur.first_name}</h3>
+                        <p className="quick-look-location">
+                          {cur.location ||
+                            "User has chosen not to share their location"}
                         </p>
                       </div>
-                    ) : (
-                      <div className="quick-look-company">
-                        <p className="quick-look-info-title">Company Name: </p>
-                        <p className="quick-look-info">{cur.company_name}</p>
-                      </div>
-                    )}
+                    </div>
+                    <div className="quick-look-email">
+                      <p className="quick-look-info-title">Email: </p>
+                      <p className="quick-look-info">
+                        {cur.email || "User does not have an email"}
+                      </p>
+                    </div>
+                    <div className="quick-look-connections">
+                      <p className="quick-look-info-title">Connections: </p>
+                      <p className="quick-look-info">
+                        {this.props.currentUserConnections.length || "0"}
+                      </p>
+                    </div>
+                    <div className="quick-look-bio">
+                      <p className="quick-look-info-title">Bio: </p>
+                      <p className="quick-look-info-bio">
+                        {cur.bio || "User does not have a bio"}
+                      </p>
+                    </div>
+                    <div>
+                      {cur.user_type === 1 ? (
+                        <div className="quick-look-experience">
+                          <p className="quick-look-info-title">Experience: </p>
+                          <p className="quick-look-info">
+                            {cur.experience === 1
+                              ? "Junior Dev"
+                              : cur.experience === 2
+                                ? "Mid-Level Dev"
+                                : "Senior Dev"}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="quick-look-company">
+                          <p className="quick-look-info-title">
+                            Company Name:{" "}
+                          </p>
+                          <p className="quick-look-info">{cur.company_name}</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

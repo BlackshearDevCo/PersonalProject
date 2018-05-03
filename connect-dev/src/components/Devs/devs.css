@@ -100,7 +100,7 @@
   border-radius: 50px;
   border-style: none;
   height: 30px;
-  border: 2px solid rgba(34, 144, 255, 0.753);
+  border: 1px solid rgba(34, 144, 255, 0.753);
   background-color: rgba(73, 82, 82, 0.829);
   color: white;
   padding-left: 20px;
@@ -137,6 +137,11 @@
   position: fixed;
 }
 
+.show-quick-look-bg{
+  display: none;
+  position: fixed;
+}
+
 @media (min-width: 425px) {
   .post-pfp {
     width: 50px;
@@ -155,6 +160,16 @@
     top: 50vh;
   }
 
+  .quick-look-bg{
+    border-radius: 10px;
+    width: calc(17vw + 4px);
+    padding: 2px;
+    min-height: calc(30vh + 4px);
+    transition: ease-in-out 0.5s;
+    background: linear-gradient(to bottom right, #2291FF, #6B1180);
+    z-index: 1;
+  }
+
   .show-quick-look {
     transform: translate(-10%, -50%);
   }
@@ -164,19 +179,33 @@
   }
 
   .quick-look-container {
-    border-radius: 10px;
-    background-color: white;
-    color: black;
+    background-color: rgb(58, 65, 65);
+    color: white;
     width: 100%;
     padding: 5px;
-    height: 50vh;
-    max-height: 350px;
+    min-height: 30vh;
     border: rgba(0, 0, 0, 0.199) 1px solid;
+    z-index: 3;
+    border-radius: 10px;
+    background-clip: padding-box;
+  }
+
+  .quick-look-user-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .quick-look-name-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .quick-look-name {
     font-weight: 600;
-    color: #27c2eb;
+    color: white;
   }
 
   .quick-look-location {
@@ -191,11 +220,20 @@
   .quick-look-experience,
   .quick-look-company {
     text-align: left;
-    padding: 5px 10px;
+    padding: 8px 10px;
   }
 
-  .quick-look-info {
+  .quick-look-info-title {
     font-weight: 300;
+  }
+
+  .quick-look-info, .quick-look-info-bio {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .quick-look-info-bio{
+    font-size: 22px;
   }
 
   .post-body{
