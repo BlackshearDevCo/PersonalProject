@@ -1,39 +1,40 @@
 import React from "react";
-import Footer from '../Footer/Footer';
 import "./about.css";
 
 export default function About() {
   return (
     <div>
+      <div className="about-bg" />
+      <div className="devs-background" />
       <div className="about-container">
-        <h1 className="about-header">About ConnectDev</h1>
-        <section className="about-created">
-          <h3 className="section-title">How was ConnectDev Founded?</h3>
-          <hr />
-          <p className="section-text">
-            ConnectDev was founded at DevMountain in Dallas, Texas. ConectDev
-            started as an idea and grew into a company. ConnectDev was created
-            with the sole purpose of taking the stress of finding a job, and
-            throwing it out the window! Here at ConnectDev, we believe that
-            finding a job should be the least of your worries. ConnectDev is the
-            best developer connection website in the entire world! We listen to
-            all of our users and focus on improving your experience.
-          </p>
-        </section>
-        <section className="about-creator">
-          <h3 className="section-title">Who created ConnectDev?</h3>
-          <hr />
-          <p className="section-text">
-            ConnectDev was created by Aaron Blackshear when he was 18 years old.
-            ConnectDev was originally a project for DevMountain, designed to
-            show off his technical skills, before he decided to carry on with
-            the idea and start his own developer connection website. Aaron
-            disliked how stressful it was to find a job and wanted to do
-            something about it, and thus, ConnectDev was born.
-          </p>
-        </section>
+        <div className="section-bg">
+          <section className="about-section">
+            <h3 className="section-title">About ConnectDev</h3>
+            <p className="section-text">
+              ConnectDev is connection site, created specifically for
+              developers. We specialize in helping developers of all experience
+              get hired and find work. Luckily, we also get to help out tech
+              businesses of all sizes find the perfect developer they have been
+              searching for! We believe that the whole process of finding
+              employers or employees shouldn't be so stressful. That's where we
+              come in!
+            </p>
+          </section>
+        </div>
+        <div className="section-bg">
+          <section className="about-section">
+            <h3 className="section-title">Our Goal</h3>
+            <p className="section-text">
+              Our main goal here at ConnectDev is to help connect the developer
+              community. We encourage everyone to join our site and talk with
+              others. Whether you just heard about what a computer is, or you
+              have been in the industry for 50 years. We want all developers to
+              have success in their career. We will always be here to help all
+              of our users find the perfect job!
+            </p>
+          </section>
+        </div>
       </div>
-      <Footer />
     </div>
   );
 }

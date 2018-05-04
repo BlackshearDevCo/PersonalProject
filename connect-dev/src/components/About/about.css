@@ -1,21 +1,49 @@
+.about-bg{
+    background: linear-gradient(to bottom right, rgba(25, 119, 207, 0.2), rgba(45, 7, 95, 0.2));
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
 .about-container{
-    width: 80vw;
-    margin: 30px auto;
-    text-align: left;
-    background-color: aliceblue;
-    padding: 10px;
+    width: 100%;
+    max-width: 750px;
+    position: absolute;
+    transform: translate(-50%);
+    top: 13vh;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
-.about-header{
-    font-size: 22px;
-    text-align: center;
-}
-
-.about-created, .section-title{
+.section-bg{
+    margin: auto;
+    padding: 2px;
+    width: calc(80% + 4px);
+    background: linear-gradient(to bottom right, #2291ff, #6b1180);
+    border-radius: 15px;
     margin: 20px 0;
-    padding: 10px;
+}
+
+.about-section{
+    padding: 25px;
+    text-align: left;
+    border-radius: 15px;
+    background-color: rgb(58, 65, 65);
+}
+
+.section-title{
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.651);
 }
 
 .section-text{
-    margin: 10px;
+    font-size: 18px;
+    line-height: 1.5em;
+    font-weight: 300;
 }

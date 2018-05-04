@@ -36,8 +36,12 @@ a{
 }
 
 .copyright{
-    color: white;
+    color: rgba(255, 255, 255, 0.308);
     text-transform: uppercase;
     padding: 10px;
     font-size: 10px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translate(-50%);
 }
