@@ -186,6 +186,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ userPortfolio: e.target.value })
                             }
+                            className='profile-input'
                           />
                         </div>
                       )}
@@ -199,6 +200,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ userBio: e.target.value })
                             }
+                            className='profile-input'
                           />
                         </div>
                       ) : (
@@ -212,6 +214,7 @@ class Profile extends Component {
                                 onChange={e =>
                                   this.setState({ userBio: e.target.value })
                                 }
+                                className='profile-input'
                               />
                             </div>
                           )}
@@ -245,6 +248,7 @@ class Profile extends Component {
                                       companyName: e.target.value
                                     })
                                   }
+                                  className='profile-input'
                                 />
                               </div>
                             )}
@@ -254,6 +258,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ companyName: e.target.value })
                             }
+                            className='profile-input'
                           />
                         )
                       ) : !currentUser.experience ? (
@@ -351,6 +356,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ birthday: e.target.value })
                             }
+                            className='profile-input'
                           />
                         )}
                       </div>

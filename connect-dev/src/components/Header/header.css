@@ -167,7 +167,7 @@
   overflow: hidden;
   border-radius: 10px 0 0 10px;
   width: 254px;
-  height: 154px;
+  min-height: 154px;
   background: linear-gradient(to bottom right, #2291ff, #6b1180);
 }
 
@@ -188,7 +188,7 @@
 .inner-pfp-hover-true {
   background-color: rgb(58, 65, 65);
   width: 250px;
-  height: 150px;
+  min-height: 150px;
   margin: auto;
   transition: ease-in-out 0.5s;
   border-radius: 9px;
@@ -197,7 +197,7 @@
 .inner-pfp-hover {
   background-color: rgb(58, 65, 65);
   width: 250px;
-  height: 150px;
+  min-height: 150px;
   border-radius: 9px;
   margin: auto;
   transition: ease-in-out 0.5s;
@@ -209,13 +209,14 @@
 .header-pfp-text {
   color: white;
   font-size: 26px;
+  font-weight: 300;
   width: 70%;
   margin: 15px auto;
 }
 
 .header-pfp-login {
-  width: 40%;
-  height: 30px;
+  width: 100px;
+  height: 25px;
   border-radius: 1000px;
   border-style: none;
   background: linear-gradient(to left, #2291ff, #6b1180);
@@ -297,18 +298,6 @@
 
   .menu-container {
     width: 3vw;
-  }
-
-  .header-pfp-hover,
-  .header-pfp-hover-true {
-    height: 174px;
-    width: 264px;
-  }
-
-  .inner-pfp-hover,
-  .inner-pfp-hover-true {
-    height: 170px;
-    width: 260px;
   }
 }
 

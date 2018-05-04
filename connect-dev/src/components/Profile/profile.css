@@ -34,7 +34,7 @@
 
 .user-info {
   background-color: rgb(58, 65, 65);
-  color: white;
+  color: rgba(255, 255, 255, 0.883);
   width: 100%;
   max-width: 600px;
   min-height: 40vh;
@@ -43,6 +43,10 @@
   text-align: left;
   border-radius: 10px;
   z-index: 1;
+}
+
+.user-experience, .user-link{
+  margin-bottom: 15px;
 }
 
 .profile-border {
@@ -83,7 +87,7 @@
 }
 
 .user-port {
-  color: white;
+  color: rgba(255, 255, 255, 0.808);
   width: 90%;
   word-wrap: break-word;
 }
@@ -104,13 +108,37 @@
   padding: 3px;
 }
 
+.profile-active, .profile-inactive{
+  border-radius: 100px;
+  margin-right: 5px;
+  padding: 5px 15px;
+  background-color: #252B2D;
+  color: rgba(255, 255, 255, 0.801);
+  font-size: 12px;
+}
+
 .profile-active {
-  background-color: #27c2eb;
+  border: 1.5px solid #2291ff;
+}
+
+.profile-input{
+  border-radius: 100px;
+  border-style: none;
+  background-color: #252B2D;
+  padding: 4px 13px;
+  color: rgba(255, 255, 255, 0.815);
+  font-weight: 200;
 }
 
 .profile-location {
-  color: black;
-  border: 1px solid black;
+  color: rgba(255, 255, 255, 0.815);
+  border: none;
+  background-color: #252B2D;
+  font-weight: 200;
+}
+
+.profile-location::placeholder{
+  color: rgba(255, 255, 255, 0.294);
 }
 
 .profile-location-container {
