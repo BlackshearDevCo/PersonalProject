@@ -33,7 +33,6 @@ class Community extends Component {
     };
 
     this.socket.on("RECIEVE_MESSAGE", data => {
-      console.log(data);
       addMessage(data);
     });
 
@@ -55,7 +54,6 @@ class Community extends Component {
   }
 
   render() {
-    const { username, userInput, messages } = this.state;
     return (
       <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         <div className="chat">
@@ -66,7 +64,7 @@ class Community extends Component {
                 {this.state.messages.map((cur, ind) => {
                   return (
                     <div>
-                      {cur.userId == this.props.currentUser.user_id ? (
+                      {cur.userId === this.props.currentUser.user_id ? (
                         <div className="single-user-message-container">
                           <div className="message-pfp-border">
                             <div
@@ -85,7 +83,7 @@ class Community extends Component {
                             <div
                               key={ind}
                               className={
-                                cur.userId == this.props.currentUser.user_id
+                                cur.userId === this.props.currentUser.user_id
                                   ? "user-message-container"
                                   : "message-container"
                               }
@@ -111,7 +109,7 @@ class Community extends Component {
                             <div
                               key={ind}
                               className={
-                                cur.userId == this.props.currentUser.user_id
+                                cur.userId === this.props.currentUser.user_id
                                   ? "user-message-container"
                                   : "message-container"
                               }

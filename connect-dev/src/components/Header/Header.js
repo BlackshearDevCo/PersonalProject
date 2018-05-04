@@ -40,7 +40,7 @@ class Header extends Component {
   }
 
   render() {
-    const { currentUser, name, menuFlag } = this.props;
+    const { currentUser, menuFlag } = this.props;
 
     return (
       <div className="header">

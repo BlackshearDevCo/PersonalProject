@@ -8,7 +8,7 @@ import { logout, toggleMenuFlag } from "../../redux/reducers/userReducer";
 
 class Navbar extends Component {
   render() {
-    const { menuFlag, toggleMenuFlag } = this.props;
+    const { menuFlag } = this.props;
 
     return (
       <div className={menuFlag ? 'nav-true' : 'nav'}>

@@ -36,15 +36,14 @@ class Profile extends Component {
       userExperience: 0,
       companyName: "",
       userPortfolio: "",
-      userBio: "",
       userBirthday: "",
       userLocation: "",
       usernameSearch: "",
       locationSearch: "",
       errorMessage: ""
     };
-    this.handleLocation - this.handleLocation.bind(this);
-    this.handleError - this.handleError.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   componentDidMount() {
@@ -70,7 +69,6 @@ class Profile extends Component {
       profilePic,
       bio,
       currentUser,
-      posts,
       logout,
       userPosts,
       deletePost,
@@ -82,7 +80,11 @@ class Profile extends Component {
         {!name ? (
           <div className="profile-banner">
             <div className="devs-background" />
-            <img src={profilePic} className="default-profile-pic" />
+            <img
+              src={profilePic}
+              alt="Picture"
+              className="default-profile-pic"
+            />
             <div className="profile-border">
               <section className="user-info">
                 <h2 className="not-logged">Oops! You aren't logged in!</h2>
@@ -96,7 +98,7 @@ class Profile extends Component {
           <div>
             <div className="profile-banner">
               <div className="devs-background" />
-              <img src={profilePic} className="profile-pic" />
+              <img src={profilePic} alt="Picture" className="profile-pic" />
               <h2 className="user-name">
                 {currentUser.first_name || "Placeholder"}
               </h2>
@@ -162,7 +164,7 @@ class Profile extends Component {
                     </p>
                   </div>
                   {!this.props.userPortfolioEdit
-                    ? currentUser.user_type == 1 && (
+                    ? currentUser.user_type === 1 && (
                         <div className="user-link">
                           <p className="info-title">Portfolio: </p>
                           <p className="info">
@@ -179,7 +181,7 @@ class Profile extends Component {
                           </p>
                         </div>
                       )
-                    : currentUser.user_type == 1 && (
+                    : currentUser.user_type === 1 && (
                         <div className="user-link">
                           <p className="info-title">Portfolio: </p>
                           <input
@@ -540,6 +542,7 @@ class Profile extends Component {
                           <div key={ind} className="post-container">
                             <div className="user-container">
                               <img
+                                alt="Picture"
                                 src={cur.profile_picture}
                                 className="post-pfp"
                               />

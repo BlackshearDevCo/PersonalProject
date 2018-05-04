@@ -3,13 +3,12 @@ import "./App.css";
 
 import routes from "./routes";
 
-import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { loginUser, getConnectionCount } from "./redux/reducers/userReducer";
+import { loginUser } from "./redux/reducers/userReducer";
 
 class App extends Component {
   componentDidMount() {
@@ -17,8 +16,6 @@ class App extends Component {
   }
 
   render() {
-    const { name, email, profilePic } = this.props;
-
     return (
       <div className="App">
         <Header />
@@ -33,5 +30,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { loginUser, getConnectionCount })(App)
+  connect(mapStateToProps, { loginUser })(App)
 );

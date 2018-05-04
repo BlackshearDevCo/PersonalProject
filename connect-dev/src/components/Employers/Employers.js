@@ -31,7 +31,7 @@ class Devs extends Component {
   }
 
   componentDidMount() {
-    this.props.currentUser ? this.props.loginUser() : null;
+    this.props.currentUser && this.props.loginUser();
     this.props.getEmployersPosts();
   }
 
@@ -52,8 +52,6 @@ class Devs extends Component {
   }
 
   render() {
-    console.log(this.props.isLoading);
-
     let filtered = this.props.employerPosts
       .filter(
         cur =>
@@ -66,6 +64,7 @@ class Devs extends Component {
             <div key={ind} className="post-container">
               <div className="user-container">
                 <img
+                  alt="Picture"
                   src={cur.profile_picture}
                   className="post-pfp"
                   onMouseEnter={() => {
@@ -109,7 +108,11 @@ class Devs extends Component {
               >
                 <div className="quick-look-bg">
                   <div className="quick-look-container">
-                    <img src={cur.profile_picture} className="post-pfp" />
+                    <img
+                      src={cur.profile_picture}
+                      alt="Picture"
+                      className="post-pfp"
+                    />
                     <h3 className="quick-look-name">{cur.first_name}</h3>
                     <p className="quick-look-location">
                       {cur.location ||
@@ -168,7 +171,10 @@ class Devs extends Component {
         );
       });
     return (
-      <div className="devs-container" onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
+      <div
+        className="devs-container"
+        onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}
+      >
         {this.props.isLoading ? (
           <div className="loading-bg">
             <div className="loading-container">

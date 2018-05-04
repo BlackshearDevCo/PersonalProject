@@ -47,7 +47,7 @@ class AddPost extends Component {
   }
 
   render() {
-    const { newPost, currentUser, addExperienceSpecialty } = this.props;
+    const { currentUser } = this.props;
 
     return (
       <div>
