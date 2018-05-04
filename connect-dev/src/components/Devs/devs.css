@@ -107,8 +107,13 @@
 }
 
 .location-container {
-  width: 45%;
+  width: 40%;
   max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
 }
 
 .search-input::placeholder {
@@ -116,18 +121,22 @@
 }
 
 .autocomplete-dropdown-container {
-  width: 95%;
   position: absolute;
   top: 30px;
-  right: 20px;
+  width: 95%;
+  min-width: 200px;
   z-index: 5;
   color: #333;
   box-shadow: rgba(0, 0, 0, 0.315) 0 0 5px;
+  border-radius: 5px;
 }
 
 .no-posts,
 .devs-loading {
-  margin: 70px;
+  position: absolute;
+  top: 35vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
   color: white;
 }
 

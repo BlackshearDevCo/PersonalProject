@@ -203,7 +203,7 @@ class Devs extends Component {
                       ? "suggestion-item--active"
                       : "suggestion-item";
                     const style = suggestion.active
-                      ? { backgroundColor: "#fafafa" }
+                      ? { backgroundColor: "rgb(200, 200, 200)" }
                       : { backgroundColor: "#ffffff" };
 
                     return (
@@ -225,9 +225,7 @@ class Devs extends Component {
         {this.props.posts && this.props.posts.length > 0 ? (
           <div className="devs-posts-container">
             {filtered}
-            {!filtered.length && (
-              <h1 className="no-posts">No posts match your search</h1>
-            )}
+            {!filtered.length && <h1 className="no-posts">No posts match your search</h1>}
             <div className="devs-background" />
           </div>
         ) : (

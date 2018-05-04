@@ -86,8 +86,10 @@ class AddPost extends Component {
                 Add Post
               </button>
             </div>
-            <div className="post-btn" onClick={() => this.togglePostFlag()}>
-              <div className="plus-symbol" />
+            <div className="post-btn-border">
+              <div className="post-btn" onClick={() => this.togglePostFlag()}>
+                <div className="plus-symbol" />
+              </div>
             </div>
           </div>
         )}

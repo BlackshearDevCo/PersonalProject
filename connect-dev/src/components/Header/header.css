@@ -116,6 +116,14 @@
   background-image: url(../../images/default-pfp-2.png);
   border: 2px solid white;
   transition: ease-in-out 0.4s;
+  transition: .15s ease-in-out;
+}
+
+.header-pfp:hover,
+.header-pfp-true:hover,
+.default-header-pfp:hover,
+.default-header-pfp-true:hover {
+  border: 2px solid #2291ff;
 }
 
 .default-header-pfp {
@@ -220,6 +228,11 @@
 .header-pfp-username {
   color: white;
   margin: 3px;
+  transition: .15s ease-in-out;
+}
+
+.header-edit:hover, .header-pfp-username:hover{
+  color: #2291ff;
 }
 
 /* MEDIA QUERIES */

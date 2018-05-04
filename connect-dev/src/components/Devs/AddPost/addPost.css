@@ -9,8 +9,8 @@ textarea::placeholder{
 }
 
 .post-btn{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #202124;
     position: fixed;
@@ -20,8 +20,8 @@ textarea::placeholder{
 }
 
 .post-btn-border{
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background: linear-gradient(to bottom right, #2291FF, #6B1180);
     position: fixed;
@@ -30,8 +30,8 @@ textarea::placeholder{
 }
 
 .new-post-container{
-    max-width: 550px;
-    max-height: 300px;
+    max-width: 500px;
+    max-height: 275px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -44,7 +44,7 @@ textarea::placeholder{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.219) 0 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.404) 0 0 20px;
 }
 
 .textarea{
@@ -125,14 +125,14 @@ textarea::placeholder{
     }
 }
 
-@media (min-width: 1575px) {
+@media (min-width: 1250px) {
     .new-post-container-full {
         display: block;
         position: fixed;
         top: 50%;
         left: 0;
-        width: calc(350px + 4px);
-        height: calc(320px + 4px);
+        width: calc(16vw);
+        height: calc(45vh);
         background: linear-gradient(to bottom right, #2291FF, #6B1180);
         border-radius: 10px;
         display: flex;

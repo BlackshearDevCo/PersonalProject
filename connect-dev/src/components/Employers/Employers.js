@@ -213,10 +213,10 @@ class Devs extends Component {
         {this.props.employerPosts && this.props.employerPosts.length > 0 ? (
           <div>
             {filtered}
-            {!filtered.length && <h1>No posts match your search</h1>}
+            {!filtered.length && <h1 className='no-posts'>No posts match your search</h1>}
           </div>
         ) : (
-          <h1>No Posts</h1>
+          <h1 className='no-posts'>No Posts</h1>
         )}
         <div>
           {this.props.currentUser &&
