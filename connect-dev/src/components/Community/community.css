@@ -8,7 +8,7 @@
     height: 75px;
     position: fixed;
     bottom: 0;
-    margin: 0;
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,7 +16,7 @@
 }
 
 .message-input{
-    max-width: 900px;
+    max-width: 650px;
     width: 60%;
     height: 50px;
     border-radius: 10px;
@@ -50,6 +50,7 @@
     padding-top: 12vh;
     height: 85vh;
     width: 80vw;
+    max-width: 750px;
     overflow-y: auto;
     overflow-wrap: break-word;
     margin: auto;
@@ -73,8 +74,7 @@
 .message-container, .user-message-container{
     background-color: rgba(39, 43, 44, 0.603);
     color: white;
-    max-width: 100%;
-    min-width: 50px;
+    max-width: 90%;
     text-align: right;
     padding: 10px;
     border: 2px solid #1F68E6;
@@ -88,12 +88,16 @@
     border-radius: 10px 30px 30px 30px;
 }
 
-.message-content-container{
+.user-message-content-container, .message-content-container{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     align-items: stretch;
     max-width: 650px;
-    min-width: 50px;
+}
+
+.message-content-container{
+    align-items: flex-end;
 }
 
 .message-username, .user-message-username{
@@ -102,8 +106,8 @@
     font-weight: 300;
     padding: 3px;
     text-align: left;
-    padding-bottom: 5px;
-    padding-left: 20px;
+    padding: 10px 0 5px 5px;
+    border: none;
 }
 
 .message-username{
@@ -111,17 +115,17 @@
 }
 
 .message-message{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     overflow-wrap: break-word;
-    padding: 5px 10px;
+    padding: 0px 10px;
 }
 
 .message-pfp{
     background-size: cover;
     background-position: center;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -130,19 +134,21 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
-    margin: 15px 0;
+    margin: 5px 0;
+    position: relative;
 }
 
 .single-message-container{
     flex-direction: row-reverse;
+    align-items: flex-start;
 }
 
 .message-pfp-border{
     display: flex;
     align-items: center;
     justify-content: center; 
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     background: linear-gradient(to bottom right, #2291ff, #6b1180);
     border-radius: 50%;
     margin: 0 15px;
@@ -151,7 +157,7 @@
 @media (min-width: 1000px) {
     .message-input{
         width: 50%;
-        height: 65px;
-        font-size: 22px;
+        height: 50px;
+        font-size: 18px;
     }
 }

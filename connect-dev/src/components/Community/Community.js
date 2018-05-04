@@ -76,7 +76,7 @@ class Community extends Component {
                               className="message-pfp"
                             />
                           </div>
-                          <div className="message-content-container">
+                          <div className="user-message-content-container">
                             <h3 className="user-message-username">
                               {cur.user}
                             </h3>
