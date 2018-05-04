@@ -202,9 +202,11 @@ class Header extends Component {
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
                         <div className="inner-pfp-hover">
-                          <h3 className="header-pfp-username">
-                            {currentUser.first_name}
-                          </h3>
+                          <Link to="/profile">
+                            <h3 className="header-pfp-username">
+                              {currentUser.first_name}
+                            </h3>
+                          </Link>
                           <p className="header-pfp-info">{currentUser.email}</p>
                           <p className="header-pfp-info">
                             {this.props.currentUserConnections.length}{" "}
@@ -336,7 +338,6 @@ class Header extends Component {
                         </div>
                       </div>
                     )}
-                    {/* </div> */}
                   </div>
                 </div>
               )}

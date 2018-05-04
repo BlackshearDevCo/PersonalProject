@@ -35,7 +35,8 @@
 .overlay {
   width: 100vw;
   height: 100vh;
-  background-color: #10161fce;
+  background-color: #10161f;
+  opacity: .75;
   z-index: -2;
 }
 
