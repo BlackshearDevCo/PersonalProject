@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
+import { toggleMenuFlag } from '../../redux/reducers/userReducer.js';
+
 class Community extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +57,7 @@ class Community extends Component {
   render() {
     const { username, userInput, messages } = this.state;
     return (
-      <div>
+      <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         <div className="chat">
           <div className="devs-background" />
           {this.props.currentUser.email && (
@@ -171,4 +173,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Community);
+export default connect(mapStateToProps, { toggleMenuFlag })(Community);

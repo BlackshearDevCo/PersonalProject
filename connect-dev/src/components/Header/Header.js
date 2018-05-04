@@ -265,72 +265,79 @@ class Header extends Component {
           ) : (
             <div>
               {window.innerWidth >= 900 ? (
-                <div
-                  className={
-                    !this.props.menuFlag
-                      ? "default-header-pfp"
-                      : "default-header-pfp-true"
-                  }
-                  onClick={() => this.toggleMouseHover()}
-                >
-                  {this.state.mouseHover ? (
-                    <div className="header-pfp-hover-true">
-                      <div className="inner-pfp-hover">
-                        <h3 className="header-pfp-text">
-                          You are not logged in
-                        </h3>
-                        <a href="http://localhost:3001/auth">
-                          <button className="header-pfp-login">Log in</button>
-                        </a>
+                <div>
+                  <div
+                    className={
+                      !this.props.menuFlag
+                        ? "default-header-pfp"
+                        : "default-header-pfp-true"
+                    }
+                    onClick={() => this.toggleMouseHover()}
+                  />
+                  <div>
+                    {this.state.mouseHover ? (
+                      <div className="header-pfp-hover-true">
+                        <div className="inner-pfp-hover">
+                          <h3 className="header-pfp-text">
+                            You are not logged in
+                          </h3>
+                          <a href="http://localhost:3001/auth">
+                            <button className="header-pfp-login">Log in</button>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="header-pfp-hover">
-                      <div className="inner-pfp-hover">
-                        <h3 className="header-pfp-text">
-                          You are not logged in
-                        </h3>
-                        <a href="http://localhost:3001/auth">
-                          <button className="header-pfp-login">Log in</button>
-                        </a>
+                    ) : (
+                      <div className="header-pfp-hover">
+                        <div className="inner-pfp-hover">
+                          <h3 className="header-pfp-text">
+                            You are not logged in
+                          </h3>
+                          <a href="http://localhost:3001/auth">
+                            <button className="header-pfp-login">Log in</button>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               ) : (
-                <div
-                  className={
-                    !this.props.menuFlag
-                      ? "default-header-pfp"
-                      : "default-header-pfp-true"
-                  }
-                  onClick={() =>
-                    this.setState({ mouseHover: !this.state.mouseHover })
-                  }
-                >
-                  {this.state.mouseHover ? (
-                    <div className="header-pfp-hover-true">
-                      <div className="inner-pfp-hover-true">
-                        <h3 className="header-pfp-text">
-                          You are not logged in
-                        </h3>
-                        <a href="http://localhost:3001/auth">
-                          <button className="header-pfp-login">Log in</button>
-                        </a>
+                <div>
+                  <div
+                    className={
+                      !this.props.menuFlag
+                        ? "default-header-pfp"
+                        : "default-header-pfp-true"
+                    }
+                    onClick={() =>
+                      this.setState({ mouseHover: !this.state.mouseHover })
+                    }
+                  />
+                  <div>
+                    {this.state.mouseHover ? (
+                      <div className="header-pfp-hover-true">
+                        <div className="inner-pfp-hover-true">
+                          <h3 className="header-pfp-text">
+                            You are not logged in
+                          </h3>
+                          <a href="http://localhost:3001/auth">
+                            <button className="header-pfp-login">Log in</button>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="header-pfp-hover">
-                      <div className="inner-pfp-hover-true">
-                        <h3 className="header-pfp-text">
-                          You are not logged in
-                        </h3>
-                        <a href="http://localhost:3001/auth">
-                          <button className="header-pfp-login">Log in</button>
-                        </a>
+                    ) : (
+                      <div className="header-pfp-hover">
+                        <div className="inner-pfp-hover-true">
+                          <h3 className="header-pfp-text">
+                            You are not logged in
+                          </h3>
+                          <a href="http://localhost:3001/auth">
+                            <button className="header-pfp-login">Log in</button>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                    {/* </div> */}
+                  </div>
                 </div>
               )}
             </div>

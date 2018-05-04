@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 import {
   getPosts,
   loginUser,
-  getConnectionCount
+  getConnectionCount,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
@@ -176,9 +177,9 @@ class Devs extends Component {
           </div>
         );
       });
-
+console.log(this.props)
     return (
-      <div className="devs-container">
+      <div className="devs-container" onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {this.props.isLoading ? (
           <div className="loading-bg">
             <div className="loading-container">
@@ -270,72 +271,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getPosts,
   loginUser,
-  getConnectionCount
+  getConnectionCount,
+  toggleMenuFlag
 })(Devs);
-
-{
-  /* <div className="input-container">
-          <input
-            placeholder="Username..."
-            onChange={e => this.handleUsernameSearch(e.target.value)}
-            className="username search-input"
-          />
-          <PlacesAutocomplete
-            value={this.state.locationSearch}
-            onChange={value => this.handleLocation(value)}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div className="location-container">
-                <input
-                  {...getInputProps({
-                    placeholder: "Location...",
-                    className: "location search-input"
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
-                    const style = suggestion.active
-                      ? { backgroundColor: "rgb(200, 200, 200)" }
-                      : { backgroundColor: "#ffffff" };
-
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
-        </div>
-        {this.props.posts && this.props.posts.length > 0 ? (
-          <div className="devs-posts-container">
-            {filtered}
-            {!filtered.length && <h1 className="no-posts">No posts match your search</h1>}
-            <div className="devs-background" />
-          </div>
-        ) : (
-          <div className="devs-container">
-            <div className="devs-background" />
-            <h1 className="devs-loading">Loading...</h1>
-          </div>
-        )}
-        <div>
-          {this.props.currentUser &&
-            this.props.currentUser.user_type === 1 && (
-              <div>
-                <AddPost className="small" />
-                <AddPost className="large" />
-              </div>
-            )}
-        </div> */
-}

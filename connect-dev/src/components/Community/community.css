@@ -81,6 +81,7 @@
     width: 150px;
     margin: 20px auto;
     border-radius: 120px;
+    transition: linear .1s;
 }
 
 .login-text:hover{

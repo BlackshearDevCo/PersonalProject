@@ -21,7 +21,8 @@ import {
   toggleExperienceEdit,
   toggleCompanyNameEdit,
   toggleUserBirthdayEdit,
-  toggleUserLocationEdit
+  toggleUserLocationEdit,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
@@ -77,7 +78,7 @@ class Profile extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {!name ? (
           <div className="profile-banner">
             <div className="devs-background" />
@@ -186,7 +187,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ userPortfolio: e.target.value })
                             }
-                            className='profile-input'
+                            className="profile-input"
                           />
                         </div>
                       )}
@@ -200,7 +201,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ userBio: e.target.value })
                             }
-                            className='profile-input'
+                            className="profile-input"
                           />
                         </div>
                       ) : (
@@ -214,7 +215,7 @@ class Profile extends Component {
                                 onChange={e =>
                                   this.setState({ userBio: e.target.value })
                                 }
-                                className='profile-input'
+                                className="profile-input"
                               />
                             </div>
                           )}
@@ -248,7 +249,7 @@ class Profile extends Component {
                                       companyName: e.target.value
                                     })
                                   }
-                                  className='profile-input'
+                                  className="profile-input"
                                 />
                               </div>
                             )}
@@ -258,7 +259,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ companyName: e.target.value })
                             }
-                            className='profile-input'
+                            className="profile-input"
                           />
                         )
                       ) : !currentUser.experience ? (
@@ -356,7 +357,7 @@ class Profile extends Component {
                             onChange={e =>
                               this.setState({ birthday: e.target.value })
                             }
-                            className='profile-input'
+                            className="profile-input"
                           />
                         )}
                       </div>
@@ -461,27 +462,54 @@ class Profile extends Component {
                     <button
                       className="update-info-btn"
                       onClick={() => {
-                        swal(
-                          "Update Successful",
-                          "Your profile was updated",
-                          "success",
-                          { button: "Nice!" }
-                        );
-                        this.props.userTypeEdit &&
-                          this.props.toggleUserTypeEdit();
-                        this.props
-                          .updateUserInfo(
-                            currentUser.user_id,
-                            this.state.userType || currentUser.user_type,
-                            this.state.birthday || currentUser.birthdate,
-                            this.state.userBio || currentUser.bio,
-                            this.state.userExperience || currentUser.experience,
-                            this.state.locationSearch || currentUser.location,
-                            this.state.companyName || currentUser.company_name,
-                            this.state.toggleUserPortfolioEdit ||
-                              currentUser.portfolio
-                          )
-                          .then(() => this.props.loginUser());
+                        if (
+                          !this.state.userType &&
+                          !this.state.birthday &&
+                          !this.state.userBio &&
+                          !this.state.userExperience &&
+                          !this.state.locationSearch &&
+                          !this.state.companyName &&
+                          !this.state.toggleUserPortfolioEdit
+                        ) {
+                          swal(
+                            "Nothing Changed",
+                            "You didn't enter in any values",
+                            "warning"
+                          );
+                        } else {
+                          swal(
+                            "Update Successful",
+                            "Your profile was updated",
+                            "success",
+                            { button: "Nice!" }
+                          );
+                          this.props.userTypeEdit &&
+                            this.props.toggleUserTypeEdit();
+                          this.props
+                            .updateUserInfo(
+                              currentUser.user_id,
+                              this.state.userType || currentUser.user_type,
+                              this.state.birthday || currentUser.birthdate,
+                              this.state.userBio || currentUser.bio,
+                              this.state.userExperience ||
+                                currentUser.experience,
+                              this.state.locationSearch || currentUser.location,
+                              this.state.companyName ||
+                                currentUser.company_name,
+                              this.state.toggleUserPortfolioEdit ||
+                                currentUser.portfolio
+                            )
+                            .then(() => this.props.loginUser());
+                          this.setState({
+                            userType: "",
+                            birthday: "",
+                            userBio: "",
+                            userExperience: "",
+                            locationSearch: "",
+                            companyName: "",
+                            toggleUserPortfolioEdit: ""
+                          });
+                        }
                       }}
                     >
                       Update Info
@@ -502,7 +530,7 @@ class Profile extends Component {
                 <h2 className="posts-title">Previous Posts</h2>
                 <div className="post">
                   {!userPosts[0] ? (
-                    <div className='profile-no-posts'>
+                    <div className="profile-no-posts">
                       <p>User has no pervious posts</p>
                     </div>
                   ) : (
@@ -515,9 +543,14 @@ class Profile extends Component {
                                 src={cur.profile_picture}
                                 className="post-pfp"
                               />
-                              <h3 id={cur.user_id} className="profile-post-username">
+                              <h3
+                                id={cur.user_id}
+                                className="profile-post-username"
+                              >
                                 {cur.first_name}
-                                <p className="profile-post-location">{cur.location}</p>
+                                <p className="profile-post-location">
+                                  {cur.location}
+                                </p>
                               </h3>
                               <div>
                                 <button
@@ -586,5 +619,6 @@ export default connect(mapStateToProps, {
   toggleExperienceEdit,
   toggleCompanyNameEdit,
   toggleUserBirthdayEdit,
-  toggleUserLocationEdit
+  toggleUserLocationEdit,
+  toggleMenuFlag
 })(Profile);

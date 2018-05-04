@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 import {
   getEmployersPosts,
   loginUser,
-  getConnectionCount
+  getConnectionCount,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
@@ -167,7 +168,7 @@ class Devs extends Component {
         );
       });
     return (
-      <div className="devs-container">
+      <div className="devs-container" onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {this.props.isLoading ? (
           <div className="loading-bg">
             <div className="loading-container">
@@ -255,5 +256,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getEmployersPosts,
   loginUser,
-  getConnectionCount
+  getConnectionCount,
+  toggleMenuFlag
 })(Devs);

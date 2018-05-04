@@ -86,12 +86,14 @@
 .main-logo-link {
   width: 40%;
   height: 70%;
+  opacity: 1;
   transition: ease-in-out 0.4s;
 }
 
 .main-logo-link-true {
   width: 0%;
   height: 0%;
+  opacity: 0;
   transition: ease-in-out 0.4s;
 }
 
@@ -115,8 +117,11 @@
   border-radius: 50%;
   background-image: url(../../images/default-pfp-2.png);
   border: 2px solid white;
-  transition: ease-in-out 0.4s;
-  transition: 0.4s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.default-header-pfp {
+  background-size: 325%;
 }
 
 .header-pfp:hover,
@@ -126,61 +131,44 @@
   border: 2px solid #2291ff;
 }
 
-.default-header-pfp {
-  background-size: 325%;
-}
-
 .default-header-pfp-true {
-  width: 0vh;
-  height: 0vh;
-  border: 2px solid rgba(255, 255, 255, 0);
   background-size: 325%;
+  opacity: 0;
 }
 
 .header-pfp-true {
-  width: 0;
-  height: 0;
-  border: 2px solid rgba(255, 255, 255, 0);
+  opacity: 0;
 }
 
 .header-pfp-hover,
 .header-pfp-hover-true {
-  width: 1px;
-  height: 0vh;
-  position: absolute;
-  right: -6vw;
-  top: 9vh;
-  color: rgba(0, 0, 0, 0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-
-.header-pfp-hover,
-.header-pfp-hover-true {
-  transition: ease-in-out 0.5s;
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  transition: ease-in-out .4s;
+}
+
+.header-pfp-hover,
+.header-pfp-hover-true {
   border-radius: 10px 0 0 10px;
   width: 254px;
   min-height: 154px;
+  top: 9vh;
   background: linear-gradient(to bottom right, #2291ff, #6b1180);
-}
-
-.header-pfp-hover {
-  color: rgba(0, 0, 0, 0);
   right: -10vw;
-  top: 10vh;
   transform: translate(100%);
 }
 
+.header-pfp-hover {
+  right: -10vw;
+  transform: translate(100%);
+  top: 10vh;
+}
+
 .header-pfp-hover-true {
-  color: rgba(255, 255, 255, 0);
-  right: -7vw;
+  right: -6vw;
   top: 10vh;
   transform: translate(5%);
 }
@@ -191,14 +179,14 @@
   min-height: 150px;
   margin: auto;
   transition: ease-in-out 0.5s;
-  border-radius: 9px;
+  border-radius: 9px 0 0 9px;
 }
 
 .inner-pfp-hover {
   background-color: rgb(58, 65, 65);
   width: 250px;
   min-height: 150px;
-  border-radius: 9px;
+  border-radius: 9px 0 0 9px;
   margin: auto;
   transition: ease-in-out 0.5s;
   display: flex;
