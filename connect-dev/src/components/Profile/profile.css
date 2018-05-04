@@ -3,62 +3,89 @@
   top: 0;
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #27c2eb, #1de0e7);
+  background: linear-gradient(
+    to bottom right,
+    rgba(25, 119, 207, 0.2),
+    rgba(45, 7, 95, 0.2)
+  );
   color: aliceblue;
-  z-index: -1;
 }
 
-.profile-pic, .default-profile-pic {
-  margin-top: 10vh;
-  margin-bottom: -6vh;
-  width: 150px;
-  height: 150px;
+.profile-pic,
+.default-profile-pic {
+  margin-top: 12vh;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-position: center;
   background-size: 300%;
-  background-color: #27c2eb;
-  border: 1px solid #10161f;
+  z-index: 5;
 }
 
-.default-profile-pic{
-    background-image: url(../../images/default-pfp-2.png);
-    background-size: 311%;
+.default-profile-pic {
+  background-image: url(../../images/default-pfp-2.png);
+  background-size: 311%;
+  background-color: linear-gradient(
+    to bottom right,
+    rgba(25, 119, 207, 0.2),
+    rgba(45, 7, 95, 0.2)
+  );
 }
 
 .user-info {
-  background-color: aliceblue;
-  color: #10161f;
-  width: 80%;
-  max-width: 750px;
-  min-height: 60vh;
-  margin: auto;
+  background-color: rgb(58, 65, 65);
+  color: white;
+  width: 100%;
+  max-width: 600px;
+  min-height: 40vh;
+  margin: 2px;
   padding: 20px;
   text-align: left;
   border-radius: 10px;
+  z-index: 1;
 }
 
-.user-name, .not-logged {
+.profile-border {
+  width: calc(80vw + 4px);
+  max-width: 604px;
+  min-height: calc(40vh + 4px);
+  background: linear-gradient(to bottom right, #2291ff, #6b1180);
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.not-logged {
   font-size: 28px;
   margin-top: 5vh;
   margin-bottom: 2vh;
   text-align: center;
 }
 
+.user-name {
+  font-size: 28px;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
 .info-title {
-  margin: 20px 0 10px 0;
-  font-size: 22px;
-  font-weight: 400;
+  margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.698);
 }
 
 .info {
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 15px;
 }
 
-.user-port{
-    color: black;
-    width: 90%;
-    word-wrap: break-word;
+.user-port {
+  color: black;
+  width: 90%;
+  word-wrap: break-word;
 }
 
 .not-logged {
@@ -67,9 +94,9 @@
   font-weight: 400;
 }
 
-.posts-title{
-    margin-top: 30px;
-    font-size: 26px;
+.posts-title {
+  margin-top: 30px;
+  font-size: 26px;
 }
 
 .profile-button {
@@ -81,65 +108,83 @@
   background-color: #27c2eb;
 }
 
-.profile-location{
-    color: black;
-    border: 1px solid black;
+.profile-location {
+  color: black;
+  border: 1px solid black;
 }
 
-.profile-location-container{
-    position: relative;
+.profile-location-container {
+  position: relative;
 }
 
-.profile-log-out, .update-info-btn, .profile-log-in, .delete-post{
-    border-style: none;
-    border-radius: 15px;
-    width: 45%;
-    height: 25px;
-    background: linear-gradient(to bottom right, #1de0e7, #29d6f5);
-    color: white;
-    margin-top: 20px;
+.profile-log-out,
+.update-info-btn,
+.profile-log-in,
+.delete-post {
+  border-style: none;
+  border-radius: 15px;
+  width: 45%;
+  height: 25px;
+  background: linear-gradient(to left, #3275e3, #6b1180);
+  color: white;
+  margin-top: 20px;
+  font-weight: 200;
 }
 
-.profile-log-out{
-    width: 100%;
+.profile-log-out {
+  width: 100%;
 }
 
-.log-out-btn{
-    width: 45%;
+.log-out-btn {
+  width: 45%;
 }
 
-.profile-log-in{
-    border-radius: 25px;
-    width: 225px;
-    height: 40px;
-    margin: 15px auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%);
+.profile-log-in {
+  border-radius: 25px;
+  width: 225px;
+  height: 40px;
+  margin: 15px auto;
+}
+.login-a-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button-container{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.delete-post{
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(0, -100%);
-    margin-right: 10px;
-    min-width: 85px;
-    width: 10vw;
-    max-width: 120px;
+.profile-post-username {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: left;
+}
+
+.profile-post-location {
+  font-weight: 200;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.698);
+}
+
+.delete-post {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -100%);
+  margin-right: 10px;
+  min-width: 75px;
+  width: 10vw;
+  max-width: 120px;
+  letter-spacing: 0.1em;
 }
 
 @media (max-width: 415px) {
-    .delete-post{
-        min-width: 60px;
-        font-size: 10px;
-    }
+  .delete-post {
+    min-width: 60px;
+    font-size: 10px;
+  }
 }

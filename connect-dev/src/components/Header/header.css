@@ -297,6 +297,18 @@
   .menu-container {
     width: 3vw;
   }
+
+  .header-pfp-hover,
+  .header-pfp-hover-true{
+    height: 174px;
+    width: 264px;
+  }
+
+  .inner-pfp-hover,
+  .inner-pfp-hover-true{
+    height: 170px;
+    width: 260px;
+  }
 }
 
 @media (min-width: 1025px) {
@@ -318,15 +330,5 @@
 
   .menu-container {
     width: 3vw;
-  }
-
-  .header-pfp-hover, .header-pfp-hover-true {
-    width: 346px;
-    height: 196px;
-  }
-
-  .inner-pfp-hover{
-    width: 340px;
-    height: 190px;
   }
 }

@@ -80,425 +80,417 @@ class Profile extends Component {
       <div>
         {!name ? (
           <div className="profile-banner">
+            <div className="devs-background" />
             <img src={profilePic} className="default-profile-pic" />
-            <section className="user-info">
-              <h2 className="not-logged">Oops! You aren't logged in!</h2>
-              <a href="http://localhost:3001/auth">
-                <button className="profile-log-in">Log In</button>
-              </a>
-            </section>
+            <div className="profile-border">
+              <section className="user-info">
+                <h2 className="not-logged">Oops! You aren't logged in!</h2>
+                <a href="http://localhost:3001/auth" className="login-a-tag">
+                  <button className="profile-log-in">Log In</button>
+                </a>
+              </section>
+            </div>
           </div>
         ) : (
           <div>
             <div className="profile-banner">
+              <div className="devs-background" />
               <img src={profilePic} className="profile-pic" />
+              <h2 className="user-name">
+                {currentUser.first_name || "Placeholder"}
+              </h2>
 
-              <section className="user-info">
-                <h2 className="user-name">
-                  {currentUser.first_name || "Placeholder"}
-                </h2>
-                <div className="user-type">
-                  <p className="info-title">User Type: </p>
-                  {!currentUser.user_type ? (
-                    <div>
-                      <button onClick={() => this.setState({ userType: 1 })}>
-                        Developer
-                      </button>
-                      <button onClick={() => this.setState({ userType: 2 })}>
-                        Employer
-                      </button>
-                    </div>
-                  ) : (
-                    <div
-                      className="info"
-                      // onDoubleClick={() => this.props.toggleUserTypeEdit()}
-                    >
-                      {!this.props.userTypeEdit ? (
-                        <p>
-                          {currentUser.user_type === 1
-                            ? "Developer"
-                            : "Employer"}
-                        </p>
-                      ) : (
-                        <div>
-                          <button
-                            onClick={() => this.setState({ userType: 1 })}
-                            className={
-                              currentUser.user_type === 1
-                                ? "profile-active profile-button"
-                                : "profile-inactive profile-button"
-                            }
-                          >
-                            Developer
-                          </button>
-                          <button
-                            onClick={() => this.setState({ userType: 2 })}
-                            className={
-                              currentUser.user_type === 2
-                                ? "profile-active profile-button"
-                                : "profile-inactive profile-button"
-                            }
-                          >
-                            Employer
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-                <div className="user-email">
-                  <p className="info-title">Email: </p>
-                  <p className="info">{email || "User has no email"}</p>
-                </div>
-                <div>
-                  <p className="info-title">Connections: </p>
-                  <p className="info">
-                    {currentUserConnections[0]
-                      ? currentUserConnections.length
-                      : "0"}
-                  </p>
-                </div>
-                {!this.props.userPortfolioEdit
-                  ? currentUser.user_type == 1 && (
-                      <div
-                        className="user-link"
-                      >
-                        <p className="info-title">Portfolio: </p>
-                        <p className="info">
-                          {currentUser.portfolio
-                            ? (
-                                <a
-                                  href={currentUser.portfolio}
-                                  className="user-port"
-                                >
-                                  {currentUser.portfolio}
-                                </a>
-                              ) || <p>User does not have a portfolio.</p>
-                            : "User does not have a portfolio."}
-                        </p>
-                      </div>
-                    )
-                  : currentUser.user_type == 1 && (
-                      <div
-                        className="user-link"
-                      >
-                        <p className="info-title">Portfolio: </p>
-                        <input
-                          placeholder={currentUser.portfolio || "Portfolio"}
-                          onChange={e =>
-                            this.setState({ userPortfolio: e.target.value })
-                          }
-                        />
-                      </div>
-                    )}
-                <div className="user-bio">
-                  <p className="info-title">Bio: </p>
-                  <div>
-                    {!bio ? (
+              <div className="profile-border">
+                <section className="user-info">
+                  <div className="user-type">
+                    <p className="info-title">User Type: </p>
+                    {!currentUser.user_type ? (
                       <div>
-                        <input
-                          placeholder="Enter Bio"
-                          onChange={e =>
-                            this.setState({ userBio: e.target.value })
-                          }
-                        />
+                        <button onClick={() => this.setState({ userType: 1 })}>
+                          Developer
+                        </button>
+                        <button onClick={() => this.setState({ userType: 2 })}>
+                          Employer
+                        </button>
                       </div>
                     ) : (
-                      <div
-                        className="info"
-                      >
-                        {!this.props.userBioEdit ? (
-                          <p>{bio}</p>
+                      <div className="info">
+                        {!this.props.userTypeEdit ? (
+                          <p>
+                            {currentUser.user_type === 1
+                              ? "Developer"
+                              : "Employer"}
+                          </p>
                         ) : (
                           <div>
-                            <input
-                              placeholder={currentUser.bio || "Enter Bio"}
-                              onChange={e =>
-                                this.setState({ userBio: e.target.value })
+                            <button
+                              onClick={() => this.setState({ userType: 1 })}
+                              className={
+                                currentUser.user_type === 1
+                                  ? "profile-active profile-button"
+                                  : "profile-inactive profile-button"
                               }
-                            />
+                            >
+                              Developer
+                            </button>
+                            <button
+                              onClick={() => this.setState({ userType: 2 })}
+                              className={
+                                currentUser.user_type === 2
+                                  ? "profile-active profile-button"
+                                  : "profile-inactive profile-button"
+                              }
+                            >
+                              Employer
+                            </button>
                           </div>
                         )}
                       </div>
                     )}
                   </div>
-                </div>
-                <div className="user-experience">
-                  <div>
-                    {currentUser.user_type === 2 ? (
-                      <p className="info-title">Company: </p>
-                    ) : (
-                      <p className="info-title">Experience: </p>
-                    )}
+                  <div className="user-email">
+                    <p className="info-title">Email: </p>
+                    <p className="info">{email || "User has no email"}</p>
                   </div>
                   <div>
-                    {currentUser.user_type === 2 ? (
-                      currentUser.company_name ? (
-                        <div
-                          className="info"
-                        >
-                          {!this.props.userCompanyNameEdit ? (
-                            <p>{currentUser.company_name}</p>
+                    <p className="info-title">Connections: </p>
+                    <p className="info">
+                      {currentUserConnections[0]
+                        ? currentUserConnections.length
+                        : "0"}
+                    </p>
+                  </div>
+                  {!this.props.userPortfolioEdit
+                    ? currentUser.user_type == 1 && (
+                        <div className="user-link">
+                          <p className="info-title">Portfolio: </p>
+                          <p className="info">
+                            {currentUser.portfolio
+                              ? (
+                                  <a
+                                    href={currentUser.portfolio}
+                                    className="user-port"
+                                  >
+                                    {currentUser.portfolio}
+                                  </a>
+                                ) || <p>User does not have a portfolio.</p>
+                              : "User does not have a portfolio."}
+                          </p>
+                        </div>
+                      )
+                    : currentUser.user_type == 1 && (
+                        <div className="user-link">
+                          <p className="info-title">Portfolio: </p>
+                          <input
+                            placeholder={currentUser.portfolio || "Portfolio"}
+                            onChange={e =>
+                              this.setState({ userPortfolio: e.target.value })
+                            }
+                          />
+                        </div>
+                      )}
+                  <div className="user-bio">
+                    <p className="info-title">Bio: </p>
+                    <div>
+                      {!bio ? (
+                        <div>
+                          <input
+                            placeholder="Enter Bio"
+                            onChange={e =>
+                              this.setState({ userBio: e.target.value })
+                            }
+                          />
+                        </div>
+                      ) : (
+                        <div className="info">
+                          {!this.props.userBioEdit ? (
+                            <p>{bio}</p>
                           ) : (
                             <div>
                               <input
-                                placeholder={
-                                  currentUser.company_name ||
-                                  "Enter Company Name"
-                                }
+                                placeholder={currentUser.bio || "Enter Bio"}
                                 onChange={e =>
-                                  this.setState({ companyName: e.target.value })
+                                  this.setState({ userBio: e.target.value })
                                 }
                               />
                             </div>
                           )}
                         </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="user-experience">
+                    <div>
+                      {currentUser.user_type === 2 ? (
+                        <p className="info-title">Company: </p>
                       ) : (
-                        <input
-                          onChange={e =>
-                            this.setState({ companyName: e.target.value })
-                          }
-                        />
-                      )
-                    ) : !currentUser.experience ? (
-                      <div>
-                        <button
-                          onClick={() => this.setState({ userExperience: 1 })}
-                        >
-                          Junior
-                        </button>
-                        <button
-                          onClick={() => this.setState({ userExperience: 2 })}
-                        >
-                          Mid-Level
-                        </button>
-                        <button
-                          onClick={() => this.setState({ userExperience: 3 })}
-                        >
-                          Senior
-                        </button>
-                      </div>
-                    ) : (
-                      <div>
-                        {!this.props.userExperienceEdit ? (
-                          <div
-                          >
-                            {currentUser.experience === 1 ? (
-                              <p>Junior</p>
-                            ) : currentUser.experience === 2 ? (
-                              <p>Mid-Level</p>
+                        <p className="info-title">Experience: </p>
+                      )}
+                    </div>
+                    <div>
+                      {currentUser.user_type === 2 ? (
+                        currentUser.company_name ? (
+                          <div className="info">
+                            {!this.props.userCompanyNameEdit ? (
+                              <p>{currentUser.company_name}</p>
                             ) : (
-                              <p>Senior</p>
+                              <div>
+                                <input
+                                  placeholder={
+                                    currentUser.company_name ||
+                                    "Enter Company Name"
+                                  }
+                                  onChange={e =>
+                                    this.setState({
+                                      companyName: e.target.value
+                                    })
+                                  }
+                                />
+                              </div>
                             )}
                           </div>
                         ) : (
-                          <div
+                          <input
+                            onChange={e =>
+                              this.setState({ companyName: e.target.value })
+                            }
+                          />
+                        )
+                      ) : !currentUser.experience ? (
+                        <div>
+                          <button
+                            onClick={() => this.setState({ userExperience: 1 })}
                           >
-                            <button
-                              onClick={() =>
-                                this.setState({ userExperience: 1 })
-                              }
-                              className={
-                                currentUser.experience === 1
-                                  ? "profile-active profile-button"
-                                  : "profile-inactive profile-button"
-                              }
-                            >
-                              Junior
-                            </button>
-                            <button
-                              onClick={() =>
-                                this.setState({ userExperience: 2 })
-                              }
-                              className={
-                                currentUser.experience === 2
-                                  ? "profile-active profile-button"
-                                  : "profile-inactive profile-button"
-                              }
-                            >
-                              Mid-Level
-                            </button>
-                            <button
-                              onClick={() =>
-                                this.setState({ userExperience: 3 })
-                              }
-                              className={
-                                currentUser.experience === 3
-                                  ? "profile-active profile-button"
-                                  : "profile-inactive profile-button"
-                              }
-                            >
-                              Senior
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="user-birthday">
-                  <p className="info-title">Birthday: </p>
-                  {!currentUser.birthdate ? (
-                    <div>
-                      <input
-                        placeholder="MM/DD/YYYY"
-                        onChange={e =>
-                          this.setState({ birthday: e.target.value })
-                        }
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      className="info"
-                    >
-                      {!this.props.userBirthdayEdit ? (
-                        <p>{currentUser.birthdate}</p>
+                            Junior
+                          </button>
+                          <button
+                            onClick={() => this.setState({ userExperience: 2 })}
+                          >
+                            Mid-Level
+                          </button>
+                          <button
+                            onClick={() => this.setState({ userExperience: 3 })}
+                          >
+                            Senior
+                          </button>
+                        </div>
                       ) : (
+                        <div>
+                          {!this.props.userExperienceEdit ? (
+                            <div>
+                              {currentUser.experience === 1 ? (
+                                <p>Junior</p>
+                              ) : currentUser.experience === 2 ? (
+                                <p>Mid-Level</p>
+                              ) : (
+                                <p>Senior</p>
+                              )}
+                            </div>
+                          ) : (
+                            <div>
+                              <button
+                                onClick={() =>
+                                  this.setState({ userExperience: 1 })
+                                }
+                                className={
+                                  currentUser.experience === 1
+                                    ? "profile-active profile-button"
+                                    : "profile-inactive profile-button"
+                                }
+                              >
+                                Junior
+                              </button>
+                              <button
+                                onClick={() =>
+                                  this.setState({ userExperience: 2 })
+                                }
+                                className={
+                                  currentUser.experience === 2
+                                    ? "profile-active profile-button"
+                                    : "profile-inactive profile-button"
+                                }
+                              >
+                                Mid-Level
+                              </button>
+                              <button
+                                onClick={() =>
+                                  this.setState({ userExperience: 3 })
+                                }
+                                className={
+                                  currentUser.experience === 3
+                                    ? "profile-active profile-button"
+                                    : "profile-inactive profile-button"
+                                }
+                              >
+                                Senior
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="user-birthday">
+                    <p className="info-title">Birthday: </p>
+                    {!currentUser.birthdate ? (
+                      <div>
                         <input
-                          placeholder={currentUser.birthdate || "MM/DD/YYYY"}
+                          placeholder="MM/DD/YYYY"
                           onChange={e =>
                             this.setState({ birthday: e.target.value })
                           }
                         />
-                      )}
-                    </div>
-                  )}
-                </div>
-                <div className="user-location">
-                  <p className="info-title">Location: </p>
-                  {currentUser.location ? (
-                    <div>
-                      {!this.props.userLocationEdit ? (
-                        <p
-                        >
-                          {currentUser.location}
-                        </p>
-                      ) : (
-                        <PlacesAutocomplete
-                          value={this.state.locationSearch}
-                          onChange={value => this.handleLocation(value)}
-                        >
-                          {({
-                            getInputProps,
-                            suggestions,
-                            getSuggestionItemProps
-                          }) => (
-                            <div className="profile-location-container">
-                              <input
-                                {...getInputProps({
-                                  placeholder: currentUser.location || 'Search Location...',
-                                  className:
-                                    "location search-input profile-location"
-                                })}
-                              />
-                              <div className="autocomplete-dropdown-container">
-                                {suggestions.map(suggestion => {
-                                  const className = suggestion.active
-                                    ? "suggestion-item--active"
-                                    : "suggestion-item";
-                                  const style = suggestion.active
-                                    ? { backgroundColor: "#f3f3f3" }
-                                    : { backgroundColor: "#ffffff" };
-
-                                  return (
-                                    <div
-                                      {...getSuggestionItemProps(suggestion, {
-                                        className,
-                                        style
-                                      })}
-                                    >
-                                      <span>{suggestion.description}</span>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
-                        </PlacesAutocomplete>
-                      )}
-                    </div>
-                  ) : (
-                    <PlacesAutocomplete
-                      value={this.state.locationSearch}
-                      onChange={value => this.handleLocation(value)}
-                    >
-                      {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps
-                      }) => (
-                        <div className="profile-location-container">
+                      </div>
+                    ) : (
+                      <div className="info">
+                        {!this.props.userBirthdayEdit ? (
+                          <p>{currentUser.birthdate}</p>
+                        ) : (
                           <input
-                            {...getInputProps({
-                              placeholder: "Search Location...",
-                              className: "location search-input"
-                            })}
+                            placeholder={currentUser.birthdate || "MM/DD/YYYY"}
+                            onChange={e =>
+                              this.setState({ birthday: e.target.value })
+                            }
                           />
-                          <div className="autocomplete-dropdown-container autocomplete-dropdown-container-profile">
-                            {suggestions.map(suggestion => {
-                              const className = suggestion.active
-                                ? "suggestion-item--active"
-                                : "suggestion-item";
-                              const style = suggestion.active
-                                ? { backgroundColor: "#fafafa" }
-                                : { backgroundColor: "#ffffff" };
-
-                              return (
-                                <div
-                                  {...getSuggestionItemProps(suggestion, {
-                                    className,
-                                    style
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="user-location">
+                    <p className="info-title">Location: </p>
+                    {currentUser.location ? (
+                      <div>
+                        {!this.props.userLocationEdit ? (
+                          <p>{currentUser.location}</p>
+                        ) : (
+                          <PlacesAutocomplete
+                            value={this.state.locationSearch}
+                            onChange={value => this.handleLocation(value)}
+                          >
+                            {({
+                              getInputProps,
+                              suggestions,
+                              getSuggestionItemProps
+                            }) => (
+                              <div className="profile-location-container">
+                                <input
+                                  {...getInputProps({
+                                    placeholder:
+                                      currentUser.location ||
+                                      "Search Location...",
+                                    className:
+                                      "location search-input profile-location"
                                   })}
-                                >
-                                  <span>{suggestion.description}</span>
+                                />
+                                <div className="autocomplete-dropdown-container">
+                                  {suggestions.map(suggestion => {
+                                    const className = suggestion.active
+                                      ? "suggestion-item--active"
+                                      : "suggestion-item";
+                                    const style = suggestion.active
+                                      ? { backgroundColor: "#f3f3f3" }
+                                      : { backgroundColor: "#ffffff" };
+
+                                    return (
+                                      <div
+                                        {...getSuggestionItemProps(suggestion, {
+                                          className,
+                                          style
+                                        })}
+                                      >
+                                        <span>{suggestion.description}</span>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
-                              );
-                            })}
+                              </div>
+                            )}
+                          </PlacesAutocomplete>
+                        )}
+                      </div>
+                    ) : (
+                      <PlacesAutocomplete
+                        value={this.state.locationSearch}
+                        onChange={value => this.handleLocation(value)}
+                      >
+                        {({
+                          getInputProps,
+                          suggestions,
+                          getSuggestionItemProps
+                        }) => (
+                          <div className="profile-location-container">
+                            <input
+                              {...getInputProps({
+                                placeholder: "Search Location...",
+                                className: "location search-input"
+                              })}
+                            />
+                            <div className="autocomplete-dropdown-container autocomplete-dropdown-container-profile">
+                              {suggestions.map(suggestion => {
+                                const className = suggestion.active
+                                  ? "suggestion-item--active"
+                                  : "suggestion-item";
+                                const style = suggestion.active
+                                  ? { backgroundColor: "#fafafa" }
+                                  : { backgroundColor: "#ffffff" };
+
+                                return (
+                                  <div
+                                    {...getSuggestionItemProps(suggestion, {
+                                      className,
+                                      style
+                                    })}
+                                  >
+                                    <span>{suggestion.description}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </PlacesAutocomplete>
-                  )}
-                </div>
-                <div className="button-container">
-                  <button
-                    className="update-info-btn"
-                    onClick={() => {
-                      swal(
-                        "Update Successful",
-                        "Your profile was updated",
-                        "success",
-                        { button: "Nice!" }
-                      );
-                      this.props.userTypeEdit &&
-                        this.props.toggleUserTypeEdit();
-                      this.props
-                        .updateUserInfo(
-                          currentUser.user_id,
-                          this.state.userType || currentUser.user_type,
-                          this.state.birthday || currentUser.birthdate,
-                          this.state.userBio || currentUser.bio,
-                          this.state.userExperience || currentUser.experience,
-                          this.state.locationSearch || currentUser.location,
-                          this.state.companyName || currentUser.company_name,
-                          this.state.toggleUserPortfolioEdit ||
-                            currentUser.portfolio
-                        )
-                        .then(() => this.props.loginUser());
-                    }}
-                  >
-                    Update Info
-                  </button>
-                  <Link to="/" className="log-out-btn">
+                        )}
+                      </PlacesAutocomplete>
+                    )}
+                  </div>
+                  <div className="button-container">
                     <button
-                      className="profile-log-out"
-                      onClick={() => logout()}
+                      className="update-info-btn"
+                      onClick={() => {
+                        swal(
+                          "Update Successful",
+                          "Your profile was updated",
+                          "success",
+                          { button: "Nice!" }
+                        );
+                        this.props.userTypeEdit &&
+                          this.props.toggleUserTypeEdit();
+                        this.props
+                          .updateUserInfo(
+                            currentUser.user_id,
+                            this.state.userType || currentUser.user_type,
+                            this.state.birthday || currentUser.birthdate,
+                            this.state.userBio || currentUser.bio,
+                            this.state.userExperience || currentUser.experience,
+                            this.state.locationSearch || currentUser.location,
+                            this.state.companyName || currentUser.company_name,
+                            this.state.toggleUserPortfolioEdit ||
+                              currentUser.portfolio
+                          )
+                          .then(() => this.props.loginUser());
+                      }}
                     >
-                      Logout
+                      Update Info
                     </button>
-                  </Link>
-                </div>
-              </section>
+                    <Link to="/" className="log-out-btn">
+                      <button
+                        className="profile-log-out"
+                        onClick={() => logout()}
+                      >
+                        Logout
+                      </button>
+                    </Link>
+                  </div>
+                </section>
+              </div>
 
               <section className="posts-container">
                 <h2 className="posts-title">Previous Posts</h2>
@@ -517,8 +509,9 @@ class Profile extends Component {
                                 src={cur.profile_picture}
                                 className="post-pfp"
                               />
-                              <h3 id={cur.user_id} className="post-username">
+                              <h3 id={cur.user_id} className="profile-post-username">
                                 {cur.first_name}
+                                <p className="profile-post-location">{cur.location}</p>
                               </h3>
                               <div>
                                 <button
@@ -536,7 +529,7 @@ class Profile extends Component {
                                     );
                                   }}
                                 >
-                                  DELETE
+                                  Delete
                                 </button>
                               </div>
                             </div>
