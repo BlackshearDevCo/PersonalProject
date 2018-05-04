@@ -1,12 +1,14 @@
 .user-connect{
-    width: 60%;
+    width: 225px;
     max-width: 300px;
-    height: 30px;
+    height: 40px;
     border-style: none;
     border-radius: 50px;
-    background: linear-gradient(to bottom right, #1de0e7, #27c2eb);
+    background: linear-gradient(to left, #3275e3, #6b1180);
     color: white;
-    margin: auto;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: 200;
 }
 
 .user-info{
