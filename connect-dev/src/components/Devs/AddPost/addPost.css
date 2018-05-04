@@ -51,7 +51,7 @@ textarea::placeholder{
     width: calc(100% - 4px);
     max-width: 550px;
     height: calc(100% - 4px);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     padding: 10px;
     margin: 2px;
@@ -109,7 +109,7 @@ textarea::placeholder{
     }
 
     .textarea{
-        font-size: 26px;
+        font-size: 20px;
     }
 
     .add-post, .add-post-full{
@@ -145,7 +145,7 @@ textarea::placeholder{
     .add-post-full{
         width: calc(350px / 2);
         position: fixed;
-        top: calc(50% + 165px);
+        top: 100%;
         left: 0px;
         background: linear-gradient(to right, #2291FF, #6B1180);
         color: white;

@@ -51,6 +51,8 @@ class Devs extends Component {
   }
 
   render() {
+    console.log(this.props.isLoading);
+
     let filtered = this.props.employerPosts
       .filter(
         cur =>
@@ -166,66 +168,81 @@ class Devs extends Component {
       });
     return (
       <div className="devs-container">
-        <div className="devs-background" />
-        <div className="input-container">
-          <input
-            placeholder="Username..."
-            onChange={e => this.handleUsernameSearch(e.target.value)}
-            className="username search-input"
-          />
-          <PlacesAutocomplete
-            value={this.state.locationSearch}
-            onChange={value => this.handleLocation(value)}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div className="location-container">
-                <input
-                  {...getInputProps({
-                    placeholder: "Location...",
-                    className: "location search-input"
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
-                    const style = suggestion.active
-                      ? { backgroundColor: "#fafafa" }
-                      : { backgroundColor: "#ffffff" };
-
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
-        </div>
-        {this.props.employerPosts && this.props.employerPosts.length > 0 ? (
-          <div>
-            {filtered}
-            {!filtered.length && <h1 className='no-posts'>No posts match your search</h1>}
+        {this.props.isLoading ? (
+          <div className="loading-bg">
+            <div className="loading-container">
+              <div className="circle circle-1" />
+              <div className="circle circle-2" />
+              <div className="circle circle-3" />
+              <div className="circle circle-4" />
+            </div>
           </div>
         ) : (
-          <h1 className='no-posts'>No Posts</h1>
-        )}
-        <div>
-          {this.props.currentUser &&
-            this.props.currentUser.user_type === 2 && (
+          <div>
+            <div className="devs-background" />
+            <div className="input-container">
+              <input
+                placeholder="Username..."
+                onChange={e => this.handleUsernameSearch(e.target.value)}
+                className="username search-input"
+              />
+              <PlacesAutocomplete
+                value={this.state.locationSearch}
+                onChange={value => this.handleLocation(value)}
+              >
+                {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+                  <div className="location-container">
+                    <input
+                      {...getInputProps({
+                        placeholder: "Location...",
+                        className: "location search-input"
+                      })}
+                    />
+                    <div className="autocomplete-dropdown-container">
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? "suggestion-item--active"
+                          : "suggestion-item";
+                        const style = suggestion.active
+                          ? { backgroundColor: "#fafafa" }
+                          : { backgroundColor: "#ffffff" };
+
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style
+                            })}
+                          >
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+            </div>
+            {this.props.employerPosts && this.props.employerPosts.length > 0 ? (
               <div>
-                <AddPost className="small" />
+                {filtered}
+                {!filtered.length && (
+                  <h1 className="no-posts">No posts match your search</h1>
+                )}
               </div>
+            ) : (
+              <h1 className="no-posts">No Posts</h1>
             )}
-        </div>
+            <div>
+              {this.props.currentUser &&
+                this.props.currentUser.user_type === 2 && (
+                  <div>
+                    <AddPost className="small" />
+                  </div>
+                )}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

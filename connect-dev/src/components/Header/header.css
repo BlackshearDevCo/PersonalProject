@@ -116,7 +116,7 @@
   background-image: url(../../images/default-pfp-2.png);
   border: 2px solid white;
   transition: ease-in-out 0.4s;
-  transition: 0.15s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 .header-pfp:hover,

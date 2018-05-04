@@ -101,6 +101,7 @@
 .posts-title {
   margin-top: 30px;
   font-size: 26px;
+  font-weight: 400;
 }
 
 .profile-button {
@@ -209,6 +210,10 @@
   width: 10vw;
   max-width: 120px;
   letter-spacing: 0.1em;
+}
+
+.profile-no-posts{
+  margin: 20px;
 }
 
 @media (max-width: 415px) {

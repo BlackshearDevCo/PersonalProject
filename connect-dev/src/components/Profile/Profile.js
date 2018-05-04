@@ -502,8 +502,8 @@ class Profile extends Component {
                 <h2 className="posts-title">Previous Posts</h2>
                 <div className="post">
                   {!userPosts[0] ? (
-                    <div>
-                      <p>No Posts</p>
+                    <div className='profile-no-posts'>
+                      <p>User has no pervious posts</p>
                     </div>
                   ) : (
                     <div>
@@ -529,10 +529,11 @@ class Profile extends Component {
                                       "success",
                                       { button: "Nice!" }
                                     );
-                                    deletePost(cur.post_id);
-                                    this.props.getUserPosts(
-                                      this.props.currentUser.user_id
-                                    );
+                                    deletePost(cur.post_id).then(() => {
+                                      this.props.getUserPosts(
+                                        this.props.currentUser.user_id
+                                      );
+                                    });
                                   }}
                                 >
                                   Delete

@@ -153,7 +153,10 @@ class Community extends Component {
                 </button>
               </section>
             ) : (
-              <h3 className="community-text">You must sign in to chat!</h3>
+              <div className="community-text">
+                <h3>You must log in to chat!</h3>
+                <a href='http://localhost:3001/auth'><p className='login-text'>Login</p></a>
+              </div>
             )}
           </div>
         </div>

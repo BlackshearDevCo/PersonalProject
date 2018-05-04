@@ -65,21 +65,37 @@
     color: white;
     font-size: 30px;
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -75%);
     font-style: italic;
+    font-weight: 300;
+}
+
+.login-text{
+    font-size: 18px;
+    margin-top: 15px;
+    color: #2290ffb4;
+    padding: 10px;
+    border: 1px solid #2290ffb4;
+    width: 150px;
+    margin: 20px auto;
+    border-radius: 120px;
+}
+
+.login-text:hover{
+    color: rgba(255, 255, 255, 0.794);
+    border: 1px solid rgba(255, 255, 255, 0.801);
 }
 
 .message-container, .user-message-container{
     background-color: rgba(39, 43, 44, 0.603);
     color: white;
-    max-width: 90%;
+    max-width: 550px;
     text-align: right;
     padding: 10px;
     border: 2px solid #1F68E6;
     word-wrap: break-word;
-    overflow-wrap: break-word;
     border-radius: 30px 10px 30px 30px;
 }
 

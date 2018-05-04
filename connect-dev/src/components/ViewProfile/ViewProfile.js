@@ -56,7 +56,7 @@ class ViewProfile extends Component {
           users.map((cur, ind) => {
             return (
               <div key={ind}>
-                <div className="profile-banner">
+                <div className="profile-banner loading-banner">
                   <div className="devs-background" />
                   <img src={cur.profile_picture} className="profile-pic" />
                   <h2 className="user-name">{cur.first_name || "Username"}</h2>
