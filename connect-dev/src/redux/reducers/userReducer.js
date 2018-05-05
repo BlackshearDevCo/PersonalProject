@@ -163,6 +163,7 @@ export function getNotifications(id) {
 export function sendEmail(
   recieverEmail,
   recieverName,
+  recieverID,
   senderEmail,
   senderName,
   senderLocation,
@@ -173,6 +174,7 @@ export function sendEmail(
     payload: axios.post("/api/sendMail", {
       recieverEmail,
       recieverName,
+      recieverID,
       senderEmail,
       senderName,
       senderLocation,

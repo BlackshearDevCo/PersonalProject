@@ -90,6 +90,7 @@
   color: rgba(255, 255, 255, 0.808);
   width: 90%;
   word-wrap: break-word;
+  text-decoration: none;
 }
 
 .not-logged {

@@ -12,7 +12,8 @@ import {
   connectWithUser,
   sendUserNotification,
   getConnectionCount,
-  sendEmail
+  sendEmail,
+  toggleMenuFlag
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -58,6 +59,7 @@ class ViewProfile extends Component {
                     sendEmail(
                       cur.email,
                       cur.first_name,
+                      currentUser.user_id,
                       currentUser.email,
                       currentUser.first_name,
                       currentUser.location,
@@ -193,7 +195,7 @@ class ViewProfile extends Component {
     });
 
     return (
-      <div>
+      <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {this.props.isLoading ? (
           <div className="loading-bg">
             <div className="loading-color-bg">
@@ -270,5 +272,6 @@ export default connect(mapStateToProp, {
   connectWithUser,
   sendUserNotification,
   getConnectionCount,
-  sendEmail
+  sendEmail,
+  toggleMenuFlag
 })(ViewProfile);
