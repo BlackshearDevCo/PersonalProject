@@ -26,14 +26,14 @@ import {
 } from "../../redux/reducers/userReducer";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       birthday: "",
       location: "",
-      userType: 0,
+      userType: this.props.currentUser.user_type || 0,
       userBio: "",
-      userExperience: 0,
+      userExperience: this.props.currentUser.experience || 0,
       companyName: "",
       userPortfolio: "",
       userBirthday: "",
@@ -41,6 +41,11 @@ class Profile extends Component {
       usernameSearch: "",
       locationSearch: "",
       errorMessage: ""
+      // developerSelected: false,
+      // employerSelected: false,
+      // juniorSelected: false,
+      // midLevelSelected: false,
+      // seniorSelected: false
     };
     this.handleLocation = this.handleLocation.bind(this);
     this.handleError = this.handleError.bind(this);
@@ -125,7 +130,7 @@ class Profile extends Component {
                             <button
                               onClick={() => this.setState({ userType: 1 })}
                               className={
-                                currentUser.user_type === 1
+                                this.state.userType === 1
                                   ? "profile-active profile-button"
                                   : "profile-inactive profile-button"
                               }
@@ -135,7 +140,7 @@ class Profile extends Component {
                             <button
                               onClick={() => this.setState({ userType: 2 })}
                               className={
-                                currentUser.user_type === 2
+                                this.state.userType === 2
                                   ? "profile-active profile-button"
                                   : "profile-inactive profile-button"
                               }
@@ -297,7 +302,7 @@ class Profile extends Component {
                                   this.setState({ userExperience: 1 })
                                 }
                                 className={
-                                  currentUser.experience === 1
+                                  this.state.userExperience === 1
                                     ? "profile-active profile-button"
                                     : "profile-inactive profile-button"
                                 }
@@ -309,7 +314,7 @@ class Profile extends Component {
                                   this.setState({ userExperience: 2 })
                                 }
                                 className={
-                                  currentUser.experience === 2
+                                  this.state.userExperience === 2
                                     ? "profile-active profile-button"
                                     : "profile-inactive profile-button"
                                 }
@@ -321,7 +326,7 @@ class Profile extends Component {
                                   this.setState({ userExperience: 3 })
                                 }
                                 className={
-                                  currentUser.experience === 3
+                                  this.state.userExperience === 3
                                     ? "profile-active profile-button"
                                     : "profile-inactive profile-button"
                                 }
