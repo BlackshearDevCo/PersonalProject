@@ -23,6 +23,7 @@
 
 .main-section {
   background-image: url(../../images/startup-photos.jpg);
+  background-attachment: fixed;
   background-position: -80vw;
   background-size: cover;
   margin: 0;

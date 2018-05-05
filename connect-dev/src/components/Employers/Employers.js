@@ -76,7 +76,7 @@ class Devs extends Component {
                   }}
                 />
                 <div className="name-container">
-                  <Link to={`/user/${cur.user_id}`}>
+                  <Link to={`/user/${cur.user_id}`} className='post-username-link'>
                     <h3
                       id={cur.user_id}
                       className="post-username"

@@ -79,7 +79,7 @@ class Profile extends Component {
       deletePost,
       currentUserConnections
     } = this.props;
-console.log(this.props.currentUser)
+
     return (
       <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {!name ? (
@@ -463,15 +463,17 @@ console.log(this.props.currentUser)
                   </div>
                   <div className="button-container">
                     {this.props.userTypeEdit ? (
-                      <div className='profile-edit-info'>
+                      <div className="profile-edit-info">
                         <button
                           className="update-info-btn"
                           onClick={() => {
                             if (
-                              !this.state.userType &&
+                              this.state.userType ===
+                                this.props.currentUser.user_type &&
                               !this.state.birthday &&
                               !this.state.userBio &&
-                              !this.state.userExperience &&
+                              this.state.userExperience ===
+                                this.props.currentUser.experience &&
                               !this.state.locationSearch &&
                               !this.state.companyName &&
                               !this.state.toggleUserPortfolioEdit
@@ -518,7 +520,17 @@ console.log(this.props.currentUser)
                         >
                           Update Info
                         </button>
-                        <button className='cancel-profile-edit' onClick={() => this.props.toggleUserTypeEdit()}>
+                        <button
+                          className="cancel-profile-edit"
+                          onClick={() => {
+                            this.props.toggleUserTypeEdit();
+                            this.setState({
+                              userType: this.props.currentUser.user_type || 0,
+                              userExperience:
+                                this.props.currentUser.experience || 0
+                            });
+                          }}
+                        >
                           Cancel
                         </button>
                       </div>

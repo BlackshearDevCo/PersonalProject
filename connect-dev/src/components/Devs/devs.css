@@ -98,6 +98,10 @@
   margin: 15px 15px;
 }
 
+.post-username-link{
+  text-decoration: none;
+}
+
 .post-location {
   font-weight: 300;
   font-size: 14px;

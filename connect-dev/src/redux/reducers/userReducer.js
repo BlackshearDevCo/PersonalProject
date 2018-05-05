@@ -257,8 +257,10 @@ export default function userReducer(state = initialState, action) {
       return { ...state, employerPosts: action.payload.data, isLoading: false };
     case `${NEW_POST}_FULFILLED`:
       return { ...state, posts: action.payload.data };
+    case `${GET_ALL_USERS}_PENDING`:
+      return { ...state, isLoading: true };
     case `${GET_ALL_USERS}_FULFILLED`:
-      return { ...state, users: action.payload.data };
+      return { ...state, users: action.payload.data, isLoading: false };
     case `${GET_USER_POSTS}_FULFILLED`:
       return { ...state, userPosts: action.payload.data };
     case `${DELETE_POST}_FULFILLED`:

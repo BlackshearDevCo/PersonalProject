@@ -14,8 +14,8 @@
 .profile-pic,
 .default-profile-pic {
   margin-top: 12vh;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background-position: center;
   background-size: 300%;
@@ -24,7 +24,7 @@
 
 .default-profile-pic {
   background-image: url(../../images/default-pfp-2.png);
-  background-size: 311%;
+  background-size: 315%;
   background-color: linear-gradient(
     to bottom right,
     rgba(25, 119, 207, 0.2),
@@ -238,5 +238,12 @@
   .delete-post {
     min-width: 60px;
     font-size: 10px;
+  }
+}
+
+@media (max-width: 300px) {
+  .default-profile-pic, .profile-pic{
+    width: 140px;
+    height: 140px;
   }
 }
