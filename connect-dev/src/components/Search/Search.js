@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import { getUsers, toggleUserTypeEdit } from "../../redux/reducers/userReducer";
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       userInput: ""
     };
