@@ -11,7 +11,8 @@ import {
   getPosts,
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
@@ -33,6 +34,9 @@ class Devs extends Component {
   componentDidMount() {
     this.props.currentUser && this.props.loginUser();
     this.props.getPosts();
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   handleLocation(address) {
@@ -76,7 +80,10 @@ class Devs extends Component {
                   }}
                 />
                 <div className="name-container">
-                  <Link to={`/user/${cur.user_id}`} className='post-username-link'>
+                  <Link
+                    to={`/user/${cur.user_id}`}
+                    className="post-username-link"
+                  >
                     <h3
                       id={cur.user_id}
                       className="post-username"
@@ -185,7 +192,7 @@ class Devs extends Component {
       >
         {this.props.isLoading ? (
           <div className="loading-bg">
-            <div className='loading-color-bg'>
+            <div className="loading-color-bg">
               <div className="loading-container">
                 <div className="circle circle-1" />
                 <div className="circle circle-2" />
@@ -277,5 +284,6 @@ export default connect(mapStateToProps, {
   getPosts,
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 })(Devs);

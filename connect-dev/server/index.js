@@ -106,6 +106,7 @@ function authenticate(req, res, next) {
 
 app.get("/api/logout", userCtrl.logout);
 app.get("/api/user", userCtrl.getUser);
+app.get("/api/getUsers", userCtrl.getUsers);
 app.get("/api/getPosts", postCtrl.getPosts);
 app.get("/api/getEmployersPosts", postCtrl.getEmployersPosts);
 app.get("/api/getAllUsers/:id", userCtrl.getAllUsers);

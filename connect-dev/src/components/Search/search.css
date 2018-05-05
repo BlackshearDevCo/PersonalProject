@@ -1,0 +1,101 @@
+.search-bg {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    rgba(25, 119, 207, 0.2),
+    rgba(45, 7, 95, 0.2)
+  );
+  color: white;
+}
+
+.search-container {
+  margin: auto;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.username-search {
+  margin-top: 12vh;
+  border-radius: 50px;
+  border-style: none;
+  height: 30px;
+  border: 1px solid rgba(34, 144, 255, 0.753);
+  background-color: rgba(73, 82, 82, 0.829);
+  color: white;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.search-user-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 10px ;
+  text-align: left;
+  border: 1px solid rgba(34, 144, 255, 0.753);
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(58, 65, 65);
+  max-width: 500px;
+}
+
+.search-pfp-border {
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(to bottom right, #2291ff, #6b1180);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-pfp {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.search-info {
+  word-wrap: break-word;
+  width: 50%;
+}
+
+.search-link {
+  text-decoration: none;
+  color: white;
+}
+
+.search-username {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.search-location {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.794);
+  font-size: 14px;
+}
+
+@media (min-width: 1013px) {
+  .search-container {
+    justify-content: flex-start;
+  }
+
+  .search-user-container {
+    width: 30%;
+  }
+}

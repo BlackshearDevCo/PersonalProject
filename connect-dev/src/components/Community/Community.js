@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-import { toggleMenuFlag } from '../../redux/reducers/userReducer.js';
+import { toggleMenuFlag, toggleUserTypeEdit } from '../../redux/reducers/userReducer.js';
 
 class Community extends Component {
   constructor(props) {
@@ -41,6 +41,10 @@ class Community extends Component {
     };
 
     this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  componentDidMount(){
+    (this.props.currentUser && this.props.userTypeEdit) && this.props.toggleUserTypeEdit();
   }
 
   handleEnter(event) {
@@ -171,4 +175,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleMenuFlag })(Community);
+export default connect(mapStateToProps, { toggleMenuFlag, toggleUserTypeEdit })(Community);

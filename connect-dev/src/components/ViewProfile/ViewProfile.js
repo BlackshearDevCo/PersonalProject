@@ -13,7 +13,8 @@ import {
   sendUserNotification,
   getConnectionCount,
   sendEmail,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 } from "../../redux/reducers/userReducer";
 
 class ViewProfile extends Component {
@@ -26,6 +27,9 @@ class ViewProfile extends Component {
     this.props.getUserPosts(this.props.match.params.id);
     this.props.getAllUsers(this.props.match.params.id);
     this.props.getConnectionCount(this.props.match.params.id);
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   render() {
@@ -273,5 +277,6 @@ export default connect(mapStateToProp, {
   sendUserNotification,
   getConnectionCount,
   sendEmail,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 })(ViewProfile);

@@ -11,7 +11,8 @@ import {
   getEmployersPosts,
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
@@ -33,6 +34,9 @@ class Devs extends Component {
   componentDidMount() {
     this.props.currentUser && this.props.loginUser();
     this.props.getEmployersPosts();
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   handleLocation(address) {
@@ -76,7 +80,10 @@ class Devs extends Component {
                   }}
                 />
                 <div className="name-container">
-                  <Link to={`/user/${cur.user_id}`} className='post-username-link'>
+                  <Link
+                    to={`/user/${cur.user_id}`}
+                    className="post-username-link"
+                  >
                     <h3
                       id={cur.user_id}
                       className="post-username"
@@ -260,5 +267,6 @@ export default connect(mapStateToProps, {
   getEmployersPosts,
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 })(Devs);

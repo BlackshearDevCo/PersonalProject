@@ -41,11 +41,6 @@ class Profile extends Component {
       usernameSearch: "",
       locationSearch: "",
       errorMessage: ""
-      // developerSelected: false,
-      // employerSelected: false,
-      // juniorSelected: false,
-      // midLevelSelected: false,
-      // seniorSelected: false
     };
     this.handleLocation = this.handleLocation.bind(this);
     this.handleError = this.handleError.bind(this);

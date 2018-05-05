@@ -52,6 +52,13 @@ class Navbar extends Component {
             Community
           </Link>
           <Link
+            to="/search"
+            className={!menuFlag ? "link link-20" : "link link-20-active"}
+            onClick={() => this.props.toggleMenuFlag()}
+          >
+            Search
+          </Link>
+          <Link
             to="/profile"
             className={!menuFlag ? "link link-5" : "link link-5-active"}
             onClick={() => this.props.toggleMenuFlag()}

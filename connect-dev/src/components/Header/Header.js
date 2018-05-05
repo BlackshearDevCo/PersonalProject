@@ -121,7 +121,7 @@ class Header extends Component {
                       <div className="header-pfp-hover-true">
                         <div className="inner-pfp-hover">
                           <Link to="/profile" className="header-pfp-username">
-                            <h3 className="header-pfp-username">
+                            <h3 className="header-pfp-username" onClick={() => this.toggleMouseHover()}>
                               {currentUser.first_name}
                             </h3>
                           </Link>
@@ -137,7 +137,7 @@ class Header extends Component {
                             }}
                             className="header-edit"
                           >
-                            <p>Edit Profile</p>
+                            <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -153,7 +153,7 @@ class Header extends Component {
                       <div className="header-pfp-hover">
                         <div className="inner-pfp-hover">
                           <Link to="/profile" className="header-pfp-name">
-                            <h3 className="header-pfp-username">
+                            <h3 className="header-pfp-username" onClick={() => this.toggleMouseHover()}>
                               {currentUser.first_name}
                             </h3>
                           </Link>
@@ -169,7 +169,7 @@ class Header extends Component {
                             }}
                             className="header-edit"
                           >
-                            <p >Edit Profile</p>
+                            <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -190,7 +190,6 @@ class Header extends Component {
                         this.props.getConnectionCount(
                           this.props.currentUser.user_id
                         );
-                      // this.setState({ mouseHover: !this.state.mouseHover });
                     }}
                   >
                     <div
@@ -206,7 +205,7 @@ class Header extends Component {
                       <div className="header-pfp-hover-true">
                         <div className="inner-pfp-hover">
                           <Link to="/profile" className="header-pfp-username">
-                            <h3>{currentUser.first_name}</h3>
+                            <h3 onClick={() => this.toggleMouseHover()}>{currentUser.first_name}</h3>
                           </Link>
                           <p className="header-pfp-info">{currentUser.email}</p>
                           <p className="header-pfp-info">
@@ -220,7 +219,7 @@ class Header extends Component {
                             }}
                             className="header-edit"
                           >
-                            <p>Edit Profile</p>
+                            <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -236,7 +235,7 @@ class Header extends Component {
                       <div className="header-pfp-hover">
                         <div className="inner-pfp-hover">
                           <Link to="/profile" className="header-pfp-username">
-                            <h3>{currentUser.first_name}</h3>
+                            <h3 onClick={() => this.toggleMouseHover()}>{currentUser.first_name}</h3>
                           </Link>
                           <p className="header-pfp-info">{currentUser.email}</p>
                           <p className="header-pfp-info">
@@ -250,7 +249,7 @@ class Header extends Component {
                             }}
                             className="header-edit"
                           >
-                            <p>Edit Profile</p>
+                            <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button

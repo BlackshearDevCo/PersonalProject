@@ -24,12 +24,14 @@ let initialState = {
   userCompanyNameEdit: false,
   userBirthdayEdit: false,
   userLocationEdit: false,
-  menuFlag: false
+  menuFlag: false,
+  allUsers: []
 };
 
 //ACTION TYPE
 const LOGIN_USER = "LOGIN_USER";
 const LOGOUT = "LOGOUT";
+const GET_USERS = "GET_USERS";
 const GET_POSTS = "GET_POSTS";
 const GET_EMPLOYERS_POSTS = "GET_EMPLOYERS_POSTS";
 const NEW_POST = "NEW_POST";
@@ -64,6 +66,13 @@ export function logout() {
     type: LOGOUT,
     payload: axios.get("/api/logout")
   };
+}
+
+export function getUsers() {
+  return {
+    type: GET_USERS,
+    payload: axios.get('/api/getUsers')
+  }
 }
 
 export function getPosts() {
@@ -284,6 +293,8 @@ export default function userReducer(state = initialState, action) {
       };
     case "TOGGLE_MENU_FLAG":
       return { ...state, menuFlag: !state.menuFlag };
+    case `${GET_USERS}_FULFILLED` :
+      return { ...state, allUsers: action.payload.data }
     default:
       return state;
   }

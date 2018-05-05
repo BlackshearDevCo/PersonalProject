@@ -130,6 +130,15 @@ const sendEmail = (req, res) => {
   });
 };
 
+const getUsers = (req, res) => {
+  const db = req.app.get("db");
+
+  db
+    .get_users()
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json(err));
+};
+
 module.exports = {
   logout,
   getUser,
@@ -139,5 +148,6 @@ module.exports = {
   getUserConnections,
   sendNotification,
   getNotifications,
-  sendEmail
+  sendEmail,
+  getUsers
 };

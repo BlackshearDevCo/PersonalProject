@@ -8,12 +8,16 @@ import { connect } from "react-redux";
 import {
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 } from "../../redux/reducers/userReducer";
 
 class Home extends Component {
   componentDidMount() {
     this.props.currentUser && this.props.loginUser();
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   render() {
@@ -122,5 +126,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   loginUser,
   getConnectionCount,
-  toggleMenuFlag
+  toggleMenuFlag,
+  toggleUserTypeEdit
 })(Home);
