@@ -7,7 +7,6 @@
 
 .about-container{
     width: 100%;
-    max-width: 750px;
     position: absolute;
     transform: translate(-50%);
     top: 13vh;
@@ -23,6 +22,7 @@
     margin: auto;
     padding: 2px;
     width: calc(80% + 4px);
+    max-width: 754px;
     background: linear-gradient(to bottom right, #2291ff, #6b1180);
     border-radius: 15px;
     margin: 20px 0;
@@ -33,6 +33,7 @@
     text-align: left;
     border-radius: 15px;
     background-color: rgb(58, 65, 65);
+    max-width: 750px;
 }
 
 .section-title{
