@@ -106,7 +106,6 @@ class Header extends Component {
                         this.props.getConnectionCount(
                           this.props.currentUser.user_id
                         );
-                      this.toggleMouseHover();
                     }}
                   >
                     <div
@@ -116,6 +115,7 @@ class Header extends Component {
                       className={
                         !this.props.menuFlag ? "header-pfp" : "header-pfp-true"
                       }
+                      onClick={() => this.toggleMouseHover()}
                     />
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
@@ -190,7 +190,7 @@ class Header extends Component {
                         this.props.getConnectionCount(
                           this.props.currentUser.user_id
                         );
-                      this.setState({ mouseHover: !this.state.mouseHover });
+                      // this.setState({ mouseHover: !this.state.mouseHover });
                     }}
                   >
                     <div
@@ -200,6 +200,7 @@ class Header extends Component {
                       className={
                         !this.props.menuFlag ? "header-pfp" : "header-pfp-true"
                       }
+                      onClick={() => this.toggleMouseHover()}
                     />
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">

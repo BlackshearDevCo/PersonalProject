@@ -79,7 +79,7 @@ class Profile extends Component {
       deletePost,
       currentUserConnections
     } = this.props;
-
+console.log(this.props.currentUser)
     return (
       <div onClick={() => this.props.menuFlag && this.props.toggleMenuFlag()}>
         {!name ? (
@@ -507,10 +507,8 @@ class Profile extends Component {
                                 )
                                 .then(() => this.props.loginUser());
                               this.setState({
-                                userType: "",
                                 birthday: "",
                                 userBio: "",
-                                userExperience: "",
                                 locationSearch: "",
                                 companyName: "",
                                 toggleUserPortfolioEdit: ""

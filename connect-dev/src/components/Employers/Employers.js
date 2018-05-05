@@ -107,10 +107,7 @@ class Devs extends Component {
               >
                 <div className="quick-look-bg">
                   <div className="quick-look-container">
-                    <img
-                      src={cur.profile_picture}
-                      className="post-pfp"
-                    />
+                    <img src={cur.profile_picture} className="post-pfp" />
                     <h3 className="quick-look-name">{cur.first_name}</h3>
                     <p className="quick-look-location">
                       {cur.location ||
@@ -175,11 +172,13 @@ class Devs extends Component {
       >
         {this.props.isLoading ? (
           <div className="loading-bg">
-            <div className="loading-container">
-              <div className="circle circle-1" />
-              <div className="circle circle-2" />
-              <div className="circle circle-3" />
-              <div className="circle circle-4" />
+            <div className="loading-color-bg">
+              <div className="loading-container">
+                <div className="circle circle-1" />
+                <div className="circle circle-2" />
+                <div className="circle circle-3" />
+                <div className="circle circle-4" />
+              </div>
             </div>
           </div>
         ) : (

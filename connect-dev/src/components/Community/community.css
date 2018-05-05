@@ -96,25 +96,25 @@
 .message-container, .user-message-container{
     background-color: rgba(39, 43, 44, 0.603);
     color: white;
-    max-width: 550px;
+    max-width: 100%;
     text-align: right;
     padding: 10px;
     border: 2px solid #1F68E6;
     word-wrap: break-word;
-    border-radius: 30px 10px 30px 30px;
+    border-radius: 20px 10px 20px 20px;
 }
 
 .user-message-container{
     text-align: left;
-    border-radius: 10px 30px 30px 30px;
+    border-radius: 10px 20px 20px 20px;
 }
 
 .user-message-content-container, .message-content-container{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    align-items: stretch;
     max-width: 650px;
+    width: 50vw;
 }
 
 .message-content-container{
@@ -150,29 +150,29 @@
     border-radius: 50%;
 }
 
+.message-pfp-border{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(to bottom right, #2291ff, #6b1180);
+    border-radius: 50%;
+    margin: 0 15px;
+}
+
 .single-message-container, .single-user-message-container{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
-    margin: 5px 0;
+    margin: 10px 0;
     position: relative;
 }
 
 .single-message-container{
     flex-direction: row-reverse;
     align-items: flex-start;
-}
-
-.message-pfp-border{
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(to bottom right, #2291ff, #6b1180);
-    border-radius: 50%;
-    margin: 0 15px;
 }
 
 @media (min-width: 1000px) {

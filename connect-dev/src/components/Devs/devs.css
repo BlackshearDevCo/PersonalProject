@@ -1,9 +1,13 @@
-.loading-bg{
+.loading-bg, .loading-color-bg{
   background-color: #202124;
   width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
+}
+
+.loading-color-bg{
+  background: linear-gradient(to bottom right, rgba(25, 119, 207, 0.2), rgba(45, 7, 95, 0.2));
 }
 
 .loading-container{

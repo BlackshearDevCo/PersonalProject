@@ -36,7 +36,7 @@
   width: 100vw;
   height: 100vh;
   background-color: #10161f;
-  opacity: .75;
+  opacity: .85;
   z-index: -2;
 }
 
@@ -247,7 +247,7 @@
 @media (min-width: 900px) {
   .main-section {
     background-position: -30vw;
-    background-size: 150%;
+    background-size: 200%;
   }
 
   .container {
