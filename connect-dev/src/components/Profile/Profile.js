@@ -522,7 +522,12 @@ class Profile extends Component {
                             this.setState({
                               userType: this.props.currentUser.user_type || 0,
                               userExperience:
-                                this.props.currentUser.experience || 0
+                                this.props.currentUser.experience || 0,
+                              birthday: "",
+                              userBio: "",
+                              locationSearch: "",
+                              companyName: "",
+                              toggleUserPortfolioEdit: ""
                             });
                           }}
                         >
