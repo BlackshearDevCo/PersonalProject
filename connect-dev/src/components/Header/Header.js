@@ -120,7 +120,7 @@ class Header extends Component {
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
                         <div className="inner-pfp-hover">
-                          <Link to="/profile" className="header-pfp-name">
+                          <Link to="/profile" className="header-pfp-username">
                             <h3 className="header-pfp-username">
                               {currentUser.first_name}
                             </h3>
@@ -135,8 +135,9 @@ class Header extends Component {
                             onClick={() => {
                               this.props.toggleUserTypeEdit();
                             }}
+                            className="header-edit"
                           >
-                            <p className="header-edit">Edit Profile</p>
+                            <p>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -166,8 +167,9 @@ class Header extends Component {
                             onClick={() => {
                               this.props.toggleUserTypeEdit();
                             }}
+                            className="header-edit"
                           >
-                            <p className="header-edit">Edit Profile</p>
+                            <p >Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -202,10 +204,8 @@ class Header extends Component {
                     {this.state.mouseHover ? (
                       <div className="header-pfp-hover-true">
                         <div className="inner-pfp-hover">
-                          <Link to="/profile">
-                            <h3 className="header-pfp-username">
-                              {currentUser.first_name}
-                            </h3>
+                          <Link to="/profile" className="header-pfp-username">
+                            <h3>{currentUser.first_name}</h3>
                           </Link>
                           <p className="header-pfp-info">{currentUser.email}</p>
                           <p className="header-pfp-info">
@@ -217,8 +217,9 @@ class Header extends Component {
                             onClick={() => {
                               this.props.toggleUserTypeEdit();
                             }}
+                            className="header-edit"
                           >
-                            <p className="header-edit">Edit Profile</p>
+                            <p>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button
@@ -233,9 +234,9 @@ class Header extends Component {
                     ) : (
                       <div className="header-pfp-hover">
                         <div className="inner-pfp-hover">
-                          <h3 className="header-pfp-username">
-                            {currentUser.first_name}
-                          </h3>
+                          <Link to="/profile" className="header-pfp-username">
+                            <h3>{currentUser.first_name}</h3>
+                          </Link>
                           <p className="header-pfp-info">{currentUser.email}</p>
                           <p className="header-pfp-info">
                             {this.props.currentUserConnections.length}{" "}
@@ -246,8 +247,9 @@ class Header extends Component {
                             onClick={() => {
                               this.props.toggleUserTypeEdit();
                             }}
+                            className="header-edit"
                           >
-                            <p className="header-edit">Edit Profile</p>
+                            <p>Edit Profile</p>
                           </Link>
                           <a href="http://localhost:3000/#/">
                             <button

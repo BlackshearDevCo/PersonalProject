@@ -146,10 +146,19 @@
   position: relative;
 }
 
+.profile-edit-info{
+  width: 45%;
+  height: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .profile-log-out,
 .update-info-btn,
 .profile-log-in,
-.delete-post {
+.delete-post,
+.cancel-profile-edit,
+.edit-info-btn {
   border-style: none;
   border-radius: 15px;
   width: 45%;
@@ -159,6 +168,14 @@
   margin-top: 20px;
   font-weight: 200;
   box-shadow: rgba(0, 0, 0, 0.205) 0 0 15px;
+}
+
+.cancel-profile-edit{
+  width: 25%;
+}
+
+.update-info-btn{
+  width: 65%;
 }
 
 .profile-log-out {

@@ -49,6 +49,8 @@
 
 .link{
     margin: 3px 0;
+    color: white;
+    text-decoration: none;
 }
 
 @media (min-width: 425px) {

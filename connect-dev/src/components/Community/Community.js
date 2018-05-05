@@ -155,7 +155,7 @@ class Community extends Component {
             ) : (
               <div className="community-text">
                 <h3>You must log in to chat!</h3>
-                <a href='http://localhost:3001/auth'><p className='login-text'>Login</p></a>
+                <a href='http://localhost:3001/auth' className='login-text-a-tag'><p className='login-text'>Login</p></a>
               </div>
             )}
           </div>

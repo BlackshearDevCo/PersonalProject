@@ -84,6 +84,10 @@
     transition: linear .1s;
 }
 
+.login-text-a-tag{
+    text-decoration: none;
+}
+
 .login-text:hover{
     color: rgba(255, 255, 255, 0.794);
     border: 1px solid rgba(255, 255, 255, 0.801);

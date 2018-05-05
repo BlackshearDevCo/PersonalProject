@@ -117,7 +117,7 @@
   border-radius: 50%;
   background-image: url(../../images/default-pfp-2.png);
   border: 2px solid white;
-  transition: .3s ease-in-out;
+  transition: .4s ease-in-out;
 }
 
 .default-header-pfp {
@@ -168,7 +168,7 @@
 }
 
 .header-pfp-hover-true {
-  right: -6vw;
+  right: -7vw;
   top: 10vh;
   transform: translate(5%);
 }
@@ -218,6 +218,7 @@
   color: white;
   margin: 3px;
   transition: 0.15s ease-in-out;
+  text-decoration: none;
 }
 
 .header-edit:hover,

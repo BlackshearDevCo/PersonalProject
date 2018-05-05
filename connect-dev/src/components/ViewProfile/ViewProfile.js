@@ -48,7 +48,7 @@ class ViewProfile extends Component {
               <div key={ind}>
                 <div className="profile-banner loading-banner">
                   <div className="devs-background" />
-                  <img src={cur.profile_picture} alt='Picture' className="profile-pic" />
+                  <img src={cur.profile_picture} className="profile-pic" />
                   <h2 className="user-name">{cur.first_name || "Username"}</h2>
                   {currentUser.user_id &&
                     currentUser.user_id !== cur.user_id && (
@@ -178,7 +178,6 @@ class ViewProfile extends Component {
                                   <img
                                     src={cur.profile_picture}
                                     className="post-pfp"
-                                    alt='Picture'
                                   />
                                   <h3
                                     id={cur.user_id}
@@ -205,7 +204,7 @@ class ViewProfile extends Component {
           <div>
             <div className="profile-banner">
               <div className="devs-background" />
-              <img src={profilePic} alt='Picture' className="profile-pic" />
+              <img src={profilePic} className="profile-pic" />
 
               <section className="user-info">
                 <h2 className="user-name">{"Username"}</h2>

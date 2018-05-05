@@ -80,11 +80,7 @@ class Profile extends Component {
         {!name ? (
           <div className="profile-banner">
             <div className="devs-background" />
-            <img
-              src={profilePic}
-              alt="Picture"
-              className="default-profile-pic"
-            />
+            <img src={profilePic} className="default-profile-pic" />
             <div className="profile-border">
               <section className="user-info">
                 <h2 className="not-logged">Oops! You aren't logged in!</h2>
@@ -98,7 +94,7 @@ class Profile extends Component {
           <div>
             <div className="profile-banner">
               <div className="devs-background" />
-              <img src={profilePic} alt="Picture" className="profile-pic" />
+              <img src={profilePic} className="profile-pic" />
               <h2 className="user-name">
                 {currentUser.first_name || "Placeholder"}
               </h2>
@@ -461,61 +457,76 @@ class Profile extends Component {
                     )}
                   </div>
                   <div className="button-container">
-                    <button
-                      className="update-info-btn"
-                      onClick={() => {
-                        if (
-                          !this.state.userType &&
-                          !this.state.birthday &&
-                          !this.state.userBio &&
-                          !this.state.userExperience &&
-                          !this.state.locationSearch &&
-                          !this.state.companyName &&
-                          !this.state.toggleUserPortfolioEdit
-                        ) {
-                          swal(
-                            "Nothing Changed",
-                            "You didn't enter in any values",
-                            "warning"
-                          );
-                        } else {
-                          swal(
-                            "Update Successful",
-                            "Your profile was updated",
-                            "success",
-                            { button: "Nice!" }
-                          );
-                          this.props.userTypeEdit &&
-                            this.props.toggleUserTypeEdit();
-                          this.props
-                            .updateUserInfo(
-                              currentUser.user_id,
-                              this.state.userType || currentUser.user_type,
-                              this.state.birthday || currentUser.birthdate,
-                              this.state.userBio || currentUser.bio,
-                              this.state.userExperience ||
-                                currentUser.experience,
-                              this.state.locationSearch || currentUser.location,
-                              this.state.companyName ||
-                                currentUser.company_name,
-                              this.state.toggleUserPortfolioEdit ||
-                                currentUser.portfolio
-                            )
-                            .then(() => this.props.loginUser());
-                          this.setState({
-                            userType: "",
-                            birthday: "",
-                            userBio: "",
-                            userExperience: "",
-                            locationSearch: "",
-                            companyName: "",
-                            toggleUserPortfolioEdit: ""
-                          });
-                        }
-                      }}
-                    >
-                      Update Info
-                    </button>
+                    {this.props.userTypeEdit ? (
+                      <div className='profile-edit-info'>
+                        <button
+                          className="update-info-btn"
+                          onClick={() => {
+                            if (
+                              !this.state.userType &&
+                              !this.state.birthday &&
+                              !this.state.userBio &&
+                              !this.state.userExperience &&
+                              !this.state.locationSearch &&
+                              !this.state.companyName &&
+                              !this.state.toggleUserPortfolioEdit
+                            ) {
+                              swal(
+                                "Nothing Changed",
+                                "You didn't enter in any values",
+                                "warning"
+                              );
+                            } else {
+                              swal(
+                                "Update Successful",
+                                "Your profile was updated",
+                                "success",
+                                { button: "Nice!" }
+                              );
+                              this.props.userTypeEdit &&
+                                this.props.toggleUserTypeEdit();
+                              this.props
+                                .updateUserInfo(
+                                  currentUser.user_id,
+                                  this.state.userType || currentUser.user_type,
+                                  this.state.birthday || currentUser.birthdate,
+                                  this.state.userBio || currentUser.bio,
+                                  this.state.userExperience ||
+                                    currentUser.experience,
+                                  this.state.locationSearch ||
+                                    currentUser.location,
+                                  this.state.companyName ||
+                                    currentUser.company_name,
+                                  this.state.toggleUserPortfolioEdit ||
+                                    currentUser.portfolio
+                                )
+                                .then(() => this.props.loginUser());
+                              this.setState({
+                                userType: "",
+                                birthday: "",
+                                userBio: "",
+                                userExperience: "",
+                                locationSearch: "",
+                                companyName: "",
+                                toggleUserPortfolioEdit: ""
+                              });
+                            }
+                          }}
+                        >
+                          Update Info
+                        </button>
+                        <button className='cancel-profile-edit' onClick={() => this.props.toggleUserTypeEdit()}>
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className="edit-info-btn"
+                        onClick={() => this.props.toggleUserTypeEdit()}
+                      >
+                        Edit Info
+                      </button>
+                    )}
                     <Link to="/" className="log-out-btn">
                       <button
                         className="profile-log-out"
@@ -542,7 +553,6 @@ class Profile extends Component {
                           <div key={ind} className="post-container">
                             <div className="user-container">
                               <img
-                                alt="Picture"
                                 src={cur.profile_picture}
                                 className="post-pfp"
                               />

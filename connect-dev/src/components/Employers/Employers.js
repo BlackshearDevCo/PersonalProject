@@ -64,7 +64,6 @@ class Devs extends Component {
             <div key={ind} className="post-container">
               <div className="user-container">
                 <img
-                  alt="Picture"
                   src={cur.profile_picture}
                   className="post-pfp"
                   onMouseEnter={() => {
@@ -110,7 +109,6 @@ class Devs extends Component {
                   <div className="quick-look-container">
                     <img
                       src={cur.profile_picture}
-                      alt="Picture"
                       className="post-pfp"
                     />
                     <h3 className="quick-look-name">{cur.first_name}</h3>
