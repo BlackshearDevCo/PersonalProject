@@ -527,7 +527,8 @@ class Profile extends Component {
                               userBio: "",
                               locationSearch: "",
                               companyName: "",
-                              toggleUserPortfolioEdit: ""
+                              toggleUserPortfolioEdit: "",
+                              locationSearch: this.props.currentUser.location
                             });
                           }}
                         >
@@ -542,7 +543,7 @@ class Profile extends Component {
                         Edit Info
                       </button>
                     )}
-                    <Link to="/" className="log-out-btn">
+                    <Link to="/" className={!this.props.userTypeEdit ? "log-out-btn" : "log-out-btn-true"}>
                       <button
                         className="profile-log-out"
                         onClick={() => logout()}
