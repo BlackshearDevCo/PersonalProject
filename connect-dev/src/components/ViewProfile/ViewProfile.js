@@ -57,9 +57,8 @@ class ViewProfile extends Component {
                 <button
                   className="user-connect"
                   onClick={() => {
-                    connectWithUser(currentUser.user_id, cur.user_id);
+                    connectWithUser(currentUser.user_id, cur.user_id).then(() => getConnectionCount(cur.user_id));
                     sendUserNotification(cur.user_id);
-                    getConnectionCount(cur.user_id);
                     sendEmail(
                       cur.email,
                       cur.first_name,

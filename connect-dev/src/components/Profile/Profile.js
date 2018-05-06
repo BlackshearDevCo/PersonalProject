@@ -105,10 +105,24 @@ class Profile extends Component {
                     <p className="info-title">User Type: </p>
                     {!currentUser.user_type ? (
                       <div>
-                        <button onClick={() => this.setState({ userType: 1 })}>
+                        <button
+                          onClick={() => this.setState({ userType: 1 })}
+                          className={
+                            this.state.userType === 1
+                              ? "profile-active profile-button"
+                              : "profile-inactive profile-button"
+                          }
+                        >
                           Developer
                         </button>
-                        <button onClick={() => this.setState({ userType: 2 })}>
+                        <button
+                          onClick={() => this.setState({ userType: 2 })}
+                          className={
+                            this.state.userType === 1
+                              ? "profile-active profile-button"
+                              : "profile-inactive profile-button"
+                          }
+                        >
                           Employer
                         </button>
                       </div>
@@ -264,16 +278,31 @@ class Profile extends Component {
                         <div>
                           <button
                             onClick={() => this.setState({ userExperience: 1 })}
+                            className={
+                              this.state.userExperience === 1
+                                ? "profile-active profile-button"
+                                : "profile-inactive profile-button"
+                            }
                           >
                             Junior
                           </button>
                           <button
                             onClick={() => this.setState({ userExperience: 2 })}
+                            className={
+                              this.state.userExperience === 1
+                                ? "profile-active profile-button"
+                                : "profile-inactive profile-button"
+                            }
                           >
                             Mid-Level
                           </button>
                           <button
                             onClick={() => this.setState({ userExperience: 3 })}
+                            className={
+                              this.state.userExperience === 1
+                                ? "profile-active profile-button"
+                                : "profile-inactive profile-button"
+                            }
                           >
                             Senior
                           </button>
@@ -343,6 +372,7 @@ class Profile extends Component {
                           onChange={e =>
                             this.setState({ birthday: e.target.value })
                           }
+                          className="profile-input"
                         />
                       </div>
                     ) : (
@@ -543,7 +573,14 @@ class Profile extends Component {
                         Edit Info
                       </button>
                     )}
-                    <Link to="/" className={!this.props.userTypeEdit ? "log-out-btn" : "log-out-btn-true"}>
+                    <Link
+                      to="/"
+                      className={
+                        !this.props.userTypeEdit
+                          ? "log-out-btn"
+                          : "log-out-btn-true"
+                      }
+                    >
                       <button
                         className="profile-log-out"
                         onClick={() => logout()}
