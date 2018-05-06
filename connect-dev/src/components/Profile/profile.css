@@ -148,6 +148,10 @@
   position: relative;
 }
 
+.profile-edit-button-container{
+  width: 100%;
+}
+
 .profile-edit-info{
   width: 100%;
   height: 25px;
@@ -161,16 +165,30 @@
 .profile-log-in,
 .delete-post,
 .cancel-profile-edit,
-.edit-info-btn {
+.edit-info-btn,
+.new-user-update-info-btn {
   border-style: none;
   border-radius: 15px;
   width: 45%;
   height: 25px;
   background: linear-gradient(to left, #3275e3, #6b1180);
   color: white;
-  /* margin-top: 20px; */
   font-weight: 200;
   box-shadow: rgba(0, 0, 0, 0.205) 0 0 15px;
+}
+
+.new-user-update-info-btn{
+  width: 100%;
+}
+
+.new-user-profile-edit-info{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.edit-info-btn{
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .cancel-profile-edit{
@@ -193,7 +211,7 @@
 }
 
 .log-out-btn {
-  width: 45%;
+  width: 100%;
 }
 
 .profile-log-in {
@@ -261,11 +279,23 @@
 }
 
 @media (min-width: 500px) {
-  .profile-edit-info{
+  .profile-edit-button-container{
     width: 45%;
   }
 
+  .profile-edit-info{
+    width: 100%;
+  }
+
   .log-out-btn-true{
+    width: 45%;
+  }
+
+  .log-out-btn{
+    width: 45%;
+  }
+
+  .new-user-profile-edit-info{
     width: 45%;
   }
 }

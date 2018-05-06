@@ -31,9 +31,9 @@ class Profile extends Component {
     this.state = {
       birthday: "",
       location: "",
-      userType: this.props.currentUser.user_type || 0,
+      userType: this.props.currentUser.user_type || null,
       userBio: "",
-      userExperience: this.props.currentUser.experience || 0,
+      userExperience: this.props.currentUser.experience || null,
       companyName: "",
       userPortfolio: "",
       userBirthday: "",
@@ -118,7 +118,7 @@ class Profile extends Component {
                         <button
                           onClick={() => this.setState({ userType: 2 })}
                           className={
-                            this.state.userType === 1
+                            this.state.userType === 2
                               ? "profile-active profile-button"
                               : "profile-inactive profile-button"
                           }
@@ -289,7 +289,7 @@ class Profile extends Component {
                           <button
                             onClick={() => this.setState({ userExperience: 2 })}
                             className={
-                              this.state.userExperience === 1
+                              this.state.userExperience === 2
                                 ? "profile-active profile-button"
                                 : "profile-inactive profile-button"
                             }
@@ -299,7 +299,7 @@ class Profile extends Component {
                           <button
                             onClick={() => this.setState({ userExperience: 3 })}
                             className={
-                              this.state.userExperience === 1
+                              this.state.userExperience === 3
                                 ? "profile-active profile-button"
                                 : "profile-inactive profile-button"
                             }
@@ -487,10 +487,14 @@ class Profile extends Component {
                     )}
                   </div>
                   <div className="button-container">
-                    {this.props.userTypeEdit ? (
-                      <div className="profile-edit-info">
+                    {!this.props.currentUser.user_type ||
+                    !this.props.currentUser.bio ||
+                    !this.props.currentUser.experience ||
+                    !this.props.currentUser.birthdate ||
+                    !this.props.currentUser.location ? (
+                      <div className="new-user-profile-edit-info">
                         <button
-                          className="update-info-btn"
+                          className="new-user-update-info-btn"
                           onClick={() => {
                             if (
                               this.state.userType ===
@@ -515,8 +519,7 @@ class Profile extends Component {
                                 "success",
                                 { button: "Nice!" }
                               );
-                              this.props.userTypeEdit &&
-                                this.props.toggleUserTypeEdit();
+                              console.log(this.state, this.props);
                               this.props
                                 .updateUserInfo(
                                   currentUser.user_id,
@@ -545,33 +548,100 @@ class Profile extends Component {
                         >
                           Update Info
                         </button>
-                        <button
-                          className="cancel-profile-edit"
-                          onClick={() => {
-                            this.props.toggleUserTypeEdit();
-                            this.setState({
-                              userType: this.props.currentUser.user_type || 0,
-                              userExperience:
-                                this.props.currentUser.experience || 0,
-                              birthday: "",
-                              userBio: "",
-                              locationSearch: "",
-                              companyName: "",
-                              toggleUserPortfolioEdit: "",
-                              locationSearch: ""
-                            });
-                          }}
-                        >
-                          Cancel
-                        </button>
                       </div>
                     ) : (
-                      <button
-                        className="edit-info-btn"
-                        onClick={() => this.props.toggleUserTypeEdit()}
-                      >
-                        Edit Info
-                      </button>
+                      <div className='profile-edit-button-container'>
+                        {this.props.userTypeEdit ? (
+                          <div className="profile-edit-info">
+                            <button
+                              className="update-info-btn"
+                              onClick={() => {
+                                if (
+                                  this.state.userType ===
+                                    this.props.currentUser.user_type &&
+                                  !this.state.birthday &&
+                                  !this.state.userBio &&
+                                  this.state.userExperience ===
+                                    this.props.currentUser.experience &&
+                                  !this.state.locationSearch &&
+                                  !this.state.companyName &&
+                                  !this.state.toggleUserPortfolioEdit
+                                ) {
+                                  console.log(this.state, this.props);
+                                  swal(
+                                    "Nothing Changed",
+                                    "You didn't enter in any values",
+                                    "warning"
+                                  );
+                                } else {
+                                  swal(
+                                    "Update Successful",
+                                    "Your profile was updated",
+                                    "success",
+                                    { button: "Nice!" }
+                                  );
+                                  this.props.userTypeEdit &&
+                                    this.props.toggleUserTypeEdit();
+                                  this.props
+                                    .updateUserInfo(
+                                      currentUser.user_id,
+                                      this.state.userType ||
+                                        currentUser.user_type,
+                                      this.state.birthday ||
+                                        currentUser.birthdate,
+                                      this.state.userBio || currentUser.bio,
+                                      this.state.userExperience ||
+                                        currentUser.experience,
+                                      this.state.locationSearch ||
+                                        currentUser.location,
+                                      this.state.companyName ||
+                                        currentUser.company_name,
+                                      this.state.toggleUserPortfolioEdit ||
+                                        currentUser.portfolio
+                                    )
+                                    .then(() => this.props.loginUser());
+                                  this.setState({
+                                    birthday: "",
+                                    userBio: "",
+                                    locationSearch: "",
+                                    companyName: "",
+                                    toggleUserPortfolioEdit: ""
+                                  });
+                                }
+                              }}
+                            >
+                              Update Info
+                            </button>
+                            <button
+                              className="cancel-profile-edit"
+                              onClick={() => {
+                                this.props.toggleUserTypeEdit();
+                                this.setState({
+                                  userType:
+                                    this.props.currentUser.user_type || 0,
+                                  userExperience:
+                                    this.props.currentUser.experience || 0,
+                                  birthday: "",
+                                  userBio: "",
+                                  locationSearch: "",
+                                  companyName: "",
+                                  toggleUserPortfolioEdit: "",
+                                  locationSearch: ""
+                                });
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            className="edit-info-btn"
+                            onClick={() => this.props.toggleUserTypeEdit()}
+                          >
+                            Edit Info
+                          </button>
+                        )}
+                      </div>
                     )}
                     <Link
                       to="/"
