@@ -203,6 +203,12 @@ class Devs extends Component {
           </div>
         ) : (
           <div>
+            <div
+              className="back-to-top"
+              onClick={() => {
+                window.scroll({ top: 0, behavior: "smooth" });
+              }}
+            />
             <div className="input-container">
               <input
                 placeholder="Username..."

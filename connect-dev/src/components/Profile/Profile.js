@@ -457,7 +457,7 @@ class Profile extends Component {
                             <input
                               {...getInputProps({
                                 placeholder: "Search Location...",
-                                className: "location search-input"
+                                className: "location search-input profile-location"
                               })}
                             />
                             <div className="autocomplete-dropdown-container autocomplete-dropdown-container-profile">

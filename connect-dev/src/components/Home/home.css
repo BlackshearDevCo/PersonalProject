@@ -183,6 +183,38 @@
   text-decoration: none;
 }
 
+.back-to-top{
+  position: fixed;
+  left: 15px;
+  bottom: 15px;
+  width: 25px;
+  height: 25px;
+  background-image: url(../../images/scroll.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  border-radius: 50%;
+  opacity: .15;
+  transform: rotate(180deg);
+  animation: back-to-top 2s infinite;
+}
+
+@keyframes back-to-top{
+  0%{
+    opacity: .15;
+    bottom: 15px;
+  }
+  50%{
+    opacity: .22;
+    bottom: 18px;
+  }
+  100%{
+    opacity: .15;
+    bottom: 15px;
+  }
+}
+
 /* MEDIA QUIREIES */
 
 @media (min-width: 528px) {
