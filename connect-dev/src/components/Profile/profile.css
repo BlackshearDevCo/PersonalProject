@@ -94,6 +94,10 @@
   text-decoration: none;
 }
 
+.user-port:hover{
+  cursor: pointer;
+}
+
 .not-logged {
   margin-top: 15%;
   font-style: italic;

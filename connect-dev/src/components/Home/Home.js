@@ -18,6 +18,7 @@ class Home extends Component {
     this.props.currentUser &&
       this.props.userTypeEdit &&
       this.props.toggleUserTypeEdit();
+    console.log(window);
   }
 
   render() {

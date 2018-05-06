@@ -57,7 +57,9 @@ class ViewProfile extends Component {
                 <button
                   className="user-connect"
                   onClick={() => {
-                    connectWithUser(currentUser.user_id, cur.user_id).then(() => getConnectionCount(cur.user_id));
+                    connectWithUser(currentUser.user_id, cur.user_id).then(() =>
+                      getConnectionCount(cur.user_id)
+                    );
                     sendUserNotification(cur.user_id);
                     sendEmail(
                       cur.email,
@@ -89,7 +91,16 @@ class ViewProfile extends Component {
                 </div>
                 <div className="user-email">
                   <p className="info-title">Email: </p>
-                  <p className="info">{cur.email || "User has no email"}</p>
+                  <p
+                    className="info info-email"
+                    onClick={() =>
+                      window.open(
+                        `https://mail.google.com/mail/?view=cm&fs=1&to=${cur.email}`
+                      )
+                    }
+                  >
+                    {cur.email || "User has no email"}
+                  </p>
                 </div>
                 <div>
                   <p className="info-title">Connections: </p>
@@ -104,9 +115,14 @@ class ViewProfile extends Component {
                     <p className="info-title">Portfolio: </p>
                     <p className="info">
                       {cur.portfolio ? (
-                        <a href={cur.portfolio} className="user-port">
+                        <div
+                          className="user-port"
+                          onClick={() => {
+                            window.open(`${cur.portfolio}`);
+                          }}
+                        >
                           {cur.portfolio}
-                        </a>
+                        </div>
                       ) : (
                         "User does not have a portfolio"
                       )}

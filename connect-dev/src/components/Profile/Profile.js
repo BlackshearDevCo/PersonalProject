@@ -163,7 +163,7 @@ class Profile extends Component {
                   </div>
                   <div className="user-email">
                     <p className="info-title">Email: </p>
-                    <p className="info">{email || "User has no email"}</p>
+                    <p className="info" onClick={() => window.open('https://mail.google.com/mail/u/0/#inbox?compose=new')}>{email || "User has no email"}</p>
                   </div>
                   <div>
                     <p className="info-title">Connections: </p>
@@ -180,12 +180,12 @@ class Profile extends Component {
                           <p className="info">
                             {currentUser.portfolio
                               ? (
-                                  <a
-                                    href={currentUser.portfolio}
+                                  <div
                                     className="user-port"
+                                    onClick={() => window.open(`${currentUser.portfolio}`)}
                                   >
                                     {currentUser.portfolio}
-                                  </a>
+                                  </div>
                                 ) || <p>User does not have a portfolio.</p>
                               : "User does not have a portfolio."}
                           </p>
@@ -505,7 +505,7 @@ class Profile extends Component {
                                 this.props.currentUser.experience &&
                               !this.state.locationSearch &&
                               !this.state.companyName &&
-                              !this.state.toggleUserPortfolioEdit
+                              !this.state.userPortfolio
                             ) {
                               swal(
                                 "Nothing Changed",
@@ -532,7 +532,7 @@ class Profile extends Component {
                                     currentUser.location,
                                   this.state.companyName ||
                                     currentUser.company_name,
-                                  this.state.toggleUserPortfolioEdit ||
+                                  this.state.userPortfolio ||
                                     currentUser.portfolio
                                 )
                                 .then(() => this.props.loginUser());
@@ -541,7 +541,7 @@ class Profile extends Component {
                                 userBio: "",
                                 locationSearch: "",
                                 companyName: "",
-                                toggleUserPortfolioEdit: ""
+                                userPortfolio: ""
                               });
                             }
                           }}
@@ -565,7 +565,7 @@ class Profile extends Component {
                                     this.props.currentUser.experience &&
                                   !this.state.locationSearch &&
                                   !this.state.companyName &&
-                                  !this.state.toggleUserPortfolioEdit
+                                  !this.state.userPortfolio
                                 ) {
                                   console.log(this.state, this.props);
                                   swal(
@@ -596,7 +596,7 @@ class Profile extends Component {
                                         currentUser.location,
                                       this.state.companyName ||
                                         currentUser.company_name,
-                                      this.state.toggleUserPortfolioEdit ||
+                                      this.state.userPortfolio ||
                                         currentUser.portfolio
                                     )
                                     .then(() => this.props.loginUser());
@@ -605,7 +605,7 @@ class Profile extends Component {
                                     userBio: "",
                                     locationSearch: "",
                                     companyName: "",
-                                    toggleUserPortfolioEdit: ""
+                                    userPortfolio: ""
                                   });
                                 }
                               }}

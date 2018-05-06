@@ -19,3 +19,7 @@
 .loading-banner{
     background-color: #202124;
 }
+
+.info-email:hover{
+    cursor: pointer;
+}
