@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 import { toggleUserTypeEdit } from '../../redux/reducers/userReducer';
 
 class About extends Component{
-  constructor(props){
-    super(props);
-  }
 
   componentDidMount(){
     (this.props.currentUser && this.props.userTypeEdit) && this.props.toggleUserTypeEdit();
