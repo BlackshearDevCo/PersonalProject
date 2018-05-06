@@ -104,16 +104,24 @@ class AddPost extends Component {
             <button
               className="add-post-full"
               onClick={() => {
-                this.state.newPost.length > 300
-                  ? (swal("Post Deleted!", "Too many characters", "warning"),
-                    this.setState({ newPost: "" }))
-                  : this.props
-                      .newPost(currentUser.user_id, this.state.newPost)
-                      .then(() => {
-                        this.props.loginUser();
-                        this.props.getEmployersPosts();
-                        this.setState({ newPost: "" });
-                      });
+                if (this.state.newPost.length > 300) {
+                  swal("Post Deleted!", "Too many characters", "warning"),
+                    this.setState({ newPost: "" });
+                } else if (this.state.newPost.length < 1) {
+                  swal(
+                    "Empty Post!",
+                    "Please enter in a valid message",
+                    "warning"
+                  );
+                } else {
+                  this.props
+                    .newPost(currentUser.user_id, this.state.newPost)
+                    .then(() => {
+                      this.props.loginUser();
+                      this.props.getEmployersPosts();
+                      this.setState({ newPost: "" });
+                    });
+                }
               }}
             >
               Add Post

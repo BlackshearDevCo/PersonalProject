@@ -492,7 +492,6 @@ class Profile extends Component {
                         <button
                           className="update-info-btn"
                           onClick={() => {
-                            console.log(this.state, this.props.currentUser)
                             if (
                               this.state.userType ===
                                 this.props.currentUser.user_type &&
