@@ -16,7 +16,9 @@ class Search extends Component {
 
   componentDidMount() {
     this.props.getUsers();
-    (this.props.currentUser && this.props.userTypeEdit) && this.props.toggleUserTypeEdit();
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   render() {
@@ -25,31 +27,52 @@ class Search extends Component {
     let users = allUsers
       .filter(e => e.first_name.includes(this.state.userInput))
       .map(cur => (
-        <div className="search-user-container">
-          {cur.profile_picture ? (
-            <Link to={`/user/${cur.user_id}`}>
+        <Link to={`/user/${cur.user_id}`} className='search-info-container search-link'>
+          <div className="search-user-container">
+            {cur.profile_picture ? (
               <div className="search-pfp-border">
                 <div
                   style={{ backgroundImage: `url(${cur.profile_picture})` }}
                   className="search-pfp"
                 />
               </div>
-            </Link>
-          ) : (
-            <div className="default-search-pfp" />
-          )}
-          <div className="search-info">
-            <Link to={`/user/${cur.user_id}`} className="search-link">
-              <h3 className="search-username">{cur.first_name}</h3>
-            </Link>
-            <p className="search-location">{cur.location || "Earth"}</p>
+            ) : (
+              <div className="default-search-pfp" />
+            )}
+            <div className="search-info">
+              <Link to={`/user/${cur.user_id}`} className="search-link">
+                <h3 className="search-username">{cur.first_name}</h3>
+              </Link>
+              <p className="search-location">{cur.location || "Earth"}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       ));
 
     return (
       <div className="search-bg">
         <div className="devs-background" />
+        {/* {!this.props.isLoading ? (
+          <div>
+            <input
+              placeholder="Search Username..."
+              onChange={e => this.setState({ userInput: e.target.value })}
+              className="username-search"
+            />
+            <div className="search-container">{users}</div>
+          </div>
+        ) : (
+          <div className="loading-bg">
+            <div className="loading-color-bg">
+              <div className="loading-container">
+                <div className="circle circle-1" />
+                <div className="circle circle-2" />
+                <div className="circle circle-3" />
+                <div className="circle circle-4" />
+              </div>
+            </div>
+          </div>
+        )} */}
         <input
           placeholder="Search Username..."
           onChange={e => this.setState({ userInput: e.target.value })}
@@ -65,4 +88,6 @@ const mapStateToProps = state => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, { getUsers, toggleUserTypeEdit })(Search);
+export default connect(mapStateToProps, { getUsers, toggleUserTypeEdit })(
+  Search
+);

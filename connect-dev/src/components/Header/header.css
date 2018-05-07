@@ -153,8 +153,8 @@
 .header-pfp-hover,
 .header-pfp-hover-true {
   border-radius: 10px 0 0 10px;
-  width: 254px;
-  min-height: 154px;
+  width: 264px;
+  min-height: 170px;
   top: 9vh;
   background: linear-gradient(to bottom right, #2291ff, #6b1180);
   right: -10vw;
@@ -175,8 +175,8 @@
 
 .inner-pfp-hover-true {
   background-color: rgb(58, 65, 65);
-  width: 250px;
-  min-height: 150px;
+  width: 260px;
+  min-height: 166px;
   margin: auto;
   transition: ease-in-out 0.5s;
   border-radius: 9px 0 0 9px;
@@ -184,8 +184,8 @@
 
 .inner-pfp-hover {
   background-color: rgb(58, 65, 65);
-  width: 250px;
-  min-height: 150px;
+  width: 260px;
+  min-height: 166px;
   border-radius: 9px 0 0 9px;
   margin: auto;
   transition: ease-in-out 0.5s;
@@ -209,7 +209,7 @@
   border-style: none;
   background: linear-gradient(to left, #2291ff, #6b1180);
   color: white;
-  margin: 3px;
+  margin: 6px;
 }
 
 .header-pfp-info,

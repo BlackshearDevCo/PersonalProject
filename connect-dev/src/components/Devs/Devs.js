@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import "./devs.css";
 import AddPost from "./AddPost/AddPost";
+import swal from "sweetalert";
 
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,8 @@ import {
   loginUser,
   getConnectionCount,
   toggleMenuFlag,
-  toggleUserTypeEdit
+  toggleUserTypeEdit,
+  deletePost
 } from "../../redux/reducers/userReducer";
 
 class Devs extends Component {
@@ -67,18 +69,20 @@ class Devs extends Component {
           <div>
             <div key={ind} className="post-container">
               <div className="user-container">
-                <img
-                  src={cur.profile_picture}
-                  className="post-pfp"
-                  onMouseEnter={() => {
-                    this.handleMouseHover();
-                    this.props.getConnectionCount(cur.user_id);
-                    this.setState({ postInd: ind });
-                  }}
-                  onMouseLeave={() => {
-                    this.handleMouseHover();
-                  }}
-                />
+                <Link to={`/user/${cur.user_id}`}>
+                  <img
+                    src={cur.profile_picture}
+                    className="post-pfp"
+                    onMouseEnter={() => {
+                      this.handleMouseHover();
+                      this.props.getConnectionCount(cur.user_id);
+                      this.setState({ postInd: ind });
+                    }}
+                    onMouseLeave={() => {
+                      this.handleMouseHover();
+                    }}
+                  />
+                </Link>
                 <div className="name-container">
                   <Link
                     to={`/user/${cur.user_id}`}
@@ -100,6 +104,26 @@ class Devs extends Component {
                     </h3>
                   </Link>
                   <p className="post-location">{cur.location}</p>
+                </div>
+                <div>
+                  {(this.props.currentUser.user_id === cur.user_id || this.props.currentUser.user_id === 8) && (
+                    <button
+                      className="delete-post"
+                      onClick={() => {
+                        swal(
+                          "Delete Successful",
+                          "Your post was deleted",
+                          "success",
+                          { button: "Nice!" }
+                        );
+                        this.props.deletePost(cur.post_id).then(() => {
+                          this.props.getPosts()
+                        });
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
               </div>
               <p id={cur.post_id} className="post-body">
@@ -261,9 +285,15 @@ class Devs extends Component {
                 <div className="devs-background" />
               </div>
             ) : (
-              <div className="devs-container">
-                <div className="devs-background" />
-                <h1 className="devs-loading">Loading...</h1>
+              <div className="loading-bg">
+                <div className="loading-color-bg">
+                  <div className="loading-container">
+                    <div className="circle circle-1" />
+                    <div className="circle circle-2" />
+                    <div className="circle circle-3" />
+                    <div className="circle circle-4" />
+                  </div>
+                </div>
               </div>
             )}
             <div>
@@ -291,5 +321,6 @@ export default connect(mapStateToProps, {
   loginUser,
   getConnectionCount,
   toggleMenuFlag,
-  toggleUserTypeEdit
+  toggleUserTypeEdit,
+  deletePost
 })(Devs);

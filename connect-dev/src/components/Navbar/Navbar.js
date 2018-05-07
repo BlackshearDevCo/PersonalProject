@@ -16,10 +16,12 @@ class Navbar extends Component {
           {!this.props.currentUser.first_name ? (
             <div className="default-nav-pfp" />
           ) : (
+            <Link to={`/user/${this.props.currentUser.user_id}`} onClick={() => this.props.toggleMenuFlag()}>
             <div
               className="user-nav-pfp"
               style={{backgroundImage: `url(${this.props.currentUser.profile_picture})`}}
             />
+            </Link>
           )}
         </div>
         <div className={!menuFlag ? "nav-links" : "nav-links-true"}>

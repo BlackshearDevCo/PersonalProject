@@ -21,7 +21,7 @@
 }
 
 .default-nav-pfp, .user-nav-pfp{
-    margin-top: -8vh;
+    margin-top: -11vh;
     width: 160px;
     height: 160px;
     border-radius: 50%;
@@ -38,19 +38,26 @@
 }
 
 .nav-links, .nav-links-true{
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     font-size: 24px;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
+    width: 130px;
 }
 
 .link{
-    margin: 3px 0;
+    margin: 5px 0;
     color: white;
     text-decoration: none;
+    transition: .1s linear;
+    font-weight: 300;
+}
+
+.link:hover{
+    font-weight: 500;
 }
 
 @media (min-width: 425px) {

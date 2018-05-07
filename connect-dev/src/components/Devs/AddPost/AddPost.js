@@ -15,7 +15,8 @@ class AddPost extends Component {
     super();
     this.state = {
       postFlag: false,
-      newPost: ""
+      newPost: "",
+      keyCode: null
     };
     this.togglePostFlag = this.togglePostFlag.bind(this);
     this.createPost = this.createPost.bind(this);
@@ -67,20 +68,44 @@ class AddPost extends Component {
                 className="textarea"
                 onChange={e => this.createPost(e.target.value)}
                 placeholder="Limit 300 Characters..."
+                onKeyDown={e => this.setState({keyCode: e.keyCode})}
               />
               <button
                 className="add-post"
                 onClick={() => {
-                  this.props.newPost.length > 300
-                    ? swal("Too many characters!")
-                    : (this.props.newPost(
-                        currentUser.user_id,
-                        this.state.newPost
-                      ),
-                      this.props.loginUser(),
-                      this.props.getEmployersPosts(),
-                      this.togglePostFlag(),
-                      this.setState({ newPost: "" }));
+                  if (this.state.newPost.length > 300) {
+                    swal("Post Deleted!", "Too many characters", "warning"),
+                      this.setState({ newPost: "" });
+                  } else if (this.state.newPost.length < 1) {
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                  } else if (this.state.newPost[0] == " ") {
+                    let trimmedPost = this.state.newPost.trim();
+                    this.props
+                      .newPost(currentUser.user_id, trimmedPost)
+                      .then(() => {
+                        this.props.loginUser();
+                        this.props.getEmployersPosts();
+                        this.setState({ newPost: "" });
+                      });
+                  }else if (this.state.keyCode === 13) {
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                  } else {
+                    this.props
+                      .newPost(currentUser.user_id, this.state.newPost)
+                      .then(() => {
+                        this.props.loginUser();
+                        this.props.getEmployersPosts();
+                        this.setState({ newPost: "" });
+                      });
+                  }
                 }}
               >
                 Add Post
@@ -108,6 +133,12 @@ class AddPost extends Component {
                   swal("Post Deleted!", "Too many characters", "warning"),
                     this.setState({ newPost: "" });
                 } else if (this.state.newPost.length < 1) {
+                  swal(
+                    "Empty Post!",
+                    "Please enter in a valid message",
+                    "warning"
+                  );
+                } else if (this.state.newPost[0] == " ") {
                   swal(
                     "Empty Post!",
                     "Please enter in a valid message",
