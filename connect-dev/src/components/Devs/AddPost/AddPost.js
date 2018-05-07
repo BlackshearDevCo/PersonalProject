@@ -68,12 +68,13 @@ class AddPost extends Component {
                 className="textarea"
                 onChange={e => this.createPost(e.target.value)}
                 placeholder="Limit 300 Characters..."
-                onKeyDown={e => this.setState({keyCode: e.keyCode})}
+                onKeyDown={e => this.setState({ keyCode: e.keyCode })}
               />
               <button
                 className="add-post"
                 onClick={() => {
                   if (this.state.newPost.length > 300) {
+                    console.log('Message To Long')
                     swal("Post Deleted!", "Too many characters", "warning"),
                       this.setState({ newPost: "" });
                   } else if (this.state.newPost.length < 1) {
@@ -84,14 +85,21 @@ class AddPost extends Component {
                     );
                   } else if (this.state.newPost[0] == " ") {
                     let trimmedPost = this.state.newPost.trim();
-                    this.props
-                      .newPost(currentUser.user_id, trimmedPost)
-                      .then(() => {
-                        this.props.loginUser();
-                        this.props.getEmployersPosts();
-                        this.setState({ newPost: "" });
-                      });
-                  }else if (this.state.keyCode === 13) {
+                    // this.props
+                    //   .newPost(currentUser.user_id, trimmedPost)
+                    //   .then(() => {
+                    //     this.props.loginUser();
+                    //     this.props.getEmployersPosts();
+                    //     this.setState({ newPost: "" });
+                    //   });
+                    this.setState({ newPost: "" });
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                  } else if (this.state.keyCode === 13) {
+                    this.setState({ newPost: "" });
                     swal(
                       "Empty Post!",
                       "Please enter in a valid message",
@@ -125,11 +133,13 @@ class AddPost extends Component {
               value={this.state.newPost}
               onChange={e => this.createPost(e.target.value)}
               placeholder="Limit 300 Characters..."
+              onKeyDown={e => this.setState({ keyCode: e.keyCode })}
             />
             <button
               className="add-post-full"
               onClick={() => {
                 if (this.state.newPost.length > 300) {
+                  console.log('Message To Long')
                   swal("Post Deleted!", "Too many characters", "warning"),
                     this.setState({ newPost: "" });
                 } else if (this.state.newPost.length < 1) {
@@ -139,6 +149,21 @@ class AddPost extends Component {
                     "warning"
                   );
                 } else if (this.state.newPost[0] == " ") {
+                  let trimmedPost = this.state.newPost.trim();
+                  // this.props
+                  //   .newPost(currentUser.user_id, trimmedPost)
+                  //   .then(() => {
+                  //     this.props.loginUser();
+                  //     this.props.getEmployersPosts();
+                  //     this.setState({ newPost: "" });
+                  //   });
+                  this.setState({ newPost: "" });
+                  swal(
+                    "Empty Post!",
+                    "Please enter in a valid message",
+                    "warning"
+                  );
+                } else if (this.state.keyCode === 13) {
                   swal(
                     "Empty Post!",
                     "Please enter in a valid message",

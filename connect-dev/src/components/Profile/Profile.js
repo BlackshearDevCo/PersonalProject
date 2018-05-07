@@ -163,7 +163,7 @@ class Profile extends Component {
                   </div>
                   <div className="user-email">
                     <p className="info-title">Email: </p>
-                    <p className="info" onClick={() => window.open('https://mail.google.com/mail/u/0/#inbox?compose=new')}>{email || "User has no email"}</p>
+                    <p className="info">{email || "User has no email"}</p>
                   </div>
                   <div>
                     <p className="info-title">Connections: </p>
