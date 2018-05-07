@@ -147,7 +147,7 @@ textarea::placeholder{
         position: fixed;
         top: 100%;
         left: 0px;
-        background: linear-gradient(to right, #2291FF, #6B1180);
+        background: linear-gradient(to left, #2291FF, #6B1180);
         color: white;
     }
 

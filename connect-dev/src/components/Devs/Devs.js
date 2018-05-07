@@ -235,7 +235,7 @@ class Devs extends Component {
             />
             <div className="input-container">
               <input
-                placeholder="Username..."
+                placeholder="Search By Username..."
                 onChange={e => this.handleUsernameSearch(e.target.value)}
                 className="username search-input"
               />
@@ -247,7 +247,7 @@ class Devs extends Component {
                   <div className="location-container">
                     <input
                       {...getInputProps({
-                        placeholder: "Location...",
+                        placeholder: "Search By Location...",
                         className: "location search-input"
                       })}
                     />

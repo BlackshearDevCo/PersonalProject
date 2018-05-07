@@ -71,53 +71,70 @@ class AddPost extends Component {
                 onKeyDown={e => this.setState({ keyCode: e.keyCode })}
               />
               <button
-                className="add-post"
-                onClick={() => {
-                  if (this.state.newPost.length > 300) {
-                    console.log('Message To Long')
-                    swal("Post Deleted!", "Too many characters", "warning"),
-                      this.setState({ newPost: "" });
-                  } else if (this.state.newPost.length < 1) {
-                    swal(
-                      "Empty Post!",
-                      "Please enter in a valid message",
-                      "warning"
-                    );
-                  } else if (this.state.newPost[0] == " ") {
-                    let trimmedPost = this.state.newPost.trim();
-                    // this.props
-                    //   .newPost(currentUser.user_id, trimmedPost)
-                    //   .then(() => {
-                    //     this.props.loginUser();
-                    //     this.props.getEmployersPosts();
-                    //     this.setState({ newPost: "" });
-                    //   });
+              className="add-post-full"
+              onClick={() => {
+                if (this.state.newPost.length > 300) {
+                  console.log("Message To Long");
+                  swal("Post Deleted!", "Too many characters", "warning"),
                     this.setState({ newPost: "" });
+                } else if (this.state.newPost.length < 1) {
+                  swal(
+                    "Empty Post!",
+                    "Please enter in a valid message",
+                    "warning"
+                  );
+                  this.setState({ newPost: "" });
+                } else if (this.state.newPost[0] == " ") {
+                  let trimmedPost = this.state.newPost.trim();
+                  console.log(trimmedPost.length)
+                  if (trimmedPost.length === 0) {
                     swal(
                       "Empty Post!",
                       "Please enter in a valid message",
                       "warning"
                     );
-                  } else if (this.state.keyCode === 13) {
                     this.setState({ newPost: "" });
-                    swal(
-                      "Empty Post!",
-                      "Please enter in a valid message",
-                      "warning"
-                    );
                   } else {
                     this.props
-                      .newPost(currentUser.user_id, this.state.newPost)
+                      .newPost(currentUser.user_id, trimmedPost)
                       .then(() => {
                         this.props.loginUser();
                         this.props.getEmployersPosts();
                         this.setState({ newPost: "" });
                       });
                   }
-                }}
-              >
-                Add Post
-              </button>
+                } else if (this.state.keyCode === 13) {
+                  let trimmedPost = this.state.newPost.trim();
+                  console.log(trimmedPost.length)
+                  if (trimmedPost.length === 0) {
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                    this.setState({ newPost: "" });
+                  } else {
+                    this.props
+                      .newPost(currentUser.user_id, trimmedPost)
+                      .then(() => {
+                        this.props.loginUser();
+                        this.props.getEmployersPosts();
+                        this.setState({ newPost: "" });
+                      });
+                  }
+                } else {
+                  this.props
+                    .newPost(currentUser.user_id, this.state.newPost)
+                    .then(() => {
+                      this.props.loginUser();
+                      this.props.getEmployersPosts();
+                      this.setState({ newPost: "" });
+                    });
+                }
+              }}
+            >
+              Add Post
+            </button>
             </div>
             <div className="post-btn-border">
               <div className="post-btn" onClick={() => this.togglePostFlag()}>
@@ -139,7 +156,7 @@ class AddPost extends Component {
               className="add-post-full"
               onClick={() => {
                 if (this.state.newPost.length > 300) {
-                  console.log('Message To Long')
+                  console.log("Message To Long");
                   swal("Post Deleted!", "Too many characters", "warning"),
                     this.setState({ newPost: "" });
                 } else if (this.state.newPost.length < 1) {
@@ -148,27 +165,45 @@ class AddPost extends Component {
                     "Please enter in a valid message",
                     "warning"
                   );
+                  this.setState({ newPost: "" });
                 } else if (this.state.newPost[0] == " ") {
                   let trimmedPost = this.state.newPost.trim();
-                  // this.props
-                  //   .newPost(currentUser.user_id, trimmedPost)
-                  //   .then(() => {
-                  //     this.props.loginUser();
-                  //     this.props.getEmployersPosts();
-                  //     this.setState({ newPost: "" });
-                  //   });
-                  this.setState({ newPost: "" });
-                  swal(
-                    "Empty Post!",
-                    "Please enter in a valid message",
-                    "warning"
-                  );
+                  console.log(trimmedPost.length)
+                  if (trimmedPost.length === 0) {
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                    this.setState({ newPost: "" });
+                  } else {
+                    this.props
+                      .newPost(currentUser.user_id, trimmedPost)
+                      .then(() => {
+                        this.props.loginUser();
+                        this.props.getEmployersPosts();
+                        this.setState({ newPost: "" });
+                      });
+                  }
                 } else if (this.state.keyCode === 13) {
-                  swal(
-                    "Empty Post!",
-                    "Please enter in a valid message",
-                    "warning"
-                  );
+                  let trimmedPost = this.state.newPost.trim();
+                  console.log(trimmedPost.length)
+                  if (trimmedPost.length === 0) {
+                    swal(
+                      "Empty Post!",
+                      "Please enter in a valid message",
+                      "warning"
+                    );
+                    this.setState({ newPost: "" });
+                  } else {
+                    this.props
+                      .newPost(currentUser.user_id, trimmedPost)
+                      .then(() => {
+                        this.props.loginUser();
+                        this.props.getEmployersPosts();
+                        this.setState({ newPost: "" });
+                      });
+                  }
                 } else {
                   this.props
                     .newPost(currentUser.user_id, this.state.newPost)

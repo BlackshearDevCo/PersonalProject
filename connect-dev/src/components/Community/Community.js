@@ -51,6 +51,8 @@ class Community extends Component {
     if (event.keyCode === 13) {
       if (!this.state.userInput || !this.state.username) {
         swal("Message Failed!", "Please enter in a vaild Message!", "warning");
+      } else if (this.state.userInput[0] == " ") {
+        swal("Message Failed!", "Please enter in a vaild Message!", "warning");
       } else {
         this.sendMessage();
       }
