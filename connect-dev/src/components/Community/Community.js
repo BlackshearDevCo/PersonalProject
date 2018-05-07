@@ -8,7 +8,10 @@ import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-import { toggleMenuFlag, toggleUserTypeEdit } from '../../redux/reducers/userReducer.js';
+import {
+  toggleMenuFlag,
+  toggleUserTypeEdit
+} from "../../redux/reducers/userReducer.js";
 
 class Community extends Component {
   constructor(props) {
@@ -43,18 +46,25 @@ class Community extends Component {
     this.handleEnter = this.handleEnter.bind(this);
   }
 
-  componentDidMount(){
-    (this.props.currentUser && this.props.userTypeEdit) && this.props.toggleUserTypeEdit();
+  componentDidMount() {
+    this.props.currentUser &&
+      this.props.userTypeEdit &&
+      this.props.toggleUserTypeEdit();
   }
 
   handleEnter(event) {
     if (event.keyCode === 13) {
       if (!this.state.userInput || !this.state.username) {
         swal("Message Failed!", "Please enter in a vaild Message!", "warning");
-      } else if (this.state.userInput[0] == " ") {
-        swal("Message Failed!", "Please enter in a vaild Message!", "warning");
+        this.setState({ userInput: "" });
       } else {
-        this.sendMessage();
+        let trimmedPost = this.state.userInput.trim();
+        if (trimmedPost.length === 0) {
+          swal("Empty Message!", "Please enter in a valid message", "warning");
+          this.setState({ userInput: "" });
+        } else {
+          this.sendMessage();
+        }
       }
     }
   }
@@ -136,23 +146,35 @@ class Community extends Component {
               <section className="community-container">
                 <input
                   type="text"
-                  placeholder="Message"
+                  placeholder="Enter Message Here..."
                   className="message-input"
                   value={this.state.userInput}
                   onChange={e => this.setState({ userInput: e.target.value })}
                   onKeyDown={this.handleEnter}
                 />
                 <button
-                  onClick={
-                    !this.state.userInput || !this.state.username
-                      ? () =>
-                          swal(
-                            "Message Failed!",
-                            "Please enter in a vaild Message!",
-                            "warning"
-                          )
-                      : this.sendMessage
-                  }
+                  onClick={() => {
+                    if (!this.state.userInput || !this.state.username) {
+                      swal(
+                        "Message Failed!",
+                        "Please enter in a vaild Message!",
+                        "warning"
+                      );
+                      this.setState({ userInput: "" });
+                    } else {
+                      let trimmedPost = this.state.userInput.trim();
+                      if (trimmedPost.length === 0) {
+                        swal(
+                          "Empty Message!",
+                          "Please enter in a valid message",
+                          "warning"
+                        );
+                        this.setState({ userInput: "" });
+                      } else {
+                        this.sendMessage();
+                      }
+                    }
+                  }}
                   className="send-message"
                 >
                   <div className="send-arrow" />
@@ -161,7 +183,12 @@ class Community extends Component {
             ) : (
               <div className="community-text">
                 <h3>You must log in to chat!</h3>
-                <a href='http://localhost:3001/auth' className='login-text-a-tag'><p className='login-text'>Login</p></a>
+                <a
+                  href="http://localhost:3001/auth"
+                  className="login-text-a-tag"
+                >
+                  <p className="login-text">Login</p>
+                </a>
               </div>
             )}
           </div>
@@ -177,4 +204,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleMenuFlag, toggleUserTypeEdit })(Community);
+export default connect(mapStateToProps, { toggleMenuFlag, toggleUserTypeEdit })(
+  Community
+);

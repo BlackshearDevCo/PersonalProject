@@ -126,6 +126,10 @@ textarea::placeholder{
 }
 
 @media (min-width: 1250px) {
+    .new-post-container{
+        display: none;
+    }
+
     .new-post-container-full {
         display: block;
         position: fixed;

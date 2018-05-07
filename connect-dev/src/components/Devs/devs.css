@@ -268,18 +268,27 @@
 
   .quick-look-user-container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
   }
 
+  .quick-look-pfp{
+
+    margin: 5px;
+  }
+  
   .quick-look-name-container{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    padding-left: 10px;
   }
-
+  
   .quick-look-name {
+    word-wrap: break-word;
     font-weight: 600;
     color: white;
   }

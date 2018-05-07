@@ -147,7 +147,7 @@ class Devs extends Component {
                 <div className="quick-look-bg">
                   <div className="quick-look-container">
                     <div className="quick-look-user-container">
-                      <img src={cur.profile_picture} className="post-pfp" />
+                      <img src={cur.profile_picture} className="post-pfp quick-look-pfp" />
                       <div className="quick-look-name-container">
                         <h3 className="quick-look-name">{cur.first_name}</h3>
                         <p className="quick-look-location">
