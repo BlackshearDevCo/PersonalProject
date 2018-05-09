@@ -91,7 +91,7 @@ class Navbar extends Component {
             </a>
           ) : (
             <a
-              href="http://localhost:3000/#/"
+              href="http://localhost:3000"
               onClick={() => {
                 this.props.logout(), this.props.toggleMenuFlag();
               }}

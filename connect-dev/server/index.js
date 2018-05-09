@@ -91,7 +91,7 @@ passport.deserializeUser((obj, done) => {
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
+    successRedirect: "http://localhost:3000",
     failureRedirect: "http://localhost:3001/auth"
   })
 );

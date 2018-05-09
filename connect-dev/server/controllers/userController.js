@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const logout = (req, res) => {
   req.session.destroy();
   req.logout();
-  res.redirect("http://localhost:3000/#/");
+  res.redirect("http://localhost:3000");
 };
 
 const getUser = (req, res) => {
@@ -115,7 +115,7 @@ const sendEmail = (req, res) => {
       to: recieverEmail,
       subject: "ConnectDev",
       test: `${senderName} wants to Connect!`,
-      html: `<p>Hello ${recieverName}! <a href='http://localhost:3000/#/user/${recieverID}'>${senderName}</a>${senderLocation ? ` from ${senderLocation}` : ' '} wants to get in touch with you. Head to <a href='http://localhost:3000/#/'>ConnectDev</a> and look them up.
+      html: `<p>Hello ${recieverName}! <a href='http://localhost:3000/user/${recieverID}'>${senderName}</a>${senderLocation ? ` from ${senderLocation}` : ' '} wants to get in touch with you. Head to <a href='http://localhost:3000'>ConnectDev</a> and look them up.
        If you like them, don't hesitate to get back in touch with them. Their email is: ${senderEmail} <br>
        Have a great day!`
     };

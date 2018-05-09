@@ -139,7 +139,7 @@ class Header extends Component {
                           >
                             <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
-                          <a href="http://localhost:3000/#/">
+                          <a href="http://localhost:3000">
                             <button
                               className="header-pfp-login"
                               onClick={() => this.props.logout()}
@@ -171,7 +171,7 @@ class Header extends Component {
                           >
                             <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
-                          <a href="http://localhost:3000/#/">
+                          <a href="http://localhost:3000">
                             <button
                               className="header-pfp-login"
                               onClick={() => this.props.logout()}
@@ -221,7 +221,7 @@ class Header extends Component {
                           >
                             <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
-                          <a href="http://localhost:3000/#/">
+                          <a href="http://localhost:3000">
                             <button
                               className="header-pfp-login"
                               onClick={() => this.props.logout()}
@@ -251,7 +251,7 @@ class Header extends Component {
                           >
                             <p onClick={() => this.toggleMouseHover()}>Edit Profile</p>
                           </Link>
-                          <a href="http://localhost:3000/#/">
+                          <a href="http://localhost:3000">
                             <button
                               className="header-pfp-login"
                               onClick={() => this.props.logout()}
