@@ -41,20 +41,20 @@ class Devs extends Component {
       this.props.toggleUserTypeEdit();
   }
 
-  handleLocation(address) {
-    this.setState({ locationSearch: address });
-  }
-
-  handleError(err) {
-    this.setState({ errorMessage: `GOOGLE LOCATION ERROR: ${err}` });
-  }
-
   handleUsernameSearch(val) {
     this.setState({ usernameSearch: val });
   }
 
   handleMouseHover() {
     this.setState({ mouseHover: !this.state.mouseHover });
+  }
+
+  handleLocation(address) {
+    this.setState({ locationSearch: address });
+  }
+
+  handleError(err) {
+    this.setState({ errorMessage: `GOOGLE LOCATION ERROR: ${err}` });
   }
 
   render() {
@@ -106,7 +106,8 @@ class Devs extends Component {
                   <p className="post-location">{cur.location}</p>
                 </div>
                 <div>
-                  {(this.props.currentUser.user_id === cur.user_id || this.props.currentUser.user_id === 8) && (
+                  {(this.props.currentUser.user_id === cur.user_id ||
+                    this.props.currentUser.user_id === 8) && (
                     <button
                       className="delete-post"
                       onClick={() => {
@@ -117,7 +118,7 @@ class Devs extends Component {
                           { button: "Nice!" }
                         );
                         this.props.deletePost(cur.post_id).then(() => {
-                          this.props.getPosts()
+                          this.props.getPosts();
                         });
                       }}
                     >
@@ -147,7 +148,10 @@ class Devs extends Component {
                 <div className="quick-look-bg">
                   <div className="quick-look-container">
                     <div className="quick-look-user-container">
-                      <img src={cur.profile_picture} className="post-pfp quick-look-pfp" />
+                      <img
+                        src={cur.profile_picture}
+                        className="post-pfp quick-look-pfp"
+                      />
                       <div className="quick-look-name-container">
                         <h3 className="quick-look-name">{cur.first_name}</h3>
                         <p className="quick-look-location">
