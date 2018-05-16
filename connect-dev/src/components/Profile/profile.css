@@ -104,6 +104,10 @@
   font-weight: 400;
 }
 
+.posts-container{
+  margin-bottom: 60px;
+}
+
 .posts-title {
   margin-top: 30px;
   font-size: 26px;

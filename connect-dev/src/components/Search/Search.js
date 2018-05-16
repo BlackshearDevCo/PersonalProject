@@ -25,7 +25,7 @@ class Search extends Component {
     const { allUsers } = this.props;
 
     let users = allUsers
-      .filter(e => e.first_name.includes(this.state.userInput))
+      .filter(e => e.first_name.toLowerCase().includes(this.state.userInput.toLowerCase()))
       .map(cur => (
         <Link to={`/user/${cur.user_id}`} className='search-info-container search-link'>
           <div className="search-user-container">

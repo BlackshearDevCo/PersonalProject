@@ -23,3 +23,7 @@
 .info-email:hover{
     cursor: pointer;
 }
+
+.posts-container{
+    margin-bottom: 60px;
+}

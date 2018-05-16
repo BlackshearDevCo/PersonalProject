@@ -61,8 +61,8 @@ class Devs extends Component {
     let filtered = this.props.employerPosts
       .filter(
         cur =>
-          cur.first_name.includes(this.state.usernameSearch) &&
-          cur.location.includes(this.state.locationSearch)
+        cur.first_name.toLowerCase().includes(this.state.usernameSearch.toLowerCase()) &&
+        cur.location.toLowerCase().includes(this.state.locationSearch.toLowerCase())
       )
       .map((cur, ind) => {
         return (
